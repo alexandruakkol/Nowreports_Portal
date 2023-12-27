@@ -1,0 +1,37 @@
+.App{
+    display:flex;
+    flex-direction: column;
+    height:100vh;
+}
+#Navbar{
+    display:flex;
+    align-items: flex-end;
+    justify-content: space-around;
+    flex:1.2;
+    border-bottom: 1px solid grey;
+    box-shadow: 0 1px 3px #606060;
+}
+#Main{
+    flex:10;
+    display:flex;
+}
+.main-section{
+    margin:2px;
+    border:0px solid grey;
+    border-radius: 10px;
+} 
+#main-section-left{
+    flex:1;
+}
+#main-section-center{
+    flex:4;
+}
+#main-section-right{
+    flex:4;
+}
+.navbar-1{
+    font-size:30px;
+}
+.navbar-2{
+    font-size:13px;
+}
