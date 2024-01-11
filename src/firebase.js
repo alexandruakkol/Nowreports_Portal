@@ -1,8 +1,5 @@
 import { initializeApp } from "firebase/app";
-import {getAuth} from 'firebase/auth';
-import { getAnalytics } from "firebase/analytics";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+import {getAuth, signOut} from 'firebase/auth';
 
 const {REACT_APP_FB_KEY,REACT_APP_AUTH_DOMAIN,REACT_APP_PJ_ID,
   REACT_APP_STORAGE_BUCKET,REACT_APP_MESSAGING_SENDER_ID,
@@ -21,4 +18,14 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 //const analytics = getAnalytics(app);
 
-export default app;
+const auth = getAuth(app);
+
+function fb_signOut(){
+  signOut(auth).then(() => {
+    // Sign-out successful.
+  }).catch((error) => {
+    // An error happened.
+  });
+}
+
+export {auth, fb_signOut};

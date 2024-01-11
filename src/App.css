@@ -1,24 +1,50 @@
+:root{
+    --BORDERS:#e0e0e0;
+    --scale-factor:0.8
+}
 .App{
-    display:flex;
     flex-direction: column;
     height:100vh;
 }
-#Navbar{
+.flex-row{
     display:flex;
-    align-items: flex-end;
-    justify-content: space-around;
-    flex:1.2;
-    border-bottom: 1px solid grey;
-    box-shadow: 0 1px 3px #606060;
+    flex-direction: row;
+}
+
+/* CONVO PAGE */
+
+.green{
+    color:green;
+}
+.allWidth{
+    width: 100%;
+}
+
+#Navbar{
+    padding-left: 2%;
+    padding-right: 2%;
+    display: flex;
+    height: 5vh;
+    box-shadow: 0 1px 1px var(--BORDERS);
+    align-items: center;
+    justify-content: space-between;
 }
 #Main{
-    flex:10;
+    height: 95vh;
+    flex:20;
     display:flex;
+    justify-content: center;
+}
+.Main-noNavbar{
+    height:100vh !important;
 }
 .main-section{
-    margin:2px;
-    border:0px solid grey;
+    margin-right: 1px;
+    margin-left: 1px;
+    margin-top: 7px;
+    border:1px solid var(--BORDERS);
     border-radius: 10px;
+    text-align: center;
 } 
 #main-section-left{
     flex:1;
@@ -29,9 +55,263 @@
 #main-section-right{
     flex:4;
 }
-.navbar-1{
+#main-flex{
+    display:flex;
+    flex-direction: column;
+    width: 50vw;
+    text-align: center;
+}
+#main-flex > div{
+    height:100%;
+    width:100%;
+    margin-top: 8vh;
+}
+#main-flex1{
+    flex:2;
+    display:flex;
+    text-align: center;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+#main-flex2{
+    flex:1
+}
+#main-flex3{
+    flex:0.7
+}
+#main-flex4{
+    flex:0.5
+}
+#main-flex5{
+    flex:3
+}
+.main-title{
+    font-size: 35px;
+    font-family: Rethink;
+    transition: opacity 0.5s ease-in-out;
+}
+#navbar-1{
     font-size:30px;
+    cursor:pointer;
+    margin: 0;
 }
 .navbar-2{
     font-size:13px;
+}
+#login-container{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10vh;
+}
+#login-header{
+    border-bottom:1px solid var(--BORDERS);
+    text-align: center;
+    width: 100%;
+    
+}
+#login-text1{
+    text-align: center;
+}
+.avatar-context-option{
+    cursor:pointer;
+    text-align: center;
+    border-radius: 8px;
+}
+.avatar-context-option:hover{
+    background-color:  var(--BORDERS);
+} 
+#frame-div{
+    padding-top: 80px;
+    width: 70%;
+    gap: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    align-content: center;
+}
+.settings-card{
+    width:100%;
+}
+#settings-list{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.error-msg{
+    color:red;
+}
+#passchange-icon{
+    margin-top: 1rem;
+    font-size: 4rem;
+}
+#passchange-success{
+    text-align: center;
+    width: 100%;
+    background-color: white;
+    position: absolute;
+    z-index: 1;
+    height: 100%;
+}
+.main-section-title{
+    padding:5px;
+}
+.filing-ddown-container{
+    gap: 0.5rem;
+    cursor:default;
+}
+.moveUp {
+    transform: translateY(-16.5vh); /* Adjust the value to control how much the div moves up */
+    transition-duration:1000ms;
+}
+.fadeOut{
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s 1.4s, opacity 1.4s linear;
+}
+.fadeIn{
+    visibility: visible;
+    opacity: 1 !important;
+    transition: opacity 1s linear; 
+}
+#ai-container{
+    opacity: 0;
+    display:flex;
+    flex-direction: column;
+    padding-bottom: 20px;
+    justify-content: flex-end;
+}
+#sym-header{
+    width: 50vw;
+    text-align: center;
+    top: 0vh;
+    position: fixed;
+
+}
+.message-container{
+    text-align: left;
+}
+.message-text{
+    margin-left: 0.5rem;
+}
+.message-agent{
+    margin-left:8px;
+}
+#msg-send-icon{
+    font-size:1.5rem;
+    margin-right: 0.5rem;
+}
+
+/* CONVO PAGE */
+#convo-container{
+    display: flex;
+    width:100%;
+}
+#convo-sidebar{
+    flex:2;
+    max-width: 200px;
+    background-color: rgb(0, 21, 41);
+    display:flex;
+    font-family: Montserrat;
+
+}
+#convo-splitpane{
+    display:flex;
+    flex:7;
+    height:100%;
+    width:100%;
+}
+.convo-pane{
+    height: 100%;
+    display: flex;
+    alignItems: center;
+    justifyContent: center;
+    background-color: rgb(246, 246, 246);
+    border-radius:2px;
+}
+#convo-pane-left{
+    border-right:5px solid rgb(221, 221, 221);
+}
+#convo-pane-right{
+    border-left:5px solid rgb(221, 221, 221);
+}
+#iframe-container{
+    height: calc(var(--scale-factor) * 841.889763779528px); 
+    width: calc(var(--scale-factor) * 595.303937007874px); 
+}
+#iframe-report{
+    height:100%;
+    width:100%;
+    transform-origin: left top;
+}
+#htmlviewer-container{
+    width:100%;
+    height:100%;
+    text-align:center;
+}
+#htmlview-header{
+    position: relative;
+    z-index: 1;
+    padding: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+}
+#chat-container{
+    display:flex;
+    justify-content: flex-end;
+    flex-direction: column;
+}
+#chat-bar{
+    padding: 0.7rem;
+    display: flex;
+}
+.iframe-cover {/* To fix resizing sections over the iframe */
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 10; 
+    background: transparent; /* Or any color with opacity if needed */
+}
+.convo-symboldata{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding:0.6rem;
+    color: rgba(255, 255, 255, 0.65);    
+    margin: 0.4rem;
+    border: 1px solid rgb(56, 87, 129);
+    border-radius: 8px;
+    font-size: 0.95rem;
+}
+.convo-symboldata-title{
+    font-weight: bold;
+    text-align: center;
+}
+#messages-container{
+    padding: 0.7rem;
+}
+.message{
+    font-size: 1rem;
+    background-color: #007bff;
+    color: white;
+    padding: 3px 15px;
+    border-radius: 8px;
+    max-width: 55%;
+    margin: 5px 0;
+    word-wrap: break-word;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    font-family: 'Arial', sans-serif;
+    line-height: 1.5;  
+}
+.user-message-row{
+    display: flex;
+    justify-content: flex-end;
+}
+#logo > img{
+    width: 100%;
 }

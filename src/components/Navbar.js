@@ -1,8 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { AppstoreOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons';
-import { Menu } from 'antd';
+import { Menu, Avatar, Popover, Button } from 'antd';
+import {AuthContext, MainModeContext} from '../App';
+import {LogoutOutlined} from '@ant-design/icons';
+import { fb_signOut } from '../firebase';
+import { useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
+
+  const {FB_USER} = useContext(AuthContext);
+  //const {setMAIN_MODE} = useContext(MainModeContext);
+  const navigate = useNavigate();
+
   const items = [
     {
       label: 'Navigation One',
@@ -19,15 +28,34 @@ const Navbar = () => {
   ];
 
   const [current, setCurrent] = useState('mail');
+
   const onClick = (e) => {
     console.log('click ', e);
     setCurrent(e.key);
   };
 
+  const avatarContext = (
+    <div id="avatar-context">
+      <p className='avatar-context-option' onClick={()=>navigate('/settings')}>Account and settings</p>
+      <p className='avatar-context-option' onClick={fb_signOut}><LogoutOutlined></LogoutOutlined> Logout</p>
+    </div>
+  );
+
   return (
     <nav id="Navbar">
-      <h2 className="navbar-1">nowReports <span className="navbar-2">portal</span></h2>
-      <Menu onClick={onClick} selectedKeys={[current]} mode="horizontal" items={items} />
+      <h2 id="navbar-1" onClick={()=>{navigate('/')}}>Now Reports <span className="navbar-2">portal</span></h2>
+      {/* <Menu onClick={onClick} selectedKeys={[current]} mode="horizontal" items={items} /> */}
+      <Popover content={avatarContext} title={`Welcome, ${FB_USER.fname}`}>
+        <Avatar
+          style={{
+            backgroundColor: 'purple',
+            verticalAlign: 'middle',
+          }}
+          size="large"
+        >
+          {FB_USER.fname[0]}
+        </Avatar>
+      </Popover>
     </nav>
   )
 }
