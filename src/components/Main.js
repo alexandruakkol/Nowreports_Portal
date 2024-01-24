@@ -105,17 +105,11 @@ function DefPage(){
 
   async function onSelectCompany(ticker){
     console.log('select company ', ticker);
-    //const selectedObj = options.filter(x => x.ticker === ticker)[0];
-    //const link = await axios.get(`${window.appdata.API_ADDR}/links?q=${ticker}`).catch(err=>console.log(err));
-    //if(!link?.data) return console.log('Symbol error');
     createConversation({ticker});
-    //loadReportFrame(link.data);
-    //setPageData(selectedObj);
   };
 
   async function getSuggestions(query){
     const res = await axios.get(`${window.appdata.API_ADDR}/companies?q=${query}`).catch(err=>console.log(err));
-    console.log(res.data);
     setOptions(res.data);
   }
 
@@ -140,20 +134,25 @@ function DefPage(){
 
   const filingOptions = {items};
 
-  const renderOption = (obj) => (
-    { 
+  const renderOption = (obj) => {
+
+    const color = obj.chunks ? '' : 'noreport_option';
+
+    return { 
       value:obj.symbol,
       label: 
       <div style={{
           display: 'flex',
           justifyContent: 'space-between',
-        }}>
+          className:{color}
+      }}>
         <span><b>{obj.symbol}</b></span>
         <span>{obj.value}</span>
+        <span>{obj.chunks}</span>
       </div>, 
       key: obj.key
     }
-  );
+  }
   
   function renderSymHeader(){
     return <>

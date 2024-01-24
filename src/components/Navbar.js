@@ -43,7 +43,7 @@ const Navbar = () => {
 
   return (
     <nav id="Navbar">
-      <h2 id="navbar-1" onClick={()=>{navigate('/')}}>Now Reports <span className="navbar-2">portal</span></h2>
+      <h2 id="navbar-1" onClick={()=>{navigate('/')}}>Now Reports<span className="navbar-2">portal</span></h2>
       {/* <Menu onClick={onClick} selectedKeys={[current]} mode="horizontal" items={items} /> */}
       <Popover content={avatarContext} title={`Welcome, ${FB_USER.fname}`}>
         <Avatar

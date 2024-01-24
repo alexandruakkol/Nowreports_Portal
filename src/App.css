@@ -1,6 +1,6 @@
 :root{
     --BORDERS:#e0e0e0;
-    --scale-factor:0.8
+    --scale-factor:1
 }
 .App{
     flex-direction: column;
@@ -239,8 +239,8 @@
     border-left:5px solid rgb(221, 221, 221);
 }
 #iframe-container{
-    height: calc(var(--scale-factor) * 841.889763779528px); 
-    width: calc(var(--scale-factor) * 595.303937007874px); 
+    height: calc(var(--scale-factor) * 100% ); 
+    width: calc(var(--scale-factor) * 100%); 
 }
 #iframe-report{
     height:100%;
@@ -312,6 +312,37 @@
     display: flex;
     justify-content: flex-end;
 }
+.ai-message-msg{
+    background-color: purple;
+}
+#logo{
+    padding: 1.5rem;
+    text-align: center;
+    cursor: pointer;
+}
 #logo > img{
     width: 100%;
+}
+.noreport_option{
+    color:grey;
+}
+#chat-body{
+    overflow-y: auto;
+}
+.loading-msg{
+    animation: pulse 1s infinite;
+}
+@keyframes pulse {
+    0% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    50% {
+      transform: scale(1.1);
+      opacity: 0.7;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
 }
