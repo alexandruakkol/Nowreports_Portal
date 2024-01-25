@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useContext, useRef} from 'react'
+import React, {useState, useEffect, useContext} from 'react'
 import {
   createBrowserRouter,
   RouterProvider,
@@ -104,6 +104,8 @@ function DefPage(){
   }
 
   async function onSelectCompany(ticker){
+    const obj = options.filter(x=>x.symbol === ticker)[0];
+    if(!obj.chunks) return;
     console.log('select company ', ticker);
     createConversation({ticker});
   };
@@ -136,19 +138,22 @@ function DefPage(){
 
   const renderOption = (obj) => {
 
-    const color = obj.chunks ? '' : 'noreport_option';
+    const {symbol, chunks} = obj;
+    const color = chunks ? '' : 'noreport_option';
 
     return { 
-      value:obj.symbol,
+      value: symbol,
       label: 
-      <div style={{
+      <div 
+        style={{
           display: 'flex',
           justifyContent: 'space-between',
-          className:{color}
-      }}>
+        }}
+        className={color}
+      >
         <span><b>{obj.symbol}</b></span>
         <span>{obj.value}</span>
-        <span>{obj.chunks}</span>
+        <span>{obj.chunks ?? 'Not available'}</span>
       </div>, 
       key: obj.key
     }
@@ -166,7 +171,6 @@ function DefPage(){
 
     const newMessage = {text:msg, agent:'user', date:new Date()};
     setMessages([...messages, newMessage]);
-    setMsg('');
   }
 
   function renderMsgAvatar(agent){
@@ -206,7 +210,7 @@ function DefPage(){
             style={{width: '100%'}}
             onSelect={onSelectCompany}
             onSearch={(text) => getSuggestions(text)}>
-              <Input.Search size="large" placeholder="Search for a company" />
+              <Input.Search size="large" placeholder="Search for a company"/>
           </AutoComplete>
         </div>
         <div id="main-flex4" className={configAnimation === 'moveUp' && 'fadeOut'}>
