@@ -11,7 +11,7 @@ import axios from 'axios';
 import { DownOutlined, SendOutlined } from '@ant-design/icons';
 import { AuthContext, MainModeContext } from '../App';
 import { generateID } from '../etc';
-import Conversation from '../pages/Conversation';
+import ConversationRouter from './ConversationRouter';
 
 const MainRouter = () => {
 
@@ -26,7 +26,7 @@ const MainRouter = () => {
     },
     {
       path:"/conv/:convoID",
-      element: WithoutNavbar(Conversation),
+      element: WithoutNavbar(ConversationRouter),
     }
   ]);
   

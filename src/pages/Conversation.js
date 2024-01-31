@@ -7,17 +7,18 @@ import 'split-pane-react/esm/themes/default.css';
 import HTMLviewer from '../components/HTMLviewer';
 import {SendOutlined} from '@ant-design/icons';
 
-const Conversation = () => {
+const Conversation = (props) => {
 
-    const {convoID} = useParams();
+    const {convoID} = props;
     const [convo, setConvo] = useState([]);
-    const [sizes, setSizes] = useState(['50%', '50%']);
+    const [sizes, setSizes] = useState(['25%', '75%']);
     const [link, setLink] = useState();
     const [msg, setMsg] = useState('');
     const [symbol, setSymbol] = useState('');
     const [dragging, setDragging] = useState();
     const [reportData, setReportData] = useState();
-    const [isWaiting, setIsWaiting] = useState(false);
+    const [isReportShown, setIsReportShown] = useState(false);
+    const [isReportLoading, setIsReportLoading] = useState(false);
 
     const navigate = useNavigate();
     const endOfChatRef = useRef(null);
@@ -30,7 +31,7 @@ const Conversation = () => {
         });
     }, []);
     
-    useEffect(() =>{ 
+    useEffect( () => { 
         // scroll chat div to end
         if (endOfChatRef.current) {
             endOfChatRef.current.scrollTop = endOfChatRef.current.scrollHeight;
@@ -42,7 +43,7 @@ const Conversation = () => {
     
             let promise;
             const thisMessage = convo[convo.length-1];
-            let {msg, agent, sent} = thisMessage;
+            let {msg, agent, sent, incoming, first, db_notsend} = thisMessage;
             if(sent) return;
 
             // new message section
@@ -50,44 +51,95 @@ const Conversation = () => {
             console.log('sending new message');
             const headers = {'Content-Type':'application/json'};
             const db_payload = {msg, convoID, agent};
-            setIsWaiting(true);
 
+            if(incoming){
+                function decodeAgent(agent){return {'cl':'user', 'ai':'assistant'}[agent]}
+                let last_5_msgs = convo.slice(-5).map(el => {return {role:decodeAgent(el.agent), content:el.msg}});
+                let messages = last_5_msgs;
+                const ai_payload = {messages:JSON.stringify(messages.filter(x => x.content)), filingID};
+
+                if(first) fetch('http://127.0.0.1:5001/completion', {method:'POST', body:JSON.stringify(ai_payload), headers:{'Content-Type':'application/json', responseType:'stream'} }).then(response => {
+                    const reader = response.body.getReader();
+
+                    const decoder = new TextDecoder();
+                    let result = '';
+
+                    reader.read().then(function processText({ done, value }) {
+                        
+                        result += decoder.decode(value, { stream: true });
+                        const messages = result.split('\n');
+
+                        if (done) {
+                            const lastMessage = convo.pop();
+                            db_payload.msg = lastMessage.msg;
+                            setConvo([...convo, {...lastMessage, incoming:false, db_notsend:true}]);
+                            const db_promise = sendMessageToDB(db_payload, headers);
+                            console.log('Stream complete');
+                            return;
+                        }
+                        
+                        // Last entry might be incomplete if not ended with a newline
+                        result = messages.pop();
+        
+                        messages.forEach(message => {
+                            try {
+                                let incomingMsg;
+                                let newConvo = [];
+                                for(let msg of convo){
+                                    if(msg.incoming) incomingMsg=msg;
+                                    else newConvo.push(msg);
+                                }   
+                                if(!incomingMsg) throw new Error('No incoming msg found (sync issue?)'); 
+                                incomingMsg.msg = (incomingMsg.msg ?? '') + message; 
+                                incomingMsg.first=false;
+                                setConvo([...newConvo, incomingMsg]);
+                            } catch (err) {
+                                console.error('Error parsing message:', message, err);
+                            }
+                        });
+        
+                        // Read the next chunk
+                        reader.read().then(processText);
+                    });
+
+                })
+                return;
+            }
+
+            if (db_notsend) return;
             msg = msg.replace('[AI]:','');
-            const db_promise = axios.post(`${window.appdata.API_ADDR}/messages`, db_payload, {headers}).catch(err => console.log(err));
+            const db_promise = sendMessageToDB(db_payload, headers);
             
- 
+
             if(agent == 'cl'){ // send to AI API
-                // add last 5 msgs of convo
-                function decode_agent(code){
-                    return {cl: '[CLIENT]', ai: '[AI]'}[code];
-                }
-                let last_5_msgs = convo.slice(-5).map(el => decode_agent(el.agent) + ': ' + el.msg).join(' , ');
-                last_5_msgs = '[Previous messages]: ' + last_5_msgs;
-                const full_message = last_5_msgs + ' [-Current question-]: [CLIENT]:' + msg;
-                const ai_payload = {message:full_message, filingID};
-                promise = axios.post(`${window.appdata.AI_API_ADDR}/completion`, ai_payload, {'Content-Type':'application/json'}).catch(err => console.log(err));
-                
-                promise.then(resp => {
-                    if(resp?.data) sendMessage(resp.data, 'ai');
-                    else console.log('wrong resp', resp); //TODO: centralize error
-                });
-            } 
+                const incoming_convo_msg = {agent:'ai', incoming:true, first:true};
+                setConvo([...convo, incoming_convo_msg]);
+            }
+              
             if(agent == 'ai'){ // send to DB
                 db_promise.then(()=>{
                     convo.pop();
-                    setIsWaiting(false);
                     setConvo([...convo, {...thisMessage, sent:true}]);
                 })
             }
         }
     },[convo])
 
+    useEffect(() => {
+        if(isReportShown === true) setIsReportLoading(true);
+        setTimeout(() => {setIsReportLoading(false)}, 5000);
+    }, [isReportShown]);
+
+    async function sendMessageToDB(db_payload, headers){
+        return axios.post(`${window.appdata.API_ADDR}/messages`, db_payload, {headers}).catch(err => console.log(err));
+    }
+
     async function loadConversation(){
         const convo_res = await axios.get(`${window.appdata.API_ADDR}/conversations/${convoID}`)
         .catch(err => console.log(err));
         const convo_obj = convo_res?.data;
         let [convo, reportData] = convo_obj;
-        console.log('starting page with convo:', convo)
+        console.log('starting page with convo:', convo);
         convo.forEach(x => x.sent=true) //mark as sent
         setConvo(convo);
         setReportData(reportData[0]);
@@ -100,14 +152,15 @@ const Conversation = () => {
     }
     
     function renderMessages(){
-        if(!convo.length) return <>No messages</>
+        if(!convo.length) return <></>
         return (
             <>
                 {convo?.map(message => {
                     const rowtype = (message.agent === 'ai' ? 'ai-message-row' : 'user-message-row');
                     const divtype = (message.agent === 'ai' ? 'ai-message-msg' : 'user-message-msg');
+                    const loadingClass = message.first ? 'loading-msg' : ''
                     return <div className={rowtype}>
-                                <div className={`message ${divtype}`}>{message.msg}</div>
+                                <div className={`message ${divtype} ${loadingClass}`}>{message.msg || '...'}</div>
                             </div>
                 })}
             </>);
@@ -132,7 +185,7 @@ const Conversation = () => {
     function formatDate(datestring){
         if(!datestring) return;
         datestring = new Date(datestring);
-        datestring = datestring.toISOString().split('T')[0]
+        datestring = datestring.toISOString().split('T')[0];
         return datestring;
     }
     return (
@@ -155,52 +208,72 @@ const Conversation = () => {
                 </div>
                 <div id="active-convos"></div>
             </div>
-            <SplitPane
-                split='vertical'
-                sizes={sizes}
-                onChange={setSizes}
-                id="convo-splitpane"
-                onDragStart={startDrag}
-                onDragEnd={stopDrag}
-            >
-                <Pane minSize={20} maxSize='80%'>
-                    <section className="convo-pane" id="convo-pane-left">
-                        {dragging && <div className="iframe-cover"></div>}
-                        <HTMLviewer link={link} title={symbol}></HTMLviewer>
-                    </section>
-                </Pane>
-                <Pane minSize={20} maxSize='80%' id="convo-pane-right">
-                    <section className="convo-pane" id="chat-container">
+            <div id="convo-splitpane">
+                <div id="loading-panel-container" hidden={!isReportLoading}>
+                    <div class="sk-folding-cube">
+                        <div class="sk-cube1 sk-cube"></div>
+                        <div class="sk-cube2 sk-cube"></div>
+                        <div class="sk-cube4 sk-cube"></div>
+                        <div class="sk-cube3 sk-cube"></div>
+                    </div>
+                </div>
+                <SplitPane
+                    split='vertical'
+                    sizes={sizes}
+                    onChange={setSizes}
+                    
+                    onDragStart={startDrag}
+                    onDragEnd={stopDrag}
+                >
+                    
+                    <Pane minSize={20} maxSize='80%'>
                         
-                        <div id="chat-body" ref={endOfChatRef} >{
-                            <>
-                                {renderMessages()}
-                                {isWaiting && <div id="messages-container">
-                                    <div className='ai-message-row'>
-                                        <div className={`message ai-message-msg loading-msg`}>...</div>
-                                    </div>
-                                </div>}
-                            </>}</div>
-                        <div id="chat-bar">
-                            <SendOutlined onClick={onMsgSend} id="msg-send-icon"/>
-                            <Input.TextArea 
-                                value={msg}
-                                // autoSize={{ minRows: 1, maxRows: 7 }}
-                                size="large" 
-                                enterButton="Search"
-                                placeholder="Ask Now Reports" 
-                                onPressEnter={onMsgSend}
-                                onChange={(e)=>setMsg(e.target.value)}
-                                rows={1}
-                            />
-                        </div>
-                       
-                    </section>
-                </Pane>
-            </SplitPane>
+                        <section className="convo-pane" id="convo-pane-left">
+                            {dragging && <div className="iframe-cover"></div>}
+                            {isReportShown ? <HTMLviewer link={link} title={symbol}></HTMLviewer> 
+                            : <div id="convo-pane-left-beforeloading">
+                                <button onClick={()=>{setIsReportShown(true)}} type="button" class="h-12 py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
+                                    Read report</button>
+                            </div>}
+                        </section> 
+        
+                    </Pane>
+
+                    <Pane minSize={20} maxSize='80%' id="convo-pane-right">
+                        <section className="convo-pane" id="chat-container">
+                            
+                            <div id="chat-body" ref={endOfChatRef} >{
+                                <>
+
+                                    {renderMessages()}
+                                    {/* {isWaiting && <div id="messages-container">
+                                        <div className='ai-message-row'>
+                                            <div className={`message ai-message-msg loading-msg`}>...</div>
+                                        </div>
+                                    </div>} */}
+
+                                </>}</div>
+                            <div id="chat-bar">
+                                <SendOutlined onClick={onMsgSend} id="msg-send-icon"/>
+                                <Input.TextArea 
+                                    value={msg}
+                                    // autoSize={{ minRows: 1, maxRows: 7 }}
+                                    size="large" 
+                                    enterButton="Search"
+                                    placeholder="Ask Now Reports" 
+                                    onPressEnter={onMsgSend}
+                                    onChange={(e)=>setMsg(e.target.value)}
+                                    rows={1}
+                                />
+                            </div>
+                        
+                        </section>
+                    </Pane>
+                </SplitPane>
+            </div>
         </div>
         
     )
 }
 
-export default Conversation
+export default Conversation;
