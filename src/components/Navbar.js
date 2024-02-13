@@ -41,21 +41,28 @@ const Navbar = () => {
     </div>
   );
 
+    function CreditCounter(){
+      return <div>{FB_USER.credits}</div>
+    }
+
   return (
     <nav id="Navbar">
-      <h2 id="navbar-1" onClick={()=>{navigate('/')}}>Now Reports<span className="navbar-2">portal</span></h2>
+      <h2 id="navbar-1" onClick={()=>{navigate('/')}}>Now Reports<span className="navbar-ai-span">AI</span></h2>
       {/* <Menu onClick={onClick} selectedKeys={[current]} mode="horizontal" items={items} /> */}
-      <Popover content={avatarContext} title={`Welcome, ${FB_USER.fname}`}>
-        <Avatar
-          style={{
-            backgroundColor: 'purple',
-            verticalAlign: 'middle',
-          }}
-          size="large"
-        >
-          {FB_USER.fname[0]}
-        </Avatar>
-      </Popover>
+      <div id="navbar-2">
+        <Popover content={avatarContext} title={`Welcome, ${FB_USER.fname}`}>
+          <Avatar
+            style={{
+              backgroundColor: 'purple',
+              verticalAlign: 'middle',
+            }}
+            size="large"
+          >
+            {FB_USER.fname[0]}
+          </Avatar>
+        </Popover>
+        <CreditCounter></CreditCounter>
+      </div>
     </nav>
   )
 }

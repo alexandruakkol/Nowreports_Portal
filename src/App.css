@@ -1,6 +1,13 @@
 :root{
     --BORDERS:#e0e0e0;
-    --scale-factor:1
+    --scale-factor:1;
+    --RED:#de0000;
+    --DARKBLUE:#210062;
+    --BLUE:#009FBD;
+    --CREME:#f5f7fa;
+    --DARKSECTION: #3b3c40;
+    --DARKBLUE:#000478;
+    --SECONDARY-GREY:#3b3c40bf;
 }
 .App{
     flex-direction: column;
@@ -64,7 +71,7 @@
 #main-flex > div{
     height:100%;
     width:100%;
-    margin-top: 8vh;
+    margin-top: 1vh;
 }
 #main-flex1{
     flex:2;
@@ -86,8 +93,8 @@
     flex:3
 }
 .main-title{
-    font-size: 35px;
-    font-family: Rethink;
+    font-size: 40px;
+    font-family: 'Noto Serif JP', serif;
     transition: opacity 0.5s ease-in-out;
 }
 #navbar-1{
@@ -95,7 +102,10 @@
     cursor:pointer;
     margin: 0;
 }
-.navbar-2{
+#navbar-2{
+    display: flex;
+}
+.navbar-ai-span{
     font-size:13px;
 }
 #login-container{
@@ -142,7 +152,7 @@
 }
 
 .error-msg{
-    color:red;
+    color: var(--RED);
 }
 #passchange-icon{
     margin-top: 1rem;
@@ -158,6 +168,13 @@
 }
 .main-section-title{
     padding:5px;
+}
+.title-accent{
+    color: var(--RED);
+}
+.title-secondary{
+    color: var(--SECONDARY-GREY);
+    font-size: 1.17rem;
 }
 .filing-ddown-container{
     gap: 0.5rem;
@@ -215,8 +232,7 @@
     max-width: 200px;
     background-color: rgb(0, 21, 41);
     display:flex;
-    font-family: Montserrat;
-
+    font-weight: 300;
 }
 #convo-splitpane{
     display:flex;
@@ -279,14 +295,16 @@
 }
 .convo-symboldata{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     gap: 10px;
     padding:0.6rem;
+    justify-content: space-between;
     color: rgba(255, 255, 255, 0.65);    
     margin: 0.4rem;
     border: 1px solid rgb(56, 87, 129);
     border-radius: 8px;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
+    font-family: 'Krub', sans-serif;
 }
 .convo-symboldata-title{
     font-weight: bold;
@@ -305,7 +323,8 @@
     margin: 5px 0;
     word-wrap: break-word;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-    font-family: 'Arial', sans-serif;
+    font-family: 'Krub', sans-serif;
+    font-weight: 500;
     line-height: 1.5;  
 }
 .user-message-row{

@@ -182,16 +182,15 @@ function DefPage(){
       size="middle"
     >
     {FB_USER.fname[0]}
-    </Avatar>;
-
-    if(agent === 'user') return <Avatar
-      style={{
-        backgroundColor: 'purple',
-        verticalAlign: 'middle',
-      }}
-      size="middle"
-    >
-      AI
+    </Avatar>
+      if(agent === 'user') return <Avatar
+        style={{
+          backgroundColor: 'purple',
+          verticalAlign: 'middle',
+        }}
+        size="middle"
+      >
+        AI
     </Avatar>;
   }
 
@@ -202,7 +201,9 @@ function DefPage(){
       {(MAIN_MODE === 'config') && <div id="main-flex1" className={configAnimation || ''} >
         {renderSymHeader()}</div>}
       {MAIN_MODE == 'config' ? <>
-        <div id="main-flex2" className={configAnimation === 'moveUp' && 'fadeOut'}></div>
+        <div id="main-flex2" className={(configAnimation === 'moveUp' && 'fadeOut') + ' title-secondary' }>
+          Get the information you <span className="title-accent">need</span>, faster.
+        </div>
         <div id="main-flex3" className={configAnimation === 'moveUp' && 'fadeOut'} >
           <AutoComplete  
             size="large"

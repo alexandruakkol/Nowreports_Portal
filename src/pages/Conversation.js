@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useRef} from 'react'
+import React, {useEffect, useState, useRef, useContext} from 'react'
 import axios from 'axios';
 import {useParams, useNavigate} from 'react-router-dom';
 import {Input} from 'antd';
@@ -6,6 +6,7 @@ import SplitPane, { Pane } from 'split-pane-react';
 import 'split-pane-react/esm/themes/default.css';
 import HTMLviewer from '../components/HTMLviewer';
 import {SendOutlined} from '@ant-design/icons';
+import {AuthContext} from '../App';
 
 const Conversation = (props) => {
 
@@ -22,6 +23,7 @@ const Conversation = (props) => {
 
     const navigate = useNavigate();
     const endOfChatRef = useRef(null);
+    const {CREDITS, setCREDITS} = useContext(AuthContext);
 
     useEffect(() => {
         loadConversation().then(convoObj => {
@@ -47,8 +49,6 @@ const Conversation = (props) => {
             if(sent) return;
 
             // new message section
-            console.log('seding this message', thisMessage);
-            console.log('sending new message');
             const headers = {'Content-Type':'application/json'};
             const db_payload = {msg, convoID, agent};
 
@@ -58,11 +58,21 @@ const Conversation = (props) => {
                 let messages = last_5_msgs;
                 const ai_payload = {messages:JSON.stringify(messages.filter(x => x.content)), filingID};
 
-                if(first) fetch('http://127.0.0.1:5001/completion', {method:'POST', body:JSON.stringify(ai_payload), headers:{'Content-Type':'application/json', responseType:'stream'} }).then(response => {
+                if(first) fetch('/completionproxy', {   
+                    method:'POST', 
+                    body:JSON.stringify(ai_payload), 
+                    headers:{'Content-Type':'application/json', responseType:'stream'},
+                    credentials: 'include',
+                }).then(response => {            
                     const reader = response.body.getReader();
 
                     const decoder = new TextDecoder();
                     let result = '';
+
+                    // -------------- SUBTRACT INTERFACE CREDIT -------------- \\
+                    if(response.status === 200) setCREDITS(CREDITS-1);
+
+                    // -------------- PROCESS INCOMING STREAM -------------- \\
 
                     reader.read().then(function processText({ done, value }) {
                         
@@ -131,7 +141,7 @@ const Conversation = (props) => {
     }, [isReportShown]);
 
     async function sendMessageToDB(db_payload, headers){
-        return axios.post(`${window.appdata.API_ADDR}/messages`, db_payload, {headers}).catch(err => console.log(err));
+        return await axios.post(`${window.appdata.API_ADDR}/messages`, db_payload, {headers, withCredentials:true}).catch(err => console.log(err));
     }
 
     async function loadConversation(){
@@ -205,6 +215,10 @@ const Conversation = (props) => {
                         <div className="convo-symboldata-title">Type</div>
                         <div>{reportData?.typ || 'N/A'}</div>
                     </div>
+                    <div className="convo-symboldata">
+                        <div className="convo-symboldata-title">Remaining credits</div>
+                        <div>{CREDITS || ''}</div>
+                    </div>
                 </div>
                 <div id="active-convos"></div>
             </div>
@@ -257,12 +271,11 @@ const Conversation = (props) => {
                                 <SendOutlined onClick={onMsgSend} id="msg-send-icon"/>
                                 <Input.TextArea 
                                     value={msg}
-                                    // autoSize={{ minRows: 1, maxRows: 7 }}
                                     size="large" 
                                     enterButton="Search"
-                                    placeholder="Ask Now Reports" 
+                                    placeholder="Calculate the ROCE for the last two years" 
                                     onPressEnter={onMsgSend}
-                                    onChange={(e)=>setMsg(e.target.value)}
+                                    onChange={(e) => setMsg(e.target.value)}
                                     rows={1}
                                 />
                             </div>
