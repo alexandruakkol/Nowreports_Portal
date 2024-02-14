@@ -43,7 +43,6 @@ const Conversation = (props) => {
             let filingID = reportData?.filingid;
             if(!filingID) return alert('No filingID', reportData);
     
-            let promise;
             const thisMessage = convo[convo.length-1];
             let {msg, agent, sent, incoming, first, db_notsend} = thisMessage;
             if(sent) return;
@@ -70,7 +69,7 @@ const Conversation = (props) => {
                     let result = '';
 
                     // -------------- SUBTRACT INTERFACE CREDIT -------------- \\
-                    if(response.status === 200) setCREDITS(CREDITS-1);
+                    if(response.status ===  200) setCREDITS(CREDITS-1);
 
                     // -------------- PROCESS INCOMING STREAM -------------- \\
 
@@ -201,7 +200,7 @@ const Conversation = (props) => {
     return (
         <div id="convo-container">
             <div id="convo-sidebar">
-                <div className="allWidth">
+                <div id="sidebar-upper" className="sidebar-section">
                     <div id="logo" onClick={() => navigate('/')}><img src="/nowreportslogo.png"></img></div>
                     <div className="convo-symboldata">
                         <div className="convo-symboldata-title">Symbol</div>
@@ -215,9 +214,15 @@ const Conversation = (props) => {
                         <div className="convo-symboldata-title">Type</div>
                         <div>{reportData?.typ || 'N/A'}</div>
                     </div>
-                    <div className="convo-symboldata">
+                    <div className="convo-subscription" onClick={()=>navigate('/subscription')}>
                         <div className="convo-symboldata-title">Remaining credits</div>
                         <div>{CREDITS || ''}</div>
+                    </div>
+                </div>
+                <div id="sidebar-section-lower" className="sidebar-section">
+                    <div className="convo-subscription" onClick={()=>navigate('/subscription')}>
+                        <div className="convo-symboldata-title">Get credits</div>
+                        <div>Become a member</div>
                     </div>
                 </div>
                 <div id="active-convos"></div>
@@ -239,7 +244,6 @@ const Conversation = (props) => {
                     onDragStart={startDrag}
                     onDragEnd={stopDrag}
                 >
-                    
                     <Pane minSize={20} maxSize='80%'>
                         
                         <section className="convo-pane" id="convo-pane-left">

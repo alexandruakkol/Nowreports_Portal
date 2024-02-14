@@ -2,7 +2,6 @@
     --BORDERS:#e0e0e0;
     --scale-factor:1;
     --RED:#de0000;
-    --DARKBLUE:#210062;
     --BLUE:#009FBD;
     --CREME:#f5f7fa;
     --DARKSECTION: #3b3c40;
@@ -22,9 +21,6 @@
 
 .green{
     color:green;
-}
-.allWidth{
-    width: 100%;
 }
 
 #Navbar{
@@ -227,12 +223,16 @@
     display: flex;
     width:100%;
 }
+.sidebar-section{
+    flex:1
+}
 #convo-sidebar{
     flex:2;
     max-width: 200px;
     background-color: rgb(0, 21, 41);
     display:flex;
     font-weight: 300;
+    flex-direction: column;
 }
 #convo-splitpane{
     display:flex;
@@ -293,7 +293,7 @@
     z-index: 10; 
     background: transparent; /* Or any color with opacity if needed */
 }
-.convo-symboldata{
+.convo-symboldata, .convo-subscription{
     display: flex;
     flex-direction: row;
     gap: 10px;
@@ -305,6 +305,17 @@
     border-radius: 8px;
     font-size: 0.9rem;
     font-family: 'Krub', sans-serif;
+}
+#sidebar-section-lower{
+    display:flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+.convo-subscription{
+    cursor:pointer;
+}
+.convo-subscription:hover{
+    background-color: var(--RED);
 }
 .convo-symboldata-title{
     font-weight: bold;
@@ -467,4 +478,58 @@
     position: absolute;
     height: 100%;
     width: 100%;
+}
+/* ---------------- SUBSCRIPTION ----------------*/
+#subscription-page{
+    align-self: center;
+    height: 60%;
+}
+.subscription-option{
+    display:flex;
+    flex-direction: column;
+    gap:15px;
+    padding:30px;
+    border:1px solid var(--SECONDARY-GREY);
+    border-radius: 10px;
+}
+.price-text{
+    font-size:2rem;
+    font-weight: 800;
+}
+.month-text{
+    font-size:1.2rem;
+    font-weight: 300;
+}
+.subscribe-btn{
+    background-color: var(--DARKBLUE);
+    color:white;
+    width: 88%;
+    align-self: center;
+    padding:5px;
+    border-radius: 8px;
+}
+.subscribe-check-icon{
+    margin: 4px;
+}
+.subscription-perks-container{
+    margin-top: 2px;
+    display:flex;
+    flex-direction: column;
+    gap:3px;
+}
+#subscription-form{
+    display: flex;
+    justify-content: center;
+}
+#subscription-message-container{
+
+}
+#signup-success-container{
+    font-size: 1.4rem;
+    border:1px solid green;
+    border-radius: 8px;
+    padding: 30px;
+}
+#goto_portal_text{
+    cursor:pointer;
 }

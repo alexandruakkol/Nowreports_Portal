@@ -3,6 +3,7 @@ import { Button, Checkbox, Form, Input } from 'antd';
 import {signInWithEmailAndPassword} from 'firebase/auth';
 import {auth} from '../firebase';
 import { StepForwardFilled } from '@ant-design/icons';
+import { Navigate } from 'react-router-dom';
 
 const Login = () => {
 
@@ -94,7 +95,7 @@ const Login = () => {
         </Form.Item>
         <div className="error-msg">{formErr}</div>
       </Form>
-      <div>Not a NowReports member? <u>Subscribe here</u></div>
+      <div>Not a NowReports member? <u onClick={()=>window.location.href+='signup'}>Subscribe here</u></div>
     </div>
   )
 }

@@ -50,7 +50,7 @@ const Navbar = () => {
       <h2 id="navbar-1" onClick={()=>{navigate('/')}}>Now Reports<span className="navbar-ai-span">AI</span></h2>
       {/* <Menu onClick={onClick} selectedKeys={[current]} mode="horizontal" items={items} /> */}
       <div id="navbar-2">
-        <Popover content={avatarContext} title={`Welcome, ${FB_USER.fname}`}>
+        <Popover content={avatarContext} title={`Welcome, ${FB_USER.name}`}>
           <Avatar
             style={{
               backgroundColor: 'purple',
@@ -58,7 +58,7 @@ const Navbar = () => {
             }}
             size="large"
           >
-            {FB_USER.fname[0]}
+            {FB_USER.name[0]}
           </Avatar>
         </Popover>
         <CreditCounter></CreditCounter>

@@ -12,6 +12,7 @@ import { DownOutlined, SendOutlined } from '@ant-design/icons';
 import { AuthContext, MainModeContext } from '../App';
 import { generateID } from '../etc';
 import ConversationRouter from './ConversationRouter';
+import Subscription from './Subscription';
 
 const MainRouter = () => {
 
@@ -23,6 +24,10 @@ const MainRouter = () => {
     {
       path: "/settings",
       element: WithNavbar(Settings),
+    },
+    {
+      path: "/subscription",
+      element: WithNavbar(Subscription),
     },
     {
       path:"/conv/:convoID",
@@ -181,7 +186,7 @@ function DefPage(){
       }}
       size="middle"
     >
-    {FB_USER.fname[0]}
+    {FB_USER.name[0]}
     </Avatar>
       if(agent === 'user') return <Avatar
         style={{
