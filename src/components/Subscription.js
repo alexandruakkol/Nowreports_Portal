@@ -26,11 +26,18 @@ const Subscription = () => {
         window.location.href = session_res.data.url;
     }
 
+    function SubscribeButton(){
+        const isSubscribed = !!FB_USER?.sub_exp;
+        return <Button onClick={attemptSubscription} disabled={isSubscribed} type='default' className="subscribe-btn">
+            {isSubscribed ? 'Already subscribed' : 'Subscribe'}
+        </Button>;
+    };
+
     function BeforeSubscriptionAttempt(){
         return (
                 <div className="subscription-option">
                     <div className="price-text"><span className="price">${price}</span><span className="month-text"> / month</span> </div>
-                    <Button onClick={attemptSubscription} type='default' className="subscribe-btn">Subscribe</Button>
+                    <SubscribeButton></SubscribeButton>
                     <div className="subscription-perks-container">
                         <p className="subscription-perks"><CheckOutlined className="subscribe-check-icon"/>Boost your productivity</p>
                         <p className="subscription-perks"><CheckOutlined className="subscribe-check-icon"/>Gain valuable insights into your investments</p>

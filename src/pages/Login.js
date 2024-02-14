@@ -95,7 +95,7 @@ const Login = () => {
         </Form.Item>
         <div className="error-msg">{formErr}</div>
       </Form>
-      <div>Not a NowReports member? <u onClick={()=>window.location.href+='signup'}>Subscribe here</u></div>
+      <div>Not a NowReports member? <u onClick={()=>window.location.href = window.location.origin+'/signup'}>Subscribe here</u></div>
     </div>
   )
 }

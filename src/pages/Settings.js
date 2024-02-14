@@ -11,10 +11,10 @@ const Settings = () => {
   const {FB_USER} = useContext(AuthContext);
   const [passError, setPassError] = useState('');
   const [isPassSuccess, setIsPassSuccess] = useState(false);
+  console.log({FB_USER})
 
   function onPasswordFormSubmit(values){
     const {oldpass, pass1, pass2} = values;
-
     if(pass1 !== pass2) return setPassError('Passwords do not match.');
 
     // -------------- PASSWORD RESET --------------
@@ -92,7 +92,7 @@ const Settings = () => {
 
       <Card title="Current subscription" className="settings-card">
         <div id="settings-list">
-          <div >Access to Now Reports AI until <b>{prettifyDate(FB_USER.endDate)}</b></div>
+          {FB_USER.sub_exp && <div >Access to Now Reports AI until <b>{FB_USER.sub_exp.split('T')[0]}</b></div>}
         </div>
       </Card>
     </div>
