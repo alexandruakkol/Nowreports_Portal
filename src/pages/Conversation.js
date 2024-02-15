@@ -83,7 +83,6 @@ const Conversation = (props) => {
                             db_payload.msg = lastMessage.msg;
                             setConvo([...convo, {...lastMessage, incoming:false, db_notsend:true}]);
                             const db_promise = sendMessageToDB(db_payload, headers);
-                            console.log('Stream complete');
                             return;
                         }
                         

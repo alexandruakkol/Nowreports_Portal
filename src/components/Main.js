@@ -97,7 +97,6 @@ function DefPage(){
   }
 
   async function createConversation(oo){
-    console.log('creating conversation');
     const {ticker} = oo;
     const headers = {'Content-Type':'application/json'};
     const convoID = generateID(20);
@@ -111,7 +110,6 @@ function DefPage(){
   async function onSelectCompany(ticker){
     const obj = options.filter(x=>x.symbol === ticker)[0];
     if(!obj.chunks) return;
-    console.log('select company ', ticker);
     createConversation({ticker});
   };
 
