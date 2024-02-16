@@ -1,22 +1,22 @@
 import './App.css';
 import Main from './components/Main';
-import { ConfigProvider, Alert } from 'antd';
+import { ConfigProvider } from 'antd';
 import withAuth from './Auth';
 import {createContext, useState, useEffect} from 'react';
 import {auth, fb_signOut} from './firebase';
 import { onAuthStateChanged } from 'firebase/auth';
 import axios from 'axios';
 import Signup from './pages/Signup';
+import Landing from './pages/Landing';
+import { WithNavbar } from './etc';
 
 const AuthContext = createContext();
-const MainModeContext = createContext();
 const ErrorContext = createContext(); //TODO
 
 function App() {
 
   const [FB_USER, setFB_USER] = useState({});
   const [CREDITS, setCREDITS] = useState();
-  const [MAIN_MODE, setMAIN_MODE] = useState('config');
   const unLoggedSection = window.location.pathname;
 
   useEffect(() => {
@@ -47,6 +47,7 @@ function App() {
 
   function renderApp(){
     // here are pages outside of login
+    if(unLoggedSection == '/') return <Landing></Landing>; 
     if(unLoggedSection == '/signup') return <Signup></Signup>; 
     else return withAuth(Main, FB_USER);
   }
@@ -64,13 +65,11 @@ function App() {
         }}
       >
         <AuthContext.Provider value = {{FB_USER, setFB_USER, setCREDITS, CREDITS}}>
-          <MainModeContext.Provider value={{MAIN_MODE, setMAIN_MODE}}>
             {renderApp()}
-          </MainModeContext.Provider>
         </AuthContext.Provider>
       </ConfigProvider> 
     </div>
   );
 }
 
-export {App, AuthContext, MainModeContext, ErrorContext};
+export {App, AuthContext, ErrorContext};

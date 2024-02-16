@@ -52,10 +52,12 @@ const Subscription = () => {
         </div>
     }
 
-    return <div id="subscription-page">
+    return <div id="subscription-full">
+        <div id="subscription-page">
         <div id="subscriptions-container">
             {message ? AfterSubscriptionAttempt() : BeforeSubscriptionAttempt()}
-    </div></div>
+        </div></div>
+    </div>
   
 }
 

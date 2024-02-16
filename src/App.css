@@ -11,32 +11,38 @@
 .App{
     flex-direction: column;
     height:100vh;
+    background-color: var(--CREME);
+    overflow: hidden;
 }
 .flex-row{
     display:flex;
     flex-direction: row;
 }
-
 /* CONVO PAGE */
 
 .green{
     color:green;
 }
 
-#Navbar{
-    padding-left: 2%;
-    padding-right: 2%;
+.Navbar{
+    padding-left: 4%;
+    padding-right: 4%;
     display: flex;
     height: 5vh;
     box-shadow: 0 1px 1px var(--BORDERS);
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-end;
+}
+#navbar-mid-options{
+    display:flex;
+    width:100%;
+    justify-content: center;
+    gap:30px;
 }
 #Main{
     height: 95vh;
     flex:20;
     display:flex;
-    justify-content: center;
 }
 .Main-noNavbar{
     height:100vh !important;
@@ -61,13 +67,21 @@
 #main-flex{
     display:flex;
     flex-direction: column;
-    width: 50vw;
-    text-align: center;
+    width:100%;
+    margin-left: 4vw;
+
 }
 #main-flex > div{
-    height:100%;
     width:100%;
-    margin-top: 1vh;
+}
+#landing-main{
+    display:flex;
+    flex-direction: column;
+    margin-left: 4vw;
+    height: 100%;
+}
+#landing-main > div{
+    height: 100%;
 }
 #main-flex1{
     flex:2;
@@ -76,11 +90,14 @@
     flex-direction: column;
     justify-content: flex-end;
 }
-#main-flex2{
-    flex:1
-}
 #main-flex3{
-    flex:0.7
+    flex:3;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+#main-flex2{
+    flex:1;
 }
 #main-flex4{
     flex:0.5
@@ -90,7 +107,7 @@
 }
 .main-title{
     font-size: 40px;
-    font-family: 'Noto Serif JP', serif;
+    font-family: 'Rethink sans';
     transition: opacity 0.5s ease-in-out;
 }
 #navbar-1{
@@ -171,7 +188,7 @@
     color: var(--RED);
 }
 .title-secondary{
-    color: var(--SECONDARY-GREY);
+    color: var(--DARKSECTION);
     font-size: 1.17rem;
 }
 .filing-ddown-container{
@@ -219,6 +236,46 @@
     font-size:1.5rem;
     margin-right: 0.5rem;
 }
+
+/* MAIN PAGE REDESIGN */
+
+#home-section-a, #home-section-b{
+    background-color: var(--CREME);
+}
+.home-textarea{
+    background-color: transparent !important;
+    display: flex;
+    flex-direction: column;
+    gap: 10vh;
+}
+#main-text{
+    font-size: 4.5rem;
+    font-family: 'Rethink sans';
+    line-height: 95px;
+    color: var(--DARKSECTION);
+}
+#main-text p{
+    margin:0;
+}
+.font1{
+    font-size: 3.3rem;
+}
+#main-red{
+    color:var(--RED);
+}
+#main-gradient1{
+    color:#3b3c40bf;  
+}
+#main-gradient2{
+    color:#3b3c408c;
+}
+#main-text2{
+    font-size:20px;
+}
+/* END MAIN PAGE REDESIGN */
+
+
+
 
 /* CONVO PAGE */
 #convo-container{
@@ -482,9 +539,15 @@
     width: 100%;
 }
 /* ---------------- SUBSCRIPTION ----------------*/
+#subscription-full{
+    width: 100%;
+    display:flex;
+    justify-content: center;
+}
 #subscription-page{
     align-self: center;
     height: 60%;
+    width: 20rem;
 }
 .subscription-option{
     display:flex;
@@ -529,9 +592,7 @@
     align-items: center;
     font-size: 0.95rem;
 }
-#subscription-message-container{
 
-}
 #signup-success-container{
     font-size: 1.4rem;
     border:1px solid green;
@@ -540,4 +601,52 @@
 }
 #goto_portal_text{
     cursor:pointer;
+}
+#landing-navbar{
+    display:flex;
+    gap:2rem;
+    min-height: 65px;
+    justify-content: center;
+}
+.highlight-anim{
+    position: relative;
+    display: inline-block;
+    font-size: 16px;
+    text-decoration: none;
+    cursor:pointer;
+    z-index:1;
+    font-size: 1.2rem;
+}
+.highlight-anim::before{
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 40%;
+    transform: scaleX(0); /* Initial width of the highlight (invisible) */
+    transform-origin: bottom right;
+    background-size: 50% 75%; /* Adjust the background size */
+    background-position: 0 50%; /* Start the gradient from the bottom */
+    transition: transform 0.3s ease; /* Add a smooth transition effect */
+    z-index:-1;
+}
+#goto-portal::before{
+    height: 100%;
+}
+#goto-portal{
+    border:1px solid var(--DARKSECTION);
+    text-wrap: nowrap;
+    border-radius: 5px;
+    padding: 6px;
+}
+.highlight-anim:hover::before{
+    transform: scaleX(1); /* Set the width to 100% on hover */
+    transform-origin: bottom left;
+}
+.red-anim{
+    color: #333;
+}
+.red-anim::before{
+    background-color: #ffbaba; /* Set the highlight color */
 }
