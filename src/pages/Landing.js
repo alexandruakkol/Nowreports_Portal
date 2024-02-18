@@ -12,6 +12,7 @@ const Landing = () => {
   return (
     <>
         <nav id="landing-navbar" className="Navbar">
+            <img id="landing-navbar-logo" src="nr_full_logo_black.svg"></img>
             <div id="navbar-mid-options">
                 <span className="nav-button highlight-anim red-anim" goto='about' onClick={onNavbarSectionChange}>About Us</span>
                 <span className="nav-button highlight-anim red-anim" goto='pitch' onClick={onNavbarSectionChange}>How we save you time</span>
@@ -25,16 +26,26 @@ const Landing = () => {
             <div id="main-flex2">
                 <section className="home-section-a">
                     <div className="home-textarea">
-                        <div id="main-text" className="font1">
-                        <p>Get the information you<span id="main-red"> need</span></p>
-                        <p id="main-gradient1">faster.</p>
-                        <p id="main-gradient2">better.</p>
+                        <div id="main-text">
+                            <p>
+                                <span className="highlight-anim red-anim">
+                                    <span className="main-text-p">Get the information you</span>
+                                    <span id="main-red" className="main-text-p"> need</span>
+                                </span>
+                            </p>
+                           
+                        <p>
+                            <span className="highlight-anim red-anim main-text-p">faster.</span>
+                            </p>
+                        <p>
+                            <span className="highlight-anim red-anim main-text-p">better.</span>
+                            </p>
                         </div>
                     </div>
                 </section>
             </div>          
             <div id="main-flex3">
-                <p id="main-text2">Leverage AI to read company financial reports.</p>
+                <p id="main-text2">Leverage AI to analyze company financial reports.</p>
             </div>
         </div>
     </>

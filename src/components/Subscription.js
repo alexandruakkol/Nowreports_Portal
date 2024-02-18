@@ -54,9 +54,15 @@ const Subscription = () => {
 
     return <div id="subscription-full">
         <div id="subscription-page">
-        <div id="subscriptions-container">
-            {message ? AfterSubscriptionAttempt() : BeforeSubscriptionAttempt()}
-        </div></div>
+
+            <div>
+                <div className="subscription-title">Standard</div>
+                <div id="subscriptions-container">
+                    {message ? AfterSubscriptionAttempt() : BeforeSubscriptionAttempt()}
+                </div>
+            </div>
+
+        </div>
     </div>
   
 }

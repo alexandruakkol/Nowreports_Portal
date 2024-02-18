@@ -200,7 +200,7 @@ const Conversation = (props) => {
         <div id="convo-container">
             <div id="convo-sidebar">
                 <div id="sidebar-upper" className="sidebar-section">
-                    <div id="logo" onClick={() => navigate('/')}><img src="/nowreportslogo.png"></img></div>
+                    <div id="logo" onClick={() => window.location.href=window.location.origin+'/portal'}><img src="/nr_full_logo.svg"></img></div>
                     <div className="convo-symboldata">
                         <div className="convo-symboldata-title">Symbol</div>
                         <div>{reportData?.symbol || 'N/A'}</div>
@@ -215,7 +215,7 @@ const Conversation = (props) => {
                     </div>
                     <div className="convo-subscription" onClick={()=>navigate('/subscription')}>
                         <div className="convo-symboldata-title">Remaining credits</div>
-                        <div>{CREDITS || ''}</div>
+                        <div>{CREDITS || '0'}</div>
                     </div>
                 </div>
                 <div id="sidebar-section-lower" className="sidebar-section">

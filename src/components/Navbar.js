@@ -11,21 +11,6 @@ const Navbar = () => {
   const {FB_USER} = useContext(AuthContext);
   const navigate = useNavigate();
 
-  const items = [
-    {
-      label: 'Navigation One',
-      key: 'mail',
-    },
-    {
-      label: 'Navigation Two',
-      key: 'app',
-    },
-    {
-      label: 'Navigation Three - Submenu',
-      key: 'SubMenu',
-    },
-  ];
-
   const avatarContext = (
     <div id="avatar-context">
       <p className='avatar-context-option' onClick={()=>navigate('/settings')}>Account and settings</p>
@@ -51,13 +36,15 @@ const Navbar = () => {
 
   return (
     <nav className="Navbar">
-      {/* <h2 id="navbar-1" onClick={()=>{navigate('/')}}>Now Reports<span className="navbar-ai-span">AI</span></h2> */}
+      <div id="navbar-1" onClick={()=>{window.location.href=window.origin+'/portal'}}>
+        <img id="navbar-logo" src="/nr_logo_black.svg"></img>
+      </div>
       {/* <Menu onClick={onClick} selectedKeys={[current]} mode="horizontal" items={items} /> */}
       <div id="navbar-2">
         <Popover content={avatarContext} title={`Welcome, ${FB_USER.name}`}>
           <Avatar
             style={{
-              backgroundColor: 'purple',
+              backgroundColor: '#a70000',
               verticalAlign: 'middle',
             }}
             size="large"

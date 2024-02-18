@@ -8,7 +8,6 @@ import Navbar from './Navbar';
 import Settings from '../pages/Settings';
 import { AutoComplete, Input, Dropdown } from 'antd';
 import axios from 'axios';
-import { DownOutlined, SendOutlined } from '@ant-design/icons';
 import { AuthContext } from '../App';
 import { generateID } from '../etc';
 import ConversationRouter from './ConversationRouter';
@@ -24,6 +23,10 @@ const MainRouter = () => {
     },
     {
       path: "/login",
+      element: WithNavbar(DefPage),
+    },
+    {
+      path: "/portal",
       element: WithNavbar(DefPage),
     },
     {
@@ -67,15 +70,8 @@ function WithoutNavbar(El){
 function DefPage(){
   const {FB_USER} = useContext(AuthContext);
 
-  const [value, setValue] = useState('');
   const [options, setOptions] = useState([]);
-  const [pageData, setPageData] = useState({});
   const [filing, setFiling] = useState('Latest annual report');
-  const [configAnimation, setConfigAnimation] = useState('');
-  const [aiAnimation, setAiAnimation] = useState('');
-  const [messages, setMessages] = useState([]);
-  const [msg, setMsg] = useState();
-  const [iframeContent, setIframeContent] = useState();
 
   const navigate = useNavigate();
 
@@ -128,8 +124,8 @@ function DefPage(){
   const filingOptions = {items};
 
   const renderOption = (obj) => {
-
-    const {symbol, chunks} = obj;
+    console.log({obj})
+    const {symbol, chunks, name} = obj;
     const color = chunks ? '' : 'noreport_option';
 
     return { 
@@ -142,9 +138,9 @@ function DefPage(){
         }}
         className={color}
       >
-        <span><b>{obj.symbol}</b></span>
-        <span>{obj.value}</span>
-        <span>{obj.chunks ?? 'Not available'}</span>
+        <span><b>{symbol}</b></span>
+        <span>{name}</span>
+        {/* <span>{obj.chunks ? '': 'Not available'}</span> */}
       </div>, 
       key: obj.key
     }
@@ -152,15 +148,20 @@ function DefPage(){
 
   return (  
     <div id="main-flex">
-      <h2 className="main-title">NowReports AI</h2>
-      <AutoComplete  
-        size="large"
-        options={options.map(x=>renderOption(x))}
-        style={{width: '65vw'}}
-        onSelect={onSelectCompany}
-        onSearch={(text) => getSuggestions(text)}>
-          <Input.Search size="large" placeholder="Search for a company"/>
-      </AutoComplete>
+      <div className='main-section' id="main-section-1"></div>
+      <div className='main-section' id="main-section-2">
+        <img className="main-title-search" src="/nr_full_logo_black.svg"></img>
+        <AutoComplete  
+          size="large"
+          options={options.map(x=>renderOption(x))}
+          style={{width: '42vw'}}
+          onSelect={onSelectCompany}
+          onSearch={(text) => getSuggestions(text)}>
+            <Input.Search size="large" placeholder="Search for a company"/>
+        </AutoComplete>
+      </div>
+      <div className='main-section' id="main-section-3"></div>
+
     </div>
   );
 }
