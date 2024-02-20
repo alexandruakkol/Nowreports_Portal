@@ -5,6 +5,7 @@ import {auth} from '../firebase';
 import { StepForwardFilled, CheckCircleOutlined } from '@ant-design/icons';
 import axios from 'axios';
 import Navbar_out from '../components/Navbar_out';
+import { sendLog } from '../utils';
 
 const Signup = () => {
 

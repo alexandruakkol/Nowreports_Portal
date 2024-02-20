@@ -147,8 +147,17 @@ body{
     height: 100vh;
     display: flex;
     flex-direction: column;
+    gap: 10vh;
+    align-items: center;
+}
+#login-square{
+    border: 1px solid var(--DARKSECTION);
+    display: flex;
+    flex-direction: column;
     align-items: center;
     gap: 10vh;
+    border-radius: 3px;
+    padding: 10px;
 }
 #login-header{
     border-bottom:1px solid var(--BORDERS);
@@ -158,7 +167,7 @@ body{
 }
 #login-text1{
     font-weight: bold;
-    font-size: 2.8vw;
+    font-size: 2vw;
     text-align: center;        
 }
 .avatar-context-option{
@@ -717,7 +726,9 @@ body{
     cursor:pointer;
 }
 .subscribe-text{
-    font-size:1.6vw;
+    font-size:1vw;
+    text-align: center;
+    font-family: 'Rethink Sans';
 }
 .highlight-anim:hover::before{
     transform: scaleX(1); /* Set the width to 100% on hover */
@@ -876,9 +887,9 @@ body{
     }
   }
   .account-button{
-    width: clamp(50px, 200px, 15vw);
+    width: clamp(49px, 200px, 7vw);
     font-weight: bold;
-    font-size: 1.2vw;
+    font-size: 1vw;
   }
   /* ---------------- FOOTER ---------------- */
 

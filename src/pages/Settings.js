@@ -5,6 +5,7 @@ import { prettifyDate } from '../etc';
 import {auth} from '../firebase';
 import {updatePassword, reauthenticateWithCredential, EmailAuthProvider} from 'firebase/auth';
 import {CheckCircleOutlined} from '@ant-design/icons';
+import { sendLog } from '../utils';
 
 const Settings = () => {
 

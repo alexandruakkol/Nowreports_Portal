@@ -7,6 +7,7 @@ import 'split-pane-react/esm/themes/default.css';
 import HTMLviewer from '../components/HTMLviewer';
 import {SendOutlined} from '@ant-design/icons';
 import {AuthContext} from '../App';
+import { sendLog } from '../utils';
 
 const Conversation = (props) => {
 

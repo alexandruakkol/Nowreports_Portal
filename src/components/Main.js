@@ -13,6 +13,8 @@ import { generateID } from '../etc';
 import ConversationRouter from './ConversationRouter';
 import Subscription from './Subscription';
 import Landing from '../pages/Landing';
+import { sendLog } from '../utils';
+
 
 const MainRouter = () => {
 
