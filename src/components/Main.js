@@ -76,7 +76,6 @@ function DefPage(){
   const navigate = useNavigate();
 
   function onFilingSelect(e){
-    console.log(e);
     setFiling(e);
   }
 
@@ -98,7 +97,8 @@ function DefPage(){
   };
 
   async function getSuggestions(query){
-    const res = await axios.get(`${window.appdata.API_ADDR}/companies?q=${query}`).catch(err=>console.log(err));
+    const res = await axios.get(`${window.appdata.API_ADDR}/companies?q=${query}`)
+      .catch(err=>sendLog('Code 2 suggestions ' + String(err)));
     setOptions(res.data);
   }
 
@@ -124,7 +124,6 @@ function DefPage(){
   const filingOptions = {items};
 
   const renderOption = (obj) => {
-    console.log({obj})
     const {symbol, chunks, name} = obj;
     const color = chunks ? '' : 'noreport_option';
 

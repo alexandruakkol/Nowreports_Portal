@@ -62,24 +62,29 @@ const Conversation = (props) => {
                     body:JSON.stringify(ai_payload), 
                     headers:{'Content-Type':'application/json', responseType:'stream'},
                     credentials: 'include',
-                }).then(response => {            
+                }).then(response => {    
                     const reader = response.body.getReader();
-
+                    
                     const decoder = new TextDecoder();
                     let result = '';
-
+                    
                     // -------------- SUBTRACT INTERFACE CREDIT -------------- \\
                     if(response.status ===  200) setCREDITS(CREDITS-1);
 
                     // -------------- PROCESS INCOMING STREAM -------------- \\
 
                     reader.read().then(function processText({ done, value }) {
-                        
                         result += decoder.decode(value, { stream: true });
                         const messages = result.split('\n');
 
                         if (done) {
                             const lastMessage = convo.pop();
+                            // Handle not enough credits msg
+
+                            if(result == 'Not enough credits' && response.status == 403){
+                                return setConvo([...convo, {agent:'ai', msg:result , incoming:false, db_notsend:true}]);
+                            }
+
                             db_payload.msg = lastMessage.msg;
                             setConvo([...convo, {...lastMessage, incoming:false, db_notsend:true}]);
                             const db_promise = sendMessageToDB(db_payload, headers);
@@ -88,7 +93,7 @@ const Conversation = (props) => {
                         
                         // Last entry might be incomplete if not ended with a newline
                         result = messages.pop();
-        
+
                         messages.forEach(message => {
                             try {
                                 let incomingMsg;
@@ -115,23 +120,22 @@ const Conversation = (props) => {
             }
 
             if (db_notsend) return;
-            msg = msg.replace('[AI]:','');
+            msg = msg.replace('[AI]:', '');
             const db_promise = sendMessageToDB(db_payload, headers);
             
-
             if(agent == 'cl'){ // send to AI API
                 const incoming_convo_msg = {agent:'ai', incoming:true, first:true};
                 setConvo([...convo, incoming_convo_msg]);
             }
               
             if(agent == 'ai'){ // send to DB
-                db_promise.then(()=>{
+                db_promise.then(() => {
                     convo.pop();
                     setConvo([...convo, {...thisMessage, sent:true}]);
                 })
             }
         }
-    },[convo])
+    },[convo]);
 
     useEffect(() => {
         if(isReportShown === true) setIsReportLoading(true);
@@ -139,15 +143,15 @@ const Conversation = (props) => {
     }, [isReportShown]);
 
     async function sendMessageToDB(db_payload, headers){
-        return await axios.post(`${window.appdata.API_ADDR}/messages`, db_payload, {headers, withCredentials:true}).catch(err => console.log(err));
+        return await axios.post(`${window.appdata.API_ADDR}/messages`, db_payload, {headers, withCredentials:true})
+            .catch(err => sendLog('Code 3 messages ' + String(err)));
     }
 
     async function loadConversation(){
         const convo_res = await axios.get(`${window.appdata.API_ADDR}/conversations/${convoID}`)
-        .catch(err => console.log(err));
+            .catch(err => sendLog('Code 4 conversations ' + String(err)));
         const convo_obj = convo_res?.data;
         let [convo, reportData] = convo_obj;
-        console.log('starting page with convo:', convo);
         convo.forEach(x => x.sent=true) //mark as sent
         setConvo(convo);
         setReportData(reportData[0]);
@@ -200,7 +204,7 @@ const Conversation = (props) => {
         <div id="convo-container">
             <div id="convo-sidebar">
                 <div id="sidebar-upper" className="sidebar-section">
-                    <div id="logo" onClick={() => window.location.href=window.location.origin+'/portal'}><img src="/nr_full_logo.svg"></img></div>
+                    <div id="logo" onClick={() => navigate('/portal')}><img src="/nr_full_logo.svg"></img></div>
                     <div className="convo-symboldata">
                         <div className="convo-symboldata-title">Symbol</div>
                         <div>{reportData?.symbol || 'N/A'}</div>
@@ -276,7 +280,7 @@ const Conversation = (props) => {
                                     value={msg}
                                     size="large" 
                                     enterButton="Search"
-                                    placeholder="Calculate the ROCE for the last two years" 
+                                    placeholder="Does the company have enough liquid assets to cover their debts?" 
                                     onPressEnter={onMsgSend}
                                     onChange={(e) => setMsg(e.target.value)}
                                     rows={1}

@@ -11,7 +11,6 @@ const Settings = () => {
   const {FB_USER} = useContext(AuthContext);
   const [passError, setPassError] = useState('');
   const [isPassSuccess, setIsPassSuccess] = useState(false);
-  console.log({FB_USER})
 
   function onPasswordFormSubmit(values){
     const {oldpass, pass1, pass2} = values;
@@ -26,9 +25,15 @@ const Settings = () => {
     .then(() => {
       updatePassword(auth.currentUser, pass1)
       .then((res) => {setPassError(''); setIsPassSuccess(true);})
-      .catch((err) => {setPassError('Password change failed.'); console.log(err)});
+      .catch((err) => {
+        setPassError('Password change failed.'); 
+        sendLog('Code 5 pwdchange ' + String(err));
+      });
     })
-    .catch(err=>{setPassError('Wrong old password.');console.log(err)});
+    .catch(err=>{
+      setPassError('Wrong old password.');
+      sendLog('Code 6 loginerror ' + String(err))}
+    );
   
   }
 

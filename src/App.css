@@ -7,13 +7,17 @@
     --DARKSECTION: #3b3c40;
     --DARKBLUE:#000478;
     --SECONDARY-GREY:#3b3c40bf;
+    --MESSAGE:#007bff;
 }
-
+body{
+    overflow: hidden;
+    text-rendering: optimizeSpeed;
+}
 .App{
     flex-direction: column;
+    font-family: 'Rethink sans';
     height:100vh;
     background-color: var(--CREME);
-    overflow: hidden;
 }
 .flex-row{
     display:flex;
@@ -153,7 +157,9 @@
     
 }
 #login-text1{
-    text-align: center;
+    font-weight: bold;
+    font-size: 2.8vw;
+    text-align: center;        
 }
 .avatar-context-option{
     cursor:pointer;
@@ -313,13 +319,16 @@
 }
 /* END MAIN PAGE REDESIGN */
 
-#landing-navbar-logo{
+#landing-navbar-logo,#signup-navbar-logo{
     height: 30px;
+    cursor: pointer;
 }
 #navbar-logo{
     height:18px;
 }
-
+#signup-navbar{
+    width: 100%;
+}
 
 /* CONVO PAGE */
 #convo-container{
@@ -331,17 +340,22 @@
 }
 #convo-sidebar{
     flex:2;
-    max-width: 200px;
+    max-width: 250px;
     background-color: rgb(0, 21, 41);
     display:flex;
     font-weight: 300;
     flex-direction: column;
+    padding-left: 7px;
+    padding-right: 7px;  
 }
 #convo-splitpane{
     display:flex;
     flex:7;
     height:100%;
     width:100%;
+}
+#sidebar-upper{
+    margin-top:1vh;
 }
 .convo-pane{
     height: 100%;
@@ -404,7 +418,7 @@
     justify-content: space-between;
     color: rgba(255, 255, 255, 0.65);    
     margin: 0.4rem;
-    border: 1px solid rgb(56, 87, 129);
+    border: 1px solid rgb(255, 255, 255 , 13%);
     border-radius: 8px;
     font-size: 0.9rem;
     font-family: 'Krub', sans-serif;
@@ -415,12 +429,13 @@
     display:flex;
     flex-direction: column;
     justify-content: flex-end;
+    margin-bottom: 0.5vh;
 }
 .convo-subscription{
     cursor:pointer;
 }
 .convo-subscription:hover{
-    background-color: #040016;
+    background-color: #04001665;
 }
 .convo-symboldata-title{
     font-weight: bold;
@@ -431,7 +446,7 @@
 }
 .message{
     font-size: 1rem;
-    background-color: #007bff;
+    background-color: var(--MESSAGE);
     color: white;
     padding: 3px 15px;
     border-radius: 8px;
@@ -686,15 +701,23 @@
     transition: transform 0.3s ease; /* Add a smooth transition effect */
     z-index:-1;
 }
-#goto-portal::before{
+.nowrep-button.highlight-anim::before{
     height: 100%;
 }
-#goto-portal{
-    border:1px solid var(--DARKSECTION);
+.nowrep-button{
+    padding:6px;
     text-wrap: nowrap;
-    border-radius: 5px;
-    padding: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid var(--DARKSECTION);
+    border-radius: 3px;
+}
+.pointer{
     cursor:pointer;
+}
+.subscribe-text{
+    font-size:1.6vw;
 }
 .highlight-anim:hover::before{
     transform: scaleX(1); /* Set the width to 100% on hover */
@@ -704,5 +727,185 @@
     color: #333;
 }
 .red-anim::before{
-    background-color: #ffbaba; /* Set the highlight color */
+    background-color: #ffbaba;
 }
+.selected-button{
+    font-weight: bold;
+}
+.landing-section{
+    height: 100%;
+}
+.landing-section {  
+    height: 100%;
+    position: absolute;
+    top: 100%; /* Start below the view */
+    left: 0;
+    transition: top 0.5s; /* Adjust the speed of the animation */
+    overflow-x: hidden; /* Disables horizontal scrolling */
+    overflow-y: auto; /* Enables vertical scrolling if needed */
+    scrollbar-width: none; /* works on firefox */
+    width: 100vw;
+  }
+  .landing-section::-webkit-scrollbar{/* works on chrome, edge, safari */
+    display: none;
+  }
+  .landing-section.active {
+    top: 7%; /* Slide up to view */
+  }
+  #pitch{
+    display:flex;
+    width:100%;
+    flex-direction: column;
+  }
+  .pitch-flex{
+    display: flex;
+    gap: 100px;
+    flex: 1;
+    flex-direction: column;
+  }
+  .pitch-flex1{
+    padding-top: 10%;
+    padding-left: 20%;
+    /* hack for typing animation  */
+    width: 280%; 
+  }
+  .typing-anim1{
+    font-weight: 400;
+    letter-spacing: -0.7px;
+    right: 13vw;
+    position: relative;
+  }
+  @keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+  }
+
+  @keyframes blink-caret {
+    from, to { border-color: transparent; }
+    50% { border-color: black; }
+  }
+  .typing,.delayed-text{
+    font-size: 2vw;
+  }
+  .typing {
+    font-family: monospace;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: .15em solid black;
+    width: 0;
+    /* 100vw minus (typing-anim1 left margin) */
+    background: linear-gradient(to right, var(--MESSAGE) calc(100vw - 13vw + 1vw), transparent 100vw); 
+  }
+  .typing_freq1{
+      animation: typing 8s steps(120, end) infinite, blink-caret .75s step-end infinite;
+    }
+  .typing_freq2{
+    animation: typing 7s steps(120, end) infinite, blink-caret .75s step-end infinite;
+
+  }
+  .typing_freq3{
+    animation: typing 9s steps(120, end) infinite, blink-caret .75s step-end infinite;
+
+  }
+  .typing_freq4{
+    animation: typing 6s steps(120, end) infinite, blink-caret .75s step-end infinite;
+  }
+  .pitch-element{
+    display: flex;
+    flex-direction: column;
+    height: 76vh;
+    border: 1px solid grey;
+    padding: 13px;
+    border-radius: 3px;
+    justify-content: space-between;
+}
+.pitch-element-body{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+  .pitch-title,.pitch-text{
+    font-size:6vw;
+  }
+  .pitch-line{
+    display:flex;   
+  }
+  .pitch-agent{
+    right: 18vw;
+    position: relative;
+    font-size:2.7vw;
+    text-align: center;
+    place-self:end;
+    font-weight: bold;
+  }
+  .pitch-agent-ai{
+    right: 5vw;
+  }
+  .pitch-text{
+    font-size: 2vw;
+    }
+  .pitch-title{
+    font-weight: 900;
+    font-size: 4.5vw;
+  }
+  .typing_response{
+    text-wrap: wrap;
+    width: calc(100vw - 13vw - 8vw);
+  }
+  #pitch-goto-portal{
+    width: 92vw;
+    height: 9vh;
+    font-size: 2.5vw;
+    font-weight: bold;
+    right: 16vw;
+    position: relative;
+}
+  .nowrep-button:hover{
+    cursor:pointer;
+  }
+  .delayed-text {
+    opacity: 0; /* Start with the text being fully transparent */
+    animation-name: fadeIn; /* Reference to the keyframes animation */
+    animation-duration: 0.3s; /* Duration of the fade-in effect */
+    animation-delay: 2.5s; /* Delay the start of the animation by 8 seconds */
+    animation-fill-mode: forwards; /* Keep the final state after animation ends */
+  }
+  @keyframes fadeIn {
+    to {
+      opacity: 1; /* Animate to fully opaque */
+    }
+  }
+  .account-button{
+    width: clamp(50px, 200px, 15vw);
+    font-weight: bold;
+    font-size: 1.2vw;
+  }
+  /* ---------------- FOOTER ---------------- */
+
+  #footer{
+    border-top: 1px solid grey;
+    height: 30vh;
+  }
+  #ending-pitch-filler{
+    height: 10vh;
+  }
+  #about-container > p{
+    font-size: 1.6vw;
+  }
+  #about-container{
+    display: flex;
+    flex-direction: column;
+    gap: 15vh;
+    font-size:1.4vw;
+  }
+  #about{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 85%;
+  }
+  .about-section{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }

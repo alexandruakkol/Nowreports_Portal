@@ -4,6 +4,7 @@ import {signInWithEmailAndPassword, createUserWithEmailAndPassword} from 'fireba
 import {auth} from '../firebase';
 import { StepForwardFilled, CheckCircleOutlined } from '@ant-design/icons';
 import axios from 'axios';
+import Navbar_out from '../components/Navbar_out';
 
 const Signup = () => {
 
@@ -49,7 +50,7 @@ const Signup = () => {
             setFormSuccess(true);
         }
     } catch(err){
-        console.log(err);
+        sendLog('Code 7 signup generic ' + String(err));
         if(err.code) return FB_err_handler(err.code); // if firebase error
         setFormErr('Unexpected generic form error. Code 23.'); 
     }
@@ -58,7 +59,7 @@ const Signup = () => {
 
   function BeforeSuccess(){
     return  <>
-        <div id="login-text1">Sign up to Now Reports AI</div>
+        <div id="login-text1">Create your account</div>
         <Form
             name="basic"
             labelCol={{
@@ -71,12 +72,12 @@ const Signup = () => {
                 maxWidth: 600,
                 minWidth: 400
             }}
-            onSubmit={e=>{console.log(e); e.preventDefault()}}
+            onSubmit={e => e.preventDefault()}
             onFinish={onFinish}
             autoComplete="off"
         >
         <Form.Item
-            label="Name"
+            label="First name"
             name="name"
             rules={[
             {
@@ -133,8 +134,8 @@ const Signup = () => {
             span: 16,
             }}
         >
-            <Button htmlType="submit"> 
-                Submit
+            <Button htmlType="submit" className="nowrep-button highlight-anim red-anim account-button"> 
+                Create account
             </Button>
         </Form.Item>
         <div className="error-msg">{formErr}</div>
@@ -148,13 +149,13 @@ const Signup = () => {
             <span><CheckCircleOutlined className="green subscribe-check-icon"/><span> Your account has been created.</span></span>
         </div>
         {/* {TODO: onscroll underline effects on this and on all text} */}
-        <div id="goto_portal_text" onClick={()=>window.location.href = window.location.origin}>Go to AI Portal</div>
+        {/* <div id="goto_portal_text" onClick={()=>window.location.href = window.location.origin}>Go to AI Portal</div> */}
     </>
   }
 
   return (
     <div id="login-container">
-        <header id="login-header">Now Reports</header>
+         <Navbar_out></Navbar_out>
         {formSuccess ? <AfterSuccess/> : <BeforeSuccess/>}
     </div>
   )

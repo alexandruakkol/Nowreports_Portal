@@ -39,7 +39,6 @@ const HTMLviewer = (props) => {
         value: null,
         init : () => scale.value = Number(getComputedStyle(document.getElementById('root')).getPropertyValue('--scale-factor').trim()),
         set: (newScale) => {
-            console.log({newScale})
             scale.value = newScale;
             document.getElementById('iframe-report').style.transform = `scale(${scale.value})`;
         },

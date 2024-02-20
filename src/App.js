@@ -9,6 +9,7 @@ import axios from 'axios';
 import Signup from './pages/Signup';
 import Landing from './pages/Landing';
 import { WithNavbar } from './etc';
+import { sendLog } from './utils';
 
 const AuthContext = createContext();
 const ErrorContext = createContext(); //TODO
@@ -31,14 +32,9 @@ function App() {
 
       async function login(){
         const idtoken = await user.getIdToken();
-        const options = { headers: {
-          'Authorization': `Bearer ${idtoken}`
-        }}
-        const userData = await axios.post(`/login`, {}, options).catch(err => console.log(err));
-        if(!userData?.data?.email) {
-          fb_signOut();
-          return console.log('No user found in DB', userData);
-        }
+        const options = { headers: {'Authorization': `Bearer ${idtoken}`}};   
+        const userData = await axios.post(`/login`, {}, options).catch(err =>  sendLog('Code 1 loginerror ' + String(err)));
+        if(!userData?.data?.email) fb_signOut();
         setFB_USER({...user, ...userData.data});
         setCREDITS(userData.data.credits);
       }
