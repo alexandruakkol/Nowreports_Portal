@@ -887,7 +887,7 @@ body{
     }
   }
   .account-button{
-    width: clamp(49px, 200px, 7vw);
+    width: clamp(49px, 200px, 9vw);
     font-weight: bold;
     font-size: 1vw;
   }

@@ -16,10 +16,10 @@ const Login = () => {
 
     signInWithEmailAndPassword(auth, values.email, values.password)
     //.then((userCredential) => {})
-    .catch((error) => {
-      if(error.code == 'auth/invalid-credential') return setFormErr('Invalid credentials.');
-      else setFormErr('Could not sign you in. Please try again later.');
-    });
+      .catch((error) => {
+        if(error.code == 'auth/invalid-credential') return setFormErr('Invalid credentials.');
+        else setFormErr('Could not sign you in. Please try again later.');
+      });
     
   };
 

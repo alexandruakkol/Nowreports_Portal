@@ -33,8 +33,12 @@ function App() {
       async function login(){
         const idtoken = await user.getIdToken();
         const options = { headers: {'Authorization': `Bearer ${idtoken}`}};   
-        const userData = await axios.post(`/login`, {}, options).catch(err =>  sendLog('Code 1 loginerror ' + String(err)));
-        if(!userData?.data?.email) fb_signOut();
+        const userData = await axios.post(`/login`, {}, options).catch(err => {
+            alert('There was a problem with your login attempt. \nPlease try again later or contact support@nowreports.com');
+            sendLog('Code 1 loginerror ' + String(err))
+          }
+        );
+        if(!userData?.data?.email) return fb_signOut();
         setFB_USER({...user, ...userData.data});
         setCREDITS(userData.data.credits);
       }

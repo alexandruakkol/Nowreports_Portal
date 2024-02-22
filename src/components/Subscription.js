@@ -35,6 +35,9 @@ const Subscription = () => {
 
     function BeforeSubscriptionAttempt(){
         return (
+            <>
+            <div className="subscription-title">Standard</div>
+
                 <div className="subscription-option">
                     <div className="price-text"><span className="price">${price}</span><span className="month-text"> / month</span> </div>
                     <SubscribeButton></SubscribeButton>
@@ -43,7 +46,9 @@ const Subscription = () => {
                         <p className="subscription-perks"><CheckOutlined className="subscribe-check-icon"/>Gain valuable insights into your investments</p>
                         <p className="subscription-perks"><CheckOutlined className="subscribe-check-icon"/><b>3200 credits</b> / month</p>
                     </div>
-                </div>)
+                </div>
+            </>
+        )
     }
 
     function AfterSubscriptionAttempt(){
@@ -56,7 +61,6 @@ const Subscription = () => {
         <div id="subscription-page">
 
             <div>
-                <div className="subscription-title">Standard</div>
                 <div id="subscriptions-container">
                     {message ? AfterSubscriptionAttempt() : BeforeSubscriptionAttempt()}
                 </div>
