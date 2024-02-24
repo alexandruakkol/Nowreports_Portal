@@ -58,7 +58,7 @@ const Conversation = (props) => {
                 let messages = last_5_msgs;
                 const ai_payload = {messages:JSON.stringify(messages.filter(x => x.content)), filingID};
 
-                if(first) fetch('/completionproxy', {   
+                if(first) fetch(`${window.appdata.API_ADDR}/completionproxy`, {   
                     method:'POST', 
                     body:JSON.stringify(ai_payload), 
                     headers:{'Content-Type':'application/json', responseType:'stream'},
