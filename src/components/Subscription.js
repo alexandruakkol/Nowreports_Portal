@@ -22,7 +22,7 @@ const Subscription = () => {
     
     async function attemptSubscription(){
         const data = {customer:FB_USER.stripe_customer_id};
-        const session_res = await axios.post('/create-checkout-session', data);
+        const session_res = await axios.post(`${window.appdata.API_ADDR}/create-checkout-session`, data);
         window.location.href = session_res.data.url;
     }
 

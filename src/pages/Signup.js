@@ -38,13 +38,13 @@ const Signup = () => {
         setFormErr('');
         
         // ------------- CREATE STRIPE CUSTOMER ------------- \\
-        const customer_res = await axios.post('/create-stripe-customer', {email, name});
+        const customer_res = await axios.post(`${window.appdata.API_ADDR}/create-stripe-customer`, {email, name});
         const stripe_customer_id = customer_res.data?.id;
         if(!stripe_customer_id) return setFormErr('Unexpected error. Code 25.');
 
         // ------------- INSERT DB CLIENT ------------- \\
         const data = {email, name, idtoken, stripe_customer_id};
-        const db_req = await axios.post('/createAccount', data );
+        const db_req = await axios.post(`${window.appdata.API_ADDR}/createAccount`, data );
     
         if(db_req.status === 200) {
             setFormErr('');
