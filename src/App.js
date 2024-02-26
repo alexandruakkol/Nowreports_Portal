@@ -33,7 +33,7 @@ function App() {
       async function login(){
         const idtoken = await user.getIdToken();
         const options = { headers: {'Authorization': `Bearer ${idtoken}`}};   
-        const userData = await axios.post(`${window.appdata.API_ADDR}/login`, {}, options).catch(err => {
+        const userData = await axios.post(`${window.appdata.API_ADDR}/login`, {withCredentials:true}, options).catch(err => {
             alert('There was a problem with your login attempt. \nPlease try again later or contact support@nowreports.com');
             sendLog('Code 1 loginerror ' + String(err))
           }
