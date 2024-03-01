@@ -21,9 +21,15 @@ const Subscription = () => {
     }, []);
     
     async function attemptSubscription(){
-        const data = {customer:FB_USER.stripe_customer_id};
-        const session_res = await axios.post(`${window.appdata.API_ADDR}/create-checkout-session`, data);
-        window.location.href = session_res.data.url;
+        const data = {customer:FB_USER.stripe_customer_id, email:FB_USER.email};
+        try{
+            const session_res = await axios.post(`${window.appdata.API_ADDR}/create-checkout-session`, data);
+            window.location.href = session_res.data.url;
+        }
+        catch(err){
+            //TODO: centralize this error
+            setMessage('Checkout error.');
+        }
     }
 
     function SubscribeButton(){
