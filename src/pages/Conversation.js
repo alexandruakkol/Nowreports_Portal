@@ -225,10 +225,10 @@ const Conversation = (props) => {
                     </div>
                 </div>
                 <div id="sidebar-section-lower" className="sidebar-section">
-                    <div className="convo-subscription" onClick={()=>navigate('/subscription')}>
-                        <div className="convo-symboldata-title">Get queries</div>
-                        <div>Subscribe</div>
-                    </div>
+                   {(CREDITS < 100) && <div className="convo-subscription convo-getsubscription" onClick={()=>navigate('/subscription')}>
+                        <div className="convo-symboldata-title">Subscribe</div>
+                        <div>Get queries</div>
+                    </div>}
                 </div>
                 <div id="active-convos"></div>
             </div>

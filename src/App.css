@@ -447,6 +447,9 @@ body{
 .convo-subscription{
     cursor:pointer;
 }
+.convo-getsubscription{
+    border-color: #986868;
+}
 .convo-subscription:hover{
     background-color: #04001665;
 }
