@@ -1,28 +1,24 @@
 import React, {useState} from 'react'
 import { Button, Checkbox, Form, Input } from 'antd';
-import {signInWithEmailAndPassword, createUserWithEmailAndPassword} from 'firebase/auth';
-import {auth} from '../firebase';
+import {auth, googleSignup} from '../firebase';
 import { StepForwardFilled, CheckCircleOutlined } from '@ant-design/icons';
 import axios from 'axios';
 import Navbar_out from '../components/Navbar_out';
-import { sendLog } from '../utils';
+import { sendLog, FB_err_handler } from '../utils';
+import GoogleSignupButton from '../components/GoogleSignupButton';
+import {newAccountSequence, FBError} from '../account_operations';
 
 const Signup = () => {
 
     const [formErr, setFormErr] = useState('');
     const [formSuccess, setFormSuccess] = useState(false);
+    //if(FB_USER.uid) window.location.href =window.location.origin+'/login';
 
-    function FB_err_handler(errCode){
-        switch(errCode){
-            case 'auth/weak-password' : 
-                setFormErr('Password too weak. Strenghten your password.');
-                break;
-            case 'auth/email-already-in-use' : 
-                setFormErr('Cannot create account with this email.');
-                break;
-            default:
-                setFormErr('Account creation error. Please try again later. Code 24.')
-        }
+    async function signupGoogleFend(){
+        googleSignup(
+            (data)=>{},
+            (err)=>{}
+        );
     }
 
   const onFinish = async (values) => {
@@ -30,32 +26,17 @@ const Signup = () => {
     if(!(email && password)) return;
     if(password != password2) return setFormErr('Passwords do not match.');
     setFormErr('');
-    try{
-        // ------------- CREATE FIREBASE USER ------------- \\
-        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-        if(!userCredential?.user) return setFormErr('Unexpected error. Code 22.');
-        const idtoken = await userCredential.user.getIdToken();
-        setFormErr('');
-        
-        // ------------- CREATE STRIPE CUSTOMER ------------- \\
-        const customer_res = await axios.post(`${window.appdata.API_ADDR}/create-stripe-customer`, {email, name});
-        const stripe_customer_id = customer_res.data?.id;
-        if(!stripe_customer_id) return setFormErr('Unexpected error. Code 25.');
 
-        // ------------- INSERT DB CLIENT ------------- \\
-        const data = {email, name, idtoken, stripe_customer_id};
-        const db_req = await axios.post(`${window.appdata.API_ADDR}/createAccount`, data );
-    
-        if(db_req.status === 200) {
-            setFormErr('');
-            setFormSuccess(true);
-        }
-    } catch(err){
-        sendLog('Code 7 signup generic ' + String(err));
-        if(err.code) return FB_err_handler(err.code); // if firebase error
-        setFormErr('Unexpected generic form error. Code 23.'); 
+    const newAccountRes = await newAccountSequence(
+        values,
+        (err) => {setFormErr(err?.message || String(err))}, //err handler
+        (fb_err_code) => {setFormErr(FB_err_handler(fb_err_code))}, //firebase error handler
+    );
+    if(newAccountRes?.ok) {
+        setFormErr('');
+        setFormSuccess(true);
     }
-   
+    
   };
 
   function BeforeSuccess(){
@@ -141,6 +122,9 @@ const Signup = () => {
         </Form.Item>
         <div className="error-msg">{formErr}</div>
         </Form> 
+        <a onClick={signupGoogleFend}>
+            <GoogleSignupButton></GoogleSignupButton>
+        </a>
     </>
   }
 

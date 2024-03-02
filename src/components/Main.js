@@ -42,6 +42,10 @@ const MainRouter = () => {
     {
       path:"/conv/:convoID",
       element: WithoutNavbar(ConversationRouter),
+    },
+    {
+      path:"*",
+      element: WithNavbar(DefPage),
     }
   ]);
   

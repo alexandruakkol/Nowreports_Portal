@@ -163,7 +163,11 @@ body{
     border-bottom:1px solid var(--BORDERS);
     text-align: center;
     width: 100%;
-    
+}
+#signin-methods{
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
 }
 #login-text1{
     font-weight: bold;

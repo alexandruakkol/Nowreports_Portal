@@ -233,11 +233,11 @@ const Conversation = (props) => {
             </div>
             <div id="convo-splitpane">
                 <div id="loading-panel-container" hidden={!isReportLoading}>
-                    <div class="sk-folding-cube">
-                        <div class="sk-cube1 sk-cube"></div>
-                        <div class="sk-cube2 sk-cube"></div>
-                        <div class="sk-cube4 sk-cube"></div>
-                        <div class="sk-cube3 sk-cube"></div>
+                    <div className="sk-folding-cube">
+                        <div className="sk-cube1 sk-cube"></div>
+                        <div className="sk-cube2 sk-cube"></div>
+                        <div className="sk-cube4 sk-cube"></div>
+                        <div className="sk-cube3 sk-cube"></div>
                     </div>
                 </div>
                 <SplitPane
@@ -254,7 +254,7 @@ const Conversation = (props) => {
                             {dragging && <div className="iframe-cover"></div>}
                             {isReportShown ? <HTMLviewer link={link} title={symbol}></HTMLviewer> 
                             : <div id="convo-pane-left-beforeloading">
-                                <button onClick={()=>{setIsReportShown(true)}} type="button" class="h-12 py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
+                                <button onClick={()=>{setIsReportShown(true)}} type="button" className="h-12 py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
                                     Read report</button>
                             </div>}
                         </section> 

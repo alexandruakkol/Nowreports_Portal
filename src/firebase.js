@@ -1,5 +1,8 @@
 import { initializeApp } from "firebase/app";
-import {getAuth, signOut} from 'firebase/auth';
+import {getAuth, signOut, GoogleAuthProvider, signInWithPopup} from 'firebase/auth';
+
+let authProviders = {};
+authProviders.google = new GoogleAuthProvider();
 
 const {REACT_APP_FB_KEY,REACT_APP_AUTH_DOMAIN,REACT_APP_PJ_ID,
   REACT_APP_STORAGE_BUCKET,REACT_APP_MESSAGING_SENDER_ID,
@@ -28,4 +31,22 @@ function fb_signOut(){
   });
 }
 
-export {auth, fb_signOut};
+function googleSignup(onOk, onFail){
+  signInWithPopup(auth, authProviders.google)
+  .then((result) => {
+      // This gives you a Google Access Token. You can use it to access the Google API.
+      const credential = GoogleAuthProvider.credentialFromResult(result);
+      const token = credential.accessToken;
+      const user = result.user;
+      onOk({result, credential});
+
+  }).catch((error) => {
+      // Handle Errors here.
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      const email = error.customData.email;
+      onFail(error);
+  });
+}
+
+export {auth, fb_signOut, googleSignup};
