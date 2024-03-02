@@ -6,12 +6,25 @@ import {auth} from '../firebase';
 import {updatePassword, reauthenticateWithCredential, EmailAuthProvider} from 'firebase/auth';
 import {CheckCircleOutlined} from '@ant-design/icons';
 import { sendLog } from '../utils';
+import axios from 'axios';
 
 const Settings = () => {
 
   const {FB_USER} = useContext(AuthContext);
   const [passError, setPassError] = useState('');
   const [isPassSuccess, setIsPassSuccess] = useState(false);
+
+  async function onCancelSubscription(){
+    try{
+      axios.post(`${window.appdata.API_ADDR}/cancel-subscription`, {subID:FB_USER.sub_id});
+    }
+    catch(err){
+      //TODO: centralize log/mgs
+      alert('Error in cancelling subscription. Contact support at support@nowreports.com');
+      //console.log(err);
+    }
+    //FB_USER.sub_id
+  }
 
   function onPasswordFormSubmit(values){
     const {oldpass, pass1, pass2} = values;
@@ -100,7 +113,10 @@ const Settings = () => {
         <Card title="Current subscription" className="settings-card">
           <div id="settings-list">
             {FB_USER.sub_exp ? 
-              <div >Access to Now Reports AI until <b>{FB_USER.sub_exp.split('T')[0]}</b></div>
+              <div>
+                Access to Now Reports AI until <b>{FB_USER.sub_exp.split('T')[0]}</b>
+                <div><Button onClick={onCancelSubscription}>Cancel subscription</Button></div>
+              </div>
               : <div>No subscription</div>
             }
           </div>
