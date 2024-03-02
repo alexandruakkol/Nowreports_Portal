@@ -657,6 +657,13 @@ body{
 .subscribe-check-icon{
     margin: 4px;
 }
+.subscription-details{
+    margin-top: 1rem;
+    align-self: center;
+}
+.subscription-detail{
+    font-size: 1rem;
+}
 .subscription-perks-container{
     margin-top: 2px;
     display:flex;

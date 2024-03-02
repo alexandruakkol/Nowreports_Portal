@@ -21,7 +21,7 @@ const Navbar = () => {
     function CreditCounter(){
       return FB_USER.credits ? <div id="credit-counter">
         <div>{FB_USER.credits}</div>
-        <div>Credits remaining</div>
+        <div>Queries remaining</div>
       </div> : <></>
     }
 

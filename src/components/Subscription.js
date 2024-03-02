@@ -6,18 +6,23 @@ import {AuthContext} from '../App';
 
 const Subscription = () => {
 
+    const [products, setProducts] = useState([]);
     const [price, setPrice] = useState(7.99);
     const [message, setMessage] = useState();
     const {FB_USER} = useContext(AuthContext);
 
-    useEffect(() => {
+    useEffect(async () => {
+
         const query = new URLSearchParams(window.location.search);
     
         if (query.get("success")) 
-          setMessage("Order placed! You will receive an email confirmation.");
-        
-        if (query.get("canceled")) 
-          setMessage("Order canceled -- continue to shop around and checkout when you're ready.");
+            setMessage("Order placed! You will receive an email confirmation.");
+        else if (query.get("canceled")) 
+            setMessage("Order canceled -- continue to shop around and checkout when you're ready.");
+        else {
+            const products_res = await axios.get(`${window.appdata.API_ADDR}/products`);
+            setProducts(products_res.data.rows);
+        }
     }, []);
     
     async function attemptSubscription(){
@@ -43,16 +48,20 @@ const Subscription = () => {
         return (
             <>
             <div className="subscription-title">Standard</div>
-
-                <div className="subscription-option">
-                    <div className="price-text"><span className="price">${price}</span><span className="month-text"> / month</span> </div>
-                    <SubscribeButton></SubscribeButton>
-                    <div className="subscription-perks-container">
-                        <p className="subscription-perks"><CheckOutlined className="subscribe-check-icon"/>Boost your productivity</p>
-                        <p className="subscription-perks"><CheckOutlined className="subscribe-check-icon"/>Gain valuable insights into your investments</p>
-                        <p className="subscription-perks"><CheckOutlined className="subscribe-check-icon"/><b>3200 credits</b> / month</p>
-                    </div>
-                </div>
+                {products.map(product => {
+                     return (
+                        <div key={product.product_code} className="subscription-option">
+                            <div className="price-text"><span className="price">${product.price}</span><span className="month-text"> / month</span> </div>
+                            <SubscribeButton></SubscribeButton>
+                            <div className="subscription-perks-container">
+                                <p className="subscription-perks"><CheckOutlined className="subscribe-check-icon"/>Boost your productivity</p>
+                                <p className="subscription-perks"><CheckOutlined className="subscribe-check-icon"/>Gain valuable insights into your investments</p>
+                                <div className="subscription-details">
+                                    <p className="subscription-detail">2000 queries per month</p>
+                                </div>
+                            </div>
+                        </div>)
+                })}
             </>
         )
     }

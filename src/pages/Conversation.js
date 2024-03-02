@@ -82,7 +82,7 @@ const Conversation = (props) => {
                             const lastMessage = convo.pop();
                             // Handle not enough credits msg
 
-                            if(result == 'Not enough credits' && response.status == 403){
+                            if(result == 'Monthly query limit exceeded' && response.status == 403){
                                 return setConvo([...convo, {agent:'ai', msg:result , incoming:false, db_notsend:true}]);
                             }
 
@@ -144,6 +144,7 @@ const Conversation = (props) => {
     }, [isReportShown]);
 
     async function sendMessageToDB(db_payload, headers){
+        //if(!db_payload.msg) return console.log('No message')
         return await axios.post(`${window.appdata.API_ADDR}/messages`, db_payload, {headers, withCredentials:true})
             .catch(err => sendLog('Code 3 messages ' + String(err)));
     }
@@ -219,14 +220,14 @@ const Conversation = (props) => {
                         <div>{reportData?.typ || 'N/A'}</div>
                     </div>
                     <div className="convo-subscription" onClick={()=>navigate('/subscription')}>
-                        <div className="convo-symboldata-title">Remaining credits</div>
+                        <div className="convo-symboldata-title">Remaining queries</div>
                         <div>{CREDITS || '0'}</div>
                     </div>
                 </div>
                 <div id="sidebar-section-lower" className="sidebar-section">
                     <div className="convo-subscription" onClick={()=>navigate('/subscription')}>
-                        <div className="convo-symboldata-title">Get credits</div>
-                        <div>Become a member</div>
+                        <div className="convo-symboldata-title">Get queries</div>
+                        <div>Subscribe</div>
                     </div>
                 </div>
                 <div id="active-convos"></div>
