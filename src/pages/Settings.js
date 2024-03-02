@@ -16,7 +16,8 @@ const Settings = () => {
 
   async function onCancelSubscription(){
     try{
-      axios.post(`${window.appdata.API_ADDR}/cancel-subscription`, {subID:FB_USER.sub_id});
+      const cancel_res = await axios.post(`${window.appdata.API_ADDR}/cancel-subscription`, {subID:FB_USER.sub_id});
+      if(cancel_res.status === 200) alert('Subscription cancelled. You still have access until the end of the period.');
     }
     catch(err){
       //TODO: centralize log/mgs
