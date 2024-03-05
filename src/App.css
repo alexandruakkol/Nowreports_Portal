@@ -1,3 +1,7 @@
+/* GLOBALS TODO: make separate globals file*/ 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 :root{
     --BORDERS:#e0e0e0;
     --scale-factor:1;
@@ -7,11 +11,22 @@
     --DARKSECTION: #3b3c40;
     --DARKBLUE:#000478;
     --SECONDARY-GREY:#3b3c40bf;
+    --MID-TEXT-GREY:#5b5d62bf;
+    --SIDEBAR-DARK: #181717;
+    --DARK-SELECT: #222020;
+    --OFFWHITE:#CBCACB;
     --MESSAGE:#007bff;
+    --SLIGHTGREY: #cecece;
 }
 body{
     overflow: hidden;
     text-rendering: optimizeSpeed;
+}
+
+@media screen and (max-height: 880px) {
+    body {
+        overflow: scroll;
+    }
 }
 .App{
     flex-direction: column;
@@ -23,6 +38,28 @@ body{
     display:flex;
     flex-direction: row;
 }
+
+.text-small{
+    font-size: 0.9rem;
+}
+.text-medium{
+    font-size: 1.7rem;
+}
+
+.text-slightgrey{
+    color:var(--MID-TEXT-GREY);
+}
+
+.rethink{
+    font-family: 'Rethink Sans';
+}
+.text-center{
+    text-align: center;
+}
+.text-bold{
+    font-weight: bold;
+}
+
 /* CONVO PAGE */
 
 .green{
@@ -147,17 +184,36 @@ body{
     height: 100vh;
     display: flex;
     flex-direction: column;
-    gap: 10vh;
+    gap: 7vh;
     align-items: center;
 }
-#login-square{
-    border: 1px solid var(--DARKSECTION);
+.login-form {
+    min-width: 270px;
+    max-width: 600px;  
+}
+.lower-login{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+form label{
+    font-size: 0.94rem !important;
+    font-family: 'Rethink sans';
+}
+.ant-col-rtl .login-form-forgot {
+    float: left;
+}
+
+.login-form-button {
+    width: 100%;
+}
+#login-signup-square{
+    border: 1px solid var(--SLIGHTGREY);
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10vh;
     border-radius: 3px;
-    padding: 10px;
+    padding: 50px 100px 50px 100px;
 }
 #login-header{
     border-bottom:1px solid var(--BORDERS);
@@ -168,11 +224,6 @@ body{
     gap: 10px;
     display: flex;
     flex-direction: column;
-}
-#login-text1{
-    font-weight: bold;
-    font-size: 2vw;
-    text-align: center;        
 }
 .avatar-context-option{
     cursor:pointer;
@@ -354,7 +405,7 @@ body{
 #convo-sidebar{
     flex:2;
     max-width: 250px;
-    background-color: rgb(0, 21, 41);
+    background-color: var(--SIDEBAR-DARK);
     display:flex;
     font-weight: 300;
     flex-direction: column;
@@ -429,9 +480,8 @@ body{
     gap: 10px;
     padding:0.6rem;
     justify-content: space-between;
-    color: rgba(255, 255, 255, 0.65);    
-    margin: 0.4rem;
-    border: 1px solid rgb(255, 255, 255 , 13%);
+    color: var(--OFFWHITE);    
+    margin: 4px;
     border-radius: 8px;
     font-size: 0.9rem;
     font-family: 'Krub', sans-serif;
@@ -451,7 +501,7 @@ body{
     border-color: #986868;
 }
 .convo-subscription:hover{
-    background-color: #04001665;
+    background-color: var(--DARK-SELECT);
 }
 .convo-symboldata-title{
     font-weight: bold;
@@ -699,6 +749,7 @@ body{
     cursor:pointer;
 }
 #landing-navbar{
+    width: 100%;
     display:flex;
     gap:2rem;
     min-height: 65px;
@@ -738,11 +789,6 @@ body{
 }
 .pointer{
     cursor:pointer;
-}
-.subscribe-text{
-    font-size:1vw;
-    text-align: center;
-    font-family: 'Rethink Sans';
 }
 .highlight-anim:hover::before{
     transform: scaleX(1); /* Set the width to 100% on hover */
@@ -833,7 +879,7 @@ body{
 
   }
   .typing_freq4{
-    animation: typing 6s steps(120, end) infinite, blink-caret .75s step-end infinite;
+    animation: typing 3.5s steps(120, end) infinite, blink-caret .75s step-end infinite;
   }
   .pitch-element{
     display: flex;
@@ -879,7 +925,7 @@ body{
   }
   #pitch-goto-portal{
     width: 92vw;
-    height: 9vh;
+    height: 15vh;
     font-size: 2.5vw;
     font-weight: bold;
     right: 16vw;
@@ -892,7 +938,7 @@ body{
     opacity: 0; /* Start with the text being fully transparent */
     animation-name: fadeIn; /* Reference to the keyframes animation */
     animation-duration: 0.3s; /* Duration of the fade-in effect */
-    animation-delay: 2.5s; /* Delay the start of the animation by 8 seconds */
+    animation-delay: 0.6s; /* Delay the start of the animation by 8 seconds */
     animation-fill-mode: forwards; /* Keep the final state after animation ends */
   }
   @keyframes fadeIn {
@@ -908,8 +954,20 @@ body{
   /* ---------------- FOOTER ---------------- */
 
   #footer{
-    border-top: 1px solid grey;
+    background-color: transparent;
+    color: black;
     height: 30vh;
+    padding-left: 15vw;
+    padding-right: 15vw;
+  }
+  #footer *{
+    color: black;
+  }
+  .footer-categs{
+    gap:100px;
+  }
+  .footer-link{
+    cursor:pointer;
   }
   #ending-pitch-filler{
     height: 10vh;

@@ -21,7 +21,7 @@ const MainRouter = () => {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: WithNavbar(Landing),
+      element: WithoutNavbar(Landing),
     },
     {
       path: "/login",

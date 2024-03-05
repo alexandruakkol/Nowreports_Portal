@@ -26,6 +26,8 @@ const Conversation = (props) => {
     const endOfChatRef = useRef(null);
     const {CREDITS, setCREDITS} = useContext(AuthContext);
 
+    let messageCounter=0;
+
     useEffect(() => {
         loadConversation().then(convoObj => {
             const convoData = convoObj[1][0];
@@ -170,10 +172,11 @@ const Conversation = (props) => {
         return (
             <>
                 {convo?.map(message => {
+                    messageCounter++;
                     const rowtype = (message.agent === 'ai' ? 'ai-message-row' : 'user-message-row');
                     const divtype = (message.agent === 'ai' ? 'ai-message-msg' : 'user-message-msg');
                     const loadingClass = message.first ? 'loading-msg' : ''
-                    return <div className={rowtype}>
+                    return <div className={rowtype} key={messageCounter}>
                                 <div className={`message ${divtype} ${loadingClass}`}>{message.msg || '...'}</div>
                             </div>
                 })}
@@ -281,7 +284,7 @@ const Conversation = (props) => {
                                 <Input.TextArea 
                                     value={msg}
                                     size="large" 
-                                    enterButton="Search"
+                                    // enterButton="Search"
                                     placeholder="Does the company have enough liquid assets to cover their debts?" 
                                     onPressEnter={onMsgSend}
                                     onChange={(e) => setMsg(e.target.value)}

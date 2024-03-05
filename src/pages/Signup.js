@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import { Button, Checkbox, Form, Input } from 'antd';
+import { Button, Divider, Form, Input } from 'antd';
 import {auth, googleSignup} from '../firebase';
 import { StepForwardFilled, CheckCircleOutlined } from '@ant-design/icons';
 import axios from 'axios';
@@ -40,91 +40,96 @@ const Signup = () => {
   };
 
   function BeforeSuccess(){
-    return  <>
-        <div id="login-text1">Create your account</div>
-        <Form
-            name="basic"
-            labelCol={{
-                span: 8,
-            }}
-            wrapperCol={{
-                span: 16,
-            }}
-            style={{
-                maxWidth: 600,
-                minWidth: 400
-            }}
-            onSubmit={e => e.preventDefault()}
-            onFinish={onFinish}
-            autoComplete="off"
-        >
-        <Form.Item
-            label="First name"
-            name="name"
-            rules={[
-            {
-                required: true,
-                message: 'Please input your name!',
-            },
-            ]}
-        >
-            <Input />
-        </Form.Item>
+      return  <>
+      
+        <div className="text-center text-bold text-medium rethink">Create your account</div>
+        <div id="login-signup-square">
+            <Form   
+                layout={'vertical'}
+                name="basic"
+                onSubmit={e => e.preventDefault()}
+                onFinish={onFinish}
+                autoComplete="off"
+                className="login-form"
+                requiredMark={false}
+            >
+                <Form.Item
+                    label="First name"
+                    name="name"
+                    rules={[
+                    {
+                        required: true,
+                        message: 'Please input your name!',
+                    },
+                    ]}
+                >
+                    <Input placeholder="John"/>
+                </Form.Item>
 
-        <Form.Item
-            label="Email"
-            name="email"
-            rules={[
-            {
-                required: true,
-                message: 'Please input your email!',
-            },
-            ]}
-        >
-            <Input />
-        </Form.Item>
+                <Form.Item
+                    label="Email"
+                    name="email"
+                    rules={[
+                    {
+                        required: true,
+                        message: 'Please input your email!',
+                    },
+                    ]}
+                >
+                    <Input placeholder="user@email.com"/>
+                </Form.Item>
 
-        <Form.Item
-            label="Password"
-            name="password"
-            rules={[
-            {
-                required: true,
-                message: 'Please input your password!',
-            },
-            ]}
-        >
-            <Input.Password />
-        </Form.Item>
+                <Form.Item
+                    label={
+                        <div>
+                            <p>Password</p>
+                            <p className="text-slightgrey">Must have at least 6 characters</p>
+                        </div>
+                    }
 
-        <Form.Item
-            label="Retype password"
-            name="password2"
-            rules={[
-            {
-                required: true,
-                message: 'Please input your password!',
-            },
-            ]}
-        >
-            <Input.Password />
-        </Form.Item>
+                    name="password"
+                    rules={[
+                    {
+                        required: true,
+                        message: 'Please input your password!',
+                    },
+                    ]}
+                >
+                    <Input.Password />
+                </Form.Item>
 
-        <Form.Item
-            wrapperCol={{
-            offset: 8,
-            span: 16,
-            }}
-        >
-            <Button htmlType="submit" className="nowrep-button highlight-anim red-anim account-button"> 
-                Create account
-            </Button>
-        </Form.Item>
-        <div className="error-msg">{formErr}</div>
-        </Form> 
-        <a onClick={signupGoogleFend}>
-            <GoogleSignupButton></GoogleSignupButton>
-        </a>
+                <Form.Item
+                    label={
+                        <div>
+                            <p>Retype password</p>
+                            <p className="text-slightgrey">Must have at least 6 characters</p>
+                        </div>
+                    }
+                    name="password2"
+                    rules={[
+                    {
+                        required: true,
+                        message: 'Please input your password!',
+                    },
+                    ]}
+                >
+                    <Input.Password />
+                </Form.Item>
+
+                <Form.Item>
+                    <Button htmlType="submit" className="nowrep-button highlight-anim red-anim account-button gsi-material-button login-form-button"> 
+                        Create account
+                    </Button>
+                </Form.Item>
+                <div className="error-msg">{formErr}</div>
+            </Form> 
+
+            <Divider ><span className="text-small">Or continue with</span></Divider>
+
+            <a onClick={signupGoogleFend}>
+                <GoogleSignupButton></GoogleSignupButton>
+            </a>
+        </div>
     </>
   }
 

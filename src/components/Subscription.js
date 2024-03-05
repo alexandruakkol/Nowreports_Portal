@@ -11,7 +11,7 @@ const Subscription = () => {
     const [message, setMessage] = useState();
     const {FB_USER} = useContext(AuthContext);
 
-    useEffect(async () => {
+    useEffect(() => {
 
         const query = new URLSearchParams(window.location.search);
     
@@ -20,8 +20,8 @@ const Subscription = () => {
         else if (query.get("canceled")) 
             setMessage("Order canceled -- continue to shop around and checkout when you're ready.");
         else {
-            const products_res = await axios.get(`${window.appdata.API_ADDR}/products`);
-            setProducts(products_res.data.rows);
+            const p_products_res = axios.get(`${window.appdata.API_ADDR}/products`);
+            p_products_res.then((res)=>setProducts(res.data.rows));
         }
     }, []);
     

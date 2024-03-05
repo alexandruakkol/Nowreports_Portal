@@ -61,7 +61,7 @@ const Settings = () => {
           </div>
         </Card>
 
-        <Card title="Change password" className="settings-card">
+        {FB_USER?.loginProvider === 'password' && <Card title="Change password" className="settings-card">
           {isPassSuccess && 
             <div id="passchange-success">
               <CheckCircleOutlined className="green" id="passchange-icon"></CheckCircleOutlined>
@@ -69,7 +69,8 @@ const Settings = () => {
               </div>}
           <div id="settings-list">
             <Form onFinish={onPasswordFormSubmit}
-                  autoComplete="off">
+              autoComplete="off"    
+            >
               <Form.Item 
                 label="Old password" 
                 name="oldpass" 
@@ -109,7 +110,7 @@ const Settings = () => {
               <p className="error-msg">{passError}</p>
             </Form>
           </div>
-        </Card>
+        </Card>}
 
         <Card title="Current subscription" className="settings-card">
           <div id="settings-list">

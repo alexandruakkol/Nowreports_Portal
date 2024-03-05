@@ -29,7 +29,7 @@ function App() {
       const now = (new Date()) * 1;
       
       // can be google or password
-      let loginProvider = user.providerData?.[0]?.providerId;
+      user.loginProvider = user.providerData?.[0]?.providerId;
 
       //don't auto-login brand new accounts right away
       if((now - createdDate) < (1 * 60_000)) return setTimeout(login, 3000);
@@ -44,7 +44,7 @@ function App() {
           userData = await axios.post(`${window.appdata.API_ADDR}/login`, {withCredentials:true}, options)
 
         } catch(err) {
-          if( (loginProvider === 'google.com') && (err?.response?.status === 401) ){
+          if( (user?.loginProvider === 'google.com') && (err?.response?.status === 401) ){
             //if google cannot login, it's the first login. create sql account.
             const {displayName, email} = user;
   
@@ -68,7 +68,7 @@ function App() {
           };
         }
         
-        if(!(userData?.data?.email) && (loginProvider === 'password')) {
+        if(!(userData?.data?.email) && (user?.loginProvider === 'password')) {
           fb_signOut();
           return alert('Login error. Code 30');
         }//console.log('signout code x'); //TODO: centralize err
@@ -92,12 +92,14 @@ function App() {
   return (
     <div className="App">
      
+      {/* these are antd mods */}
       <ConfigProvider
         theme={{
           components: {
             Menu: {
-              activeBarHeight:0,activeBarBorderWidth:0
-            },
+              activeBarHeight:0,
+              activeBarBorderWidth:0,
+            }
           },
         }}
       >

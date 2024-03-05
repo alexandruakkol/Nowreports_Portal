@@ -15,7 +15,7 @@ const Landing = () => {
     };
 
     function onLogoClick(){
-        setMode('main');
+        setMode('pitch');
     }
 
     function selectedClass(ref){
@@ -28,7 +28,7 @@ const Landing = () => {
   return (
     <>
         <nav id="landing-navbar" className="Navbar">
-            <img id="landing-navbar-logo" src="nr_full_logo_black.svg" onClick={onLogoClick}></img>
+            <img id="landing-navbar-logo" src="nr_full_logo_black.svg" alt="Now Reports Logo" onClick={onLogoClick}></img>
             
             <div id="navbar-mid-options">
                 <span className={`nav-button highlight-anim red-anim ${selectedClass(aboutRef)}`} goto='about' ref={aboutRef} onClick={onNavbarSectionChange}>About Us</span>
@@ -40,7 +40,7 @@ const Landing = () => {
             </span>
         </nav>
         {/* ----------------- MAIN MODE ----------------- */}
-        <section mode="main" className={`landing-section ${mode == 'main' ? 'active' : ''}`}>
+        {/* <section mode="main" className={`landing-section ${mode == 'main' ? 'active' : ''}`}>
             <div id="landing-main">
                 <div id="main-flex1"></div>
                 <div id="main-flex2">
@@ -68,7 +68,7 @@ const Landing = () => {
                     <p id="main-text2">Leverage AI to analyze company financial reports.</p>
                 </div>
             </div>
-        </section>
+        </section> */}
 
         {/* ----------------- PITCH MODE ----------------- */}
 
@@ -99,7 +99,7 @@ const Landing = () => {
                         <div className="typing typing-anim1 typing_freq4 message">Does the company address the excess amount of cash?</div>
                         <div className="delayed-text typing_response message ai-message-msg">The report indicates that the company plans to allocate $8,843 million of its cash towards the creation of new self-storage units. Therefore, it seems that the company is addressing the excess amount of cash and has plans for utilizing it effectively.</div>
                     </div>
-                    <div className="pitch-text"><b>It's easy when you have a magnet.</b></div>
+                    <div className="pitch-text"><b></b></div>
                 </div>
 
                 <div className="pitch-element">
@@ -123,8 +123,11 @@ const Landing = () => {
                 <div id="pitch-goto-portal" className="highlight-anim red-anim nowrep-button" goto="signup" onClick={onNavbarSectionChange}>
                     Try NowReports AI
                 </div>
-                <div id="ending-pitch-filler"></div>
                 {/* <Footer></Footer> */}
+            </div>
+            <div>
+                <Footer fn_goto_about={()=>setMode('about')}></Footer>
+                <div id="ending-pitch-filler"></div>
             </div>
         </section>
 
@@ -144,8 +147,6 @@ const Landing = () => {
                         </a>
                     </p>
                 </div>
-       
-               
             </div>
         </section>
 
