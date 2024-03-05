@@ -155,9 +155,13 @@ const Landing = () => {
         <section id="about" mode="about" className={`landing-section ${mode == 'about' ? 'active' : ''}`}>
             <div id="about-container">
                 <div className="about-section about-section1">
-                    <p>Our focus is on improving financial research processes through software solutions.</p>
-                    <p>We are on a mission to make financial research more flexible.</p>
-                    <p>Researching takes a long time, and our clients know what they are looking for.</p>
+                   
+                    <b>Our Vision</b>
+
+                    <p>We provide advanced tools for business research.</p>
+                    <p>Our goal is to transform business information into a more adaptable and readily available resource.</p>
+                    <p>We uphold the principle that information should be effortlessly obtainable through search.</p>
+                    <p>Understanding that research is time-consuming, we recognize our clients' need for quick and targeted findings.</p>
                 </div>
                 <div className="about-section about-section2">
                     <p>Found a bug or have an idea?</p>
