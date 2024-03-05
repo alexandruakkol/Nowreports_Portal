@@ -60,6 +60,7 @@ body{
     font-weight: bold;
 }
 
+
 /* CONVO PAGE */
 
 .green{
@@ -814,11 +815,7 @@ form label{
     transition: top 0.5s; /* Adjust the speed of the animation */
     overflow-x: hidden; /* Disables horizontal scrolling */
     overflow-y: auto; /* Enables vertical scrolling if needed */
-    scrollbar-width: none; /* works on firefox */
     width: 100vw;
-  }
-  .landing-section::-webkit-scrollbar{/* works on chrome, edge, safari */
-    display: none;
   }
   .landing-section.active {
     top: 7%; /* Slide up to view */
