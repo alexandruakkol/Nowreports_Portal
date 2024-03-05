@@ -17,6 +17,7 @@
     --OFFWHITE:#CBCACB;
     --MESSAGE:#007bff;
     --SLIGHTGREY: #cecece;
+    --SELECT-REDDISH: #ffbaba;
 }
 body{
     overflow: hidden;
@@ -38,7 +39,10 @@ body{
     display:flex;
     flex-direction: row;
 }
-
+.flex-column{
+    display:flex;
+    flex-direction: column;
+}
 .text-small{
     font-size: 0.9rem;
 }
@@ -68,6 +72,7 @@ body{
 }
 
 .Navbar{
+    user-select: none;
     padding-left: 4%;
     padding-right: 4%;
     display: flex;
@@ -780,7 +785,9 @@ form label{
     height: 100%;
 }
 .nowrep-button{
-    padding:6px;
+    font-size: 1.14rem;
+    font-weight: 900;
+    padding:8px;
     text-wrap: nowrap;
     display: flex;
     justify-content: center;
@@ -799,7 +806,7 @@ form label{
     color: #333;
 }
 .red-anim::before{
-    background-color: #ffbaba;
+    background-color: var(--SELECT-REDDISH);
 }
 .selected-button{
     font-weight: bold;
@@ -827,12 +834,12 @@ form label{
   }
   .pitch-flex{
     display: flex;
-    gap: 100px;
+    gap: 202px;
     flex: 1;
     flex-direction: column;
   }
   .pitch-flex1{
-    padding-top: 10%;
+    padding-top: 15vh;
     padding-left: 20%;
     /* hack for typing animation  */
     width: 280%; 
@@ -878,6 +885,30 @@ form label{
   .typing_freq4{
     animation: typing 3.5s steps(120, end) infinite, blink-caret .75s step-end infinite;
   }
+  .heading-element{
+    margin-top: 24vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .heading-container{
+    padding-bottom: 4vh;
+  }
+  .heading-third{
+    margin-top: 12vh;
+  }
+  .blue-text-accent{
+    text-wrap: nowrap;
+    color: white;
+    border-radius: 7px;
+    padding: 5px;
+    background-color: var(--MESSAGE);
+  }
+  #main-chevron{
+    padding-top: 12vh;
+    align-self: center;
+    color: lightgrey;
+    }
   .pitch-element{
     display: flex;
     flex-direction: column;
@@ -891,6 +922,13 @@ form label{
     display: flex;
     flex-direction: column;
     gap: 20px;
+}
+.heading{
+    font-weight: 900;
+    font-size: 4rem;
+    color: var(--DARKSECTION);
+    cursor:default;
+    user-select: none;
 }
   .pitch-title,.pitch-text{
     font-size:6vw;
@@ -927,6 +965,11 @@ form label{
     font-weight: bold;
     right: 16vw;
     position: relative;
+}
+#main-goto-portal{
+    min-width: 11vw;
+    max-width: 500px;
+    align-self: center;
 }
   .nowrep-button:hover{
     cursor:pointer;
@@ -965,6 +1008,9 @@ form label{
   }
   .footer-link{
     cursor:pointer;
+  }
+  .footer-logotext{
+    gap:25px;
   }
   #ending-pitch-filler{
     height: 10vh;

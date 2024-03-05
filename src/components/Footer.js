@@ -12,9 +12,8 @@ const r_Footer = (props) => {
     <Footer container id="footer">
       <div className="w-full">
         <div className="grid w-full justify-between sm:flex sm:justify-between md:flex md:grid-cols-1">
-          <div>
+          <div className="flex-column footer-logotext">
             <Footer.Brand
-              href="https://nowreports.com"
               src="nr_full_logo_black.svg"
               alt="Now Reports Logo"
             />
