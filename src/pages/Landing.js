@@ -12,7 +12,7 @@ const Landing = () => {
     const onNavbarSectionChange = (e) => {
         const goto = e.target.getAttribute('goto');
         if(ALLOWED_MODES.includes(goto)) return setMode(goto);
-        else window.location.href = window.location.origin+goto;
+        else window.location.href = window.location.origin+'/'+goto;
     };
 
     function onLogoClick(){
@@ -165,7 +165,8 @@ const Landing = () => {
                 </div>
                 <div className="about-section about-section2">
                     <p>Found a bug or have an idea?</p>
-                    <p>Write us at <a href="mailto:support@nowreports.com">    
+                    <p>Write us at 
+                        <a href="mailto:support@nowreports.com">    
                             <span className="highlight-anim red-anim"> <strong>support@nowreports.com</strong>
                             </span>
                         </a>
