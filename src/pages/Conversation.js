@@ -209,19 +209,28 @@ const Conversation = (props) => {
         <div id="convo-container">
             <div id="convo-sidebar">
                 <div id="sidebar-upper" className="sidebar-section">
-                    <div id="logo" onClick={() => navigate('/portal')}><img src="/nr_full_logo.svg"></img></div>
+                    {/* <div className="text-center flex-center">
+                        <img src="/nr_logo.png" id="logo-convo"></img>
+                    </div> */}
+                    <div className="flex-row convo-logo-container">
+                        <img src="/nr_logo.png" id="logo-convo"></img>
+                        <div id="logo" onClick={() => navigate('/portal')}><img src="/nr_full_logo.svg"></img></div>
+                    </div>
                     <div className="convo-symboldata">
                         <div className="convo-symboldata-title">Symbol</div>
                         <div>{reportData?.symbol || 'N/A'}</div>
                     </div>
+                    <hr></hr>
                     <div className="convo-symboldata">
                         <div className="convo-symboldata-title">Report date</div>
                         <div>{formatDate(reportData?.repdate) || 'N/A'}</div>
                     </div>
+                    <hr></hr>
                     <div className="convo-symboldata">
                         <div className="convo-symboldata-title">Type</div>
                         <div>{reportData?.typ || 'N/A'}</div>
                     </div>
+                    <hr></hr>
                     <div className="convo-subscription" onClick={()=>navigate('/subscription')}>
                         <div className="convo-symboldata-title">Remaining queries</div>
                         <div>{CREDITS || '0'}</div>

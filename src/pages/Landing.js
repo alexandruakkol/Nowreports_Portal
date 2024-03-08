@@ -29,8 +29,7 @@ const Landing = () => {
   return (
     <>
         <nav id="landing-navbar" className="Navbar">
-            <img id="landing-navbar-logo" src="nr_full_logo_black.svg" alt="Now Reports Logo" onClick={onLogoClick}></img>
-            
+            <img id="landing-navbar-logo" src="nr_w_text_black.png" alt="Now Reports Logo" onClick={onLogoClick}></img>
             <div id="navbar-mid-options">
                 <span className={`nav-button highlight-anim red-anim ${selectedClass(aboutRef)}`} goto='about' ref={aboutRef} onClick={onNavbarSectionChange}>About Us</span>
                 <span className={`nav-button highlight-anim red-anim ${selectedClass(pitchRef)}`} goto='pitch' ref={pitchRef} onClick={onNavbarSectionChange}>How we save you time</span>
@@ -165,8 +164,7 @@ const Landing = () => {
                 </div>
                 <div className="about-section about-section2">
                     <p>Found a bug or have an idea?</p>
-                    <p>Write us at 
-                        <a href="mailto:support@nowreports.com">    
+                    <p>Write us at <a href="mailto:support@nowreports.com">    
                             <span className="highlight-anim red-anim"> <strong>support@nowreports.com</strong>
                             </span>
                         </a>

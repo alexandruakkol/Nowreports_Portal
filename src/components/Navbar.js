@@ -36,14 +36,14 @@ const Navbar = () => {
   return (
     <nav className="Navbar">
       <div id="navbar-1" onClick={()=>navigate('/portal')}>
-        <img id="navbar-logo" src="/nr_logo_black.svg"></img>
+        <img id="navbar-logo" src="nr_logo.png"></img>
       </div>
       {/* <Menu onClick={onClick} selectedKeys={[current]} mode="horizontal" items={items} /> */}
       <div id="navbar-2">
         <Popover content={avatarContext} title={`Welcome, ${FB_USER.name}`}>
           <Avatar
             style={{
-              backgroundColor: '#a70000',
+              backgroundColor: '#343434',
               verticalAlign: 'middle',
             }}
             size="large"
