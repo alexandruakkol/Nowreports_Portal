@@ -1,20 +1,27 @@
 import {useState, useRef, useEffect} from 'react'
 import Footer from '../components/Footer';
 import { HiOutlineChevronDoubleDown } from "react-icons/hi";
-import { Card } from 'flowbite-react';
+import { Card, Button } from 'flowbite-react';
 import axios from 'axios';
+import Thankyou from '../components/Thankyou';
+import { Input } from 'antd';
 
 const Landing = () => {
 
-    const ALLOWED_MODES = ['pitch', 'about', 'new-features']
+    const ALLOWED_MODES = ['pitch', 'about', 'new-features'];
+    const MAX_FEATURE_SELECT = 2;
+
     const [mode, setMode] = useState('pitch'); //TODO: main
     const [featuresData, setFeaturesData] = useState([]);
     const aboutRef = useRef();
     const pitchRef = useRef();
     const featuresRef = useRef();
     const [selectedNavbar, setSelectedNavbar] = useState('pitch');
+    const [isSentFeatures, setIsSentFeatures] = useState(false);
+    const [selectedFeatures, setSelectedFeatures] = useState([]);
+    const [customSuggestion, setCustomSuggestion] = useState('');
 
-    useEffect(()=>{
+    useEffect(() => {
         if((mode === 'new-features') && (!featuresData.length) ){ //so it only calls on newfeatures mode
             axios.get('/features')
             .then(res => setFeaturesData(res.data))
@@ -33,7 +40,30 @@ const Landing = () => {
     }
 
     function selectFeature(e){
-        console.log(e)
+        const classlist = e.currentTarget.classList;
+        if(classlist.contains('selected')) {
+            classlist.remove('selected');
+            const filitedFeatures = selectedFeatures.filter(x=>x!==e.currentTarget.id);
+            setSelectedFeatures(filitedFeatures);
+        }
+        else {
+            if(selectedFeatures.length === MAX_FEATURE_SELECT) return
+            classlist.add('selected');
+            setSelectedFeatures([...selectedFeatures, e.currentTarget.id]);
+        };
+    }
+
+    function sendFeatures(){
+        let featuresArray = selectedFeatures;
+        if(customSuggestion) featuresArray.push({customSuggestion});
+
+        for(const feature of selectedFeatures.slice(0 ,MAX_FEATURE_SELECT + 1)){
+            let obj;
+            if(feature.customSuggestion) obj = {text: feature.customSuggestion, typ:'custom_suggestion'}
+            else obj = {text: feature, typ:'feature_code'};
+            axios.post(`${window.appdata.API_ADDR}/feedback`, obj);   
+        }
+        setIsSentFeatures(true);
     }
 
   return (
@@ -43,7 +73,7 @@ const Landing = () => {
             <div id="navbar-mid-options">
                 <span className={`nav-button highlight-anim red-anim ${(selectedNavbar === 'about') && 'selected-button'}`} goto='about' ref={aboutRef} onClick={onNavbarSectionChange}>About Us</span>
                 <span className={`nav-button highlight-anim red-anim ${(selectedNavbar === 'pitch') && 'selected-button'}`} goto='pitch' ref={pitchRef} onClick={onNavbarSectionChange}>How we save you time</span>
-                {/* <span className={`nav-button highlight-anim red-anim ${selectClass(featuresRef)}`} goto='new-features' ref={featuresRef} onClick={onNavbarSectionChange}>New features</span> */}
+                <span className={`nav-button highlight-anim red-anim ${(selectedNavbar === 'new-features') && 'selected-button'}`} goto='new-features' ref={featuresRef} onClick={onNavbarSectionChange}>New features</span>
             </div>
 
             <a id="goto-portal" className="highlight-anim red-anim nowrep-button" type="disabled" href="/signup">
@@ -193,10 +223,12 @@ const Landing = () => {
         </section>
 
         <section id="new-features" mode="new-features" className={`landing-section ${mode == 'new-features' ? 'active' : ''}`}>
-            <h2 className="text-medium">Choose two features you would use</h2>
+            <Thankyou hidden={!!!isSentFeatures}></Thankyou>
+            <h1 className="text-medium">We're working on new features. Let us know what you need most.</h1>
+            <h2 className="text-SM">Choose up to two features</h2>
             <div id="featurecard-container">
                 {featuresData.map(feature => {
-                    return   <Card className="max-w-sm feature-card clickable" key={feature.code} onClick={selectFeature}>
+                    return   <Card className="max-w-sm feature-card clickable" key={feature.code} id={feature.code} onClick={selectFeature}>
                         <h5 className="text-2xl font-bold tracking-tight text-black-900 dark:text-black">
                             {feature.name}
                         </h5>
@@ -205,10 +237,18 @@ const Landing = () => {
                         </p>
                     </Card>
                 })}
+
             </div>
-          
+                <div style={{width:'40vw'}}>
+                    <h5 className="text-SM">Have another feature in mind? Write it here.</h5>
+                    <Input.TextArea
+                        onChange={ (a) => setCustomSuggestion(a.target.value) } 
+                        placeholder="Write us your own suggestion"
+                        autoSize={{ minRows: 2  , maxRows: 4 }}>
 
-
+                    </Input.TextArea>
+                </div>
+                <Button disabled={!selectedFeatures.length && !customSuggestion.length} className="feature-send-btn" onClick={sendFeatures}>Send</Button>
         </section>
 
     </>

@@ -1125,10 +1125,12 @@ form label{
     font-size: 1.5rem;
 }
 .feature-card{
+    height: 30vh;
     background-color: white !important;
     color: black;
 }
 #featurecard-container{
+    gap:35px;
     display: flex;
     flex-direction: row;
     align-content: center;
@@ -1136,16 +1138,30 @@ form label{
     align-items: center;
     flex-wrap: wrap;
 }
-#featurecard-container.selected{
-    border:1px solid var(--MESSAGE);
+.feature-card.selected{
+    border: 3px solid #192C50;
+}
+.feature-send-btn{
+    width: 30vw;
 }
 #new-features{
-    margin-top: 5vh;
+    margin-top: 10vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap:2vh;
 }
-#new-features > h2{
 
+.thankyou-overlay{
+    z-index: 99;
+    position: absolute;
+    background: var(--CREME);
+    height: 100%;
+    width: 100%;
+}
+.thankyou-container{
+    height: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
