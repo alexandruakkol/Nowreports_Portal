@@ -5,6 +5,8 @@ import {AuthContext} from '../App';
 import {LogoutOutlined} from '@ant-design/icons';
 import { fb_signOut } from '../firebase';
 import { useNavigate } from 'react-router-dom';
+import { IoReturnDownBack } from "react-icons/io5";
+import { FaUser } from "react-icons/fa";
 
 const Navbar = () => {
 
@@ -13,7 +15,12 @@ const Navbar = () => {
 
   const avatarContext = (
     <div id="avatar-context">
-      <p className='avatar-context-option' onClick={()=>navigate('/settings')}>Account and settings</p>
+      <p className='avatar-context-option' onClick={()=>navigate('/settings')}>
+        <FaUser></FaUser>Account and settings</p>
+      <p className='avatar-context-option' onClick={() => {window.location.href=window.location.origin}}>
+        <IoReturnDownBack></IoReturnDownBack>
+        Go to Home
+      </p>
       <p className='avatar-context-option' onClick={fb_signOut}><LogoutOutlined></LogoutOutlined> Logout</p>
     </div>
   );
@@ -40,7 +47,7 @@ const Navbar = () => {
       </div>
       {/* <Menu onClick={onClick} selectedKeys={[current]} mode="horizontal" items={items} /> */}
       <div id="navbar-2">
-        <Popover content={avatarContext} title={`Welcome, ${FB_USER.name}`}>
+        <Popover content={avatarContext} width  title={`Welcome, ${FB_USER.name}`} placement="bottomRight">
           <Avatar
             style={{
               backgroundColor: '#343434',

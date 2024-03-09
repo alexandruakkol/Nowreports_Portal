@@ -40,9 +40,7 @@ function App() {
         const options = { headers: {'Authorization': `Bearer ${idtoken}`}}; 
         let userData;
         try{
-
           userData = await axios.post(`${window.appdata.API_ADDR}/login`, {withCredentials:true}, options)
-
         } catch(err) {
           if( (user?.loginProvider === 'google.com') && (err?.response?.status === 401) ){
             //if google cannot login, it's the first login. create sql account.

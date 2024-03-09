@@ -13,7 +13,7 @@
     --SECONDARY-GREY:#3b3c40bf;
     --MID-TEXT-GREY:#5b5d62bf;
     --SIDEBAR-DARK: #181717;
-    --DARK-SELECT: #222020;
+    --DARK-SELECT: #202233;
     --OFFWHITE:#CBCACB;
     --MESSAGE:#007bff;
     --SLIGHTGREY: #cecece;
@@ -54,6 +54,9 @@ body{
 .text-medium{
     font-size: 1.7rem;
 }
+.text-SM{
+    font-size: 1.2rem;
+}
 
 .text-slightgrey{
     color:var(--MID-TEXT-GREY);
@@ -65,16 +68,23 @@ body{
 .text-center{
     text-align: center;
 }
+.text-right{
+    text-align: right;
+}
 .text-bold{
     font-weight: bold;
 }
-
-
+.max-width{
+    width:100%;
+}
+.clickable{
+    cursor:pointer;
+}
 /* CONVO PAGE */
 .convo-logo-container{
     padding:0.6rem;
     margin-bottom: 40px;
-    padding: 0.6rem 0.6rem 0.6rem 1rem;
+    padding: 0.6rem 0.2rem 0.6rem 0.6rem;
 }
 .green{
     color:green;
@@ -136,12 +146,12 @@ body{
     width:100%;
     text-align: center;
     display: flex;
-    gap: 40px;
+    gap: 8vh;
     flex-direction: column;
     align-items: center;
 }
 #main-section-1{
-    flex:0.5
+    flex:0.4
 }
 #landing-main{
     display:flex;
@@ -180,7 +190,7 @@ body{
     transition: opacity 0.5s ease-in-out;
 }
 .main-title-search{
-    height: 47px;
+    height: 3.9rem;
 }
 #navbar-1{
     font-size:30px;
@@ -240,10 +250,22 @@ form label{
     display: flex;
     flex-direction: column;
 }
+/* #avatar-context{
+    display:flex;
+    flex-direction: column;
+    gap:10px;
+} */
 .avatar-context-option{
-    cursor:pointer;
+    padding: 10px;
+    gap: 10px;
+    display: flex;
+    cursor: pointer;
     text-align: center;
     border-radius: 8px;
+    height: 2rem;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: row;
 }
 .avatar-context-option:hover{
     background-color:  var(--BORDERS);
@@ -399,11 +421,11 @@ form label{
 /* END MAIN PAGE REDESIGN */
 
 #landing-navbar-logo,#signup-navbar-logo{
-    height: 2.6rem;
+    height: 3.4rem;
     cursor: pointer;
 }
 #navbar-logo{
-    height: 2.6rem;
+    height: 3.4rem;
 }
 #signup-navbar{
     width: 100%;
@@ -436,8 +458,11 @@ form label{
 #sidebar-upper{
     margin-top:2.5vh;
 }
-#sidebar-upper hr{
-    border-color: #3a3a3a;
+.sidebar-hr{
+}
+#sidebar-upper hr,.sidebar-hr{
+    border-color: #242424;
+    border-radius:5px;
     margin: 0px 30px 0px 30px;
 }
 .convo-pane{
@@ -454,6 +479,14 @@ form label{
 #convo-pane-right{
     border-left:5px solid rgb(221, 221, 221);
 }
+.sidebar-subscribe-button{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+}
+
 #iframe-container{
     height: calc(var(--scale-factor) * 100% ); 
     width: calc(var(--scale-factor) * 100%); 
@@ -497,7 +530,7 @@ form label{
     display: flex;
     flex-direction: row;
     gap: 10px;
-    padding:0.75rem 0.6rem 0.75rem 0.6rem;
+    padding:0.55rem 0.6rem 0.55rem 0.6rem;
     justify-content: space-between;
     color: var(--OFFWHITE);    
     margin: 4px;
@@ -505,7 +538,13 @@ form label{
     font-size: 0.9rem;
     font-family: 'Krub', sans-serif;
     transition: all 0.25s ease;
-
+}
+.convo-red{
+    color: #c66969;
+    border: 1px solid #690000;
+}
+.convo-red:hover{
+    background-color: #380000 !important;
 }
 #sidebar-section-lower{
     display:flex;
@@ -514,13 +553,20 @@ form label{
     margin-bottom: 0.5vh;
 }
 .convo-subscription{
-    cursor:pointer;
+    border: 1px solid #2e3444 !important;
+}
+.convo-subscription:hover{
+    background-color: transparent !important;
+    color: black;
+    filter: invert();
 }
 .convo-getsubscription{
     border-color: #986868;
 }
-.convo-subscription:hover{
+.darken-hover:hover{
+    border-radius: 13px;
     background-color: var(--DARK-SELECT);
+    transition-duration: 0.2s;
 }
 .convo-symboldata-title{
     font-weight: bold;
@@ -558,8 +604,8 @@ form label{
     width: 100%;
 }
 #logo-convo{
-    height: 20%;
-    width: 20%;
+    height: 23%;
+    width: 23%;
 }
 #logo > img{
     height: 25px;
@@ -904,16 +950,16 @@ form label{
     animation: typing 3.5s steps(120, end) infinite, blink-caret .75s step-end infinite;
   }
   .heading-element{
-    margin-top: 24vh;
+    margin-top: 22vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
   }
   .heading-container{
     padding-bottom: 4vh;
-  }
-  .heading-third{
-    margin-top: 12vh;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
   }
   .blue-text-accent{
     text-wrap: nowrap;
@@ -923,7 +969,7 @@ form label{
     background-color: var(--MESSAGE);
   }
   #main-chevron{
-    padding-top: 12vh;
+    padding-top: 22vh;
     align-self: center;
     color: lightgrey;
     }
@@ -1053,3 +1099,53 @@ form label{
     flex-direction: column;
     gap: 15px;
   }
+  
+#feedback-container{
+    display:flex;
+    flex-direction:column;
+    gap: 1rem;
+}
+.feedback-icon{
+    font-size:10rem;    
+}
+.feedback-success-icon{
+    color:green;
+}
+.feedback-error-icon{
+    color:red;
+}
+.feedback-result-container{
+    margin: 4vh;
+    gap: 40px;
+    flex-direction: column;
+    align-items: center;
+}
+.feedback-result-container > h3{
+    font-family: 'Rethink sans';
+    font-size: 1.5rem;
+}
+.feature-card{
+    background-color: white !important;
+    color: black;
+}
+#featurecard-container{
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+#featurecard-container.selected{
+    border:1px solid var(--MESSAGE);
+}
+#new-features{
+    margin-top: 5vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap:2vh;
+}
+#new-features > h2{
+
+}

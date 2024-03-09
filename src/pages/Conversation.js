@@ -8,6 +8,7 @@ import HTMLviewer from '../components/HTMLviewer';
 import {SendOutlined} from '@ant-design/icons';
 import {AuthContext} from '../App';
 import { sendLog } from '../utils';
+import FeedbackModal from '../components/FeedbackModal';
 
 const Conversation = (props) => {
 
@@ -21,6 +22,8 @@ const Conversation = (props) => {
     const [reportData, setReportData] = useState();
     const [isReportShown, setIsReportShown] = useState(false);
     const [isReportLoading, setIsReportLoading] = useState(false);
+    const [isOpenErrorModal, setIsOpenErrorModal] = useState(false);
+    const [isOpenSuggestionModal, setIsOpenSuggestionModal] = useState(false);
 
     const navigate = useNavigate();
     const endOfChatRef = useRef(null);
@@ -35,7 +38,7 @@ const Conversation = (props) => {
             setSymbol(convoData.symbol);
         });
     }, []);
-    
+    console.log({reportData})
     useEffect( () => { 
         // scroll chat div to end
         if (endOfChatRef.current) {
@@ -141,6 +144,7 @@ const Conversation = (props) => {
     },[convo]);
 
     useEffect(() => {
+
         if(isReportShown === true) setIsReportLoading(true);
         setTimeout(() => {setIsReportLoading(false)}, 5000);
     }, [isReportShown]);
@@ -155,6 +159,7 @@ const Conversation = (props) => {
         const convo_res = await axios.get(`${window.appdata.API_ADDR}/conversations/${convoID}`)
             .catch(err => sendLog('Code 4 conversations ' + String(err)));
         const convo_obj = convo_res?.data;
+        console.log({convo_obj})
         let [convo, reportData] = convo_obj;
         convo.forEach(x => x.sent=true) //mark as sent
         setConvo(convo);
@@ -205,20 +210,30 @@ const Conversation = (props) => {
         datestring = datestring.toISOString().split('T')[0];
         return datestring;
     }
+    
     return (
         <div id="convo-container">
+            <FeedbackModal isOpen={isOpenSuggestionModal} setIsOpen={setIsOpenSuggestionModal} title={'Write us a suggestion'}></FeedbackModal>
+            <FeedbackModal isOpen={isOpenErrorModal} setIsOpen={setIsOpenErrorModal} title={'Report a problem'}></FeedbackModal>
+
             <div id="convo-sidebar">
                 <div id="sidebar-upper" className="sidebar-section">
                     {/* <div className="text-center flex-center">
                         <img src="/nr_logo.png" id="logo-convo"></img>
                     </div> */}
-                    <div className="flex-row convo-logo-container">
+              
+                    <div className="flex-row convo-logo-container darken-hover">
                         <img src="/nr_logo.png" id="logo-convo"></img>
                         <div id="logo" onClick={() => navigate('/portal')}><img src="/nr_full_logo.svg"></img></div>
                     </div>
                     <div className="convo-symboldata">
                         <div className="convo-symboldata-title">Symbol</div>
                         <div>{reportData?.symbol || 'N/A'}</div>
+                    </div>
+                    <hr></hr>
+                    <div className="convo-symboldata text-right">
+                        <div className="convo-symboldata-title">Name</div>
+                        <div>{reportData?.name || 'N/A'}</div>
                     </div>
                     <hr></hr>
                     <div className="convo-symboldata">
@@ -231,16 +246,27 @@ const Conversation = (props) => {
                         <div>{reportData?.typ || 'N/A'}</div>
                     </div>
                     <hr></hr>
-                    <div className="convo-subscription" onClick={()=>navigate('/subscription')}>
+                    <div className="convo-symboldata darken-hover clickable" onClick={()=>navigate('/subscription')}>
                         <div className="convo-symboldata-title">Remaining queries</div>
                         <div>{CREDITS || '0'}</div>
                     </div>
                 </div>
+                
                 <div id="sidebar-section-lower" className="sidebar-section">
-                   {(CREDITS < 100) && <div className="convo-subscription convo-getsubscription" onClick={()=>navigate('/subscription')}>
-                        <div className="convo-symboldata-title">Subscribe</div>
-                        <div>Get queries</div>
-                    </div>}
+                   {(CREDITS < 100) && <div className="convo-subscription convo-getsubscription darken-hover clickable" onClick={()=>navigate('/subscription')}>
+                        {/* <div className="convo-symboldata-title">Subscribe</div> */}
+                        <div className="sidebar-subscribe-button">
+                            <div className="convo-symboldata-title">Subscribe</div>
+                            <div>Get queries</div>
+                        </div>
+                    </div>} 
+                    <hr className="sidebar-hr"></hr>
+                    <div className="convo-symboldata convo-getsubscription darken-hover convo-blue clickable convo-subscription" onClick={()=>{setIsOpenSuggestionModal(!isOpenErrorModal)}}>
+                        <div className="convo-symboldata-title max-width">Give us a suggestion</div>
+                    </div>
+                    <div className="convo-symboldata convo-getsubscription darken-hover convo-red clickable" onClick={()=>{setIsOpenErrorModal(!isOpenErrorModal)}}>
+                        <div className="convo-symboldata-title max-width">Report a problem</div>
+                    </div>
                 </div>
                 <div id="active-convos"></div>
             </div>

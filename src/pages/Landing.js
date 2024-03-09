@@ -1,13 +1,24 @@
-import {useState, useRef} from 'react'
+import {useState, useRef, useEffect} from 'react'
 import Footer from '../components/Footer';
 import { HiOutlineChevronDoubleDown } from "react-icons/hi";
+import { Card } from 'flowbite-react';
+import axios from 'axios';
 
 const Landing = () => {
 
-    const ALLOWED_MODES = ['pitch', 'about']
+    const ALLOWED_MODES = ['pitch', 'about', 'new-features']
     const [mode, setMode] = useState('pitch'); //TODO: main
+    const [featuresData, setFeaturesData] = useState([]);
     const aboutRef = useRef();
     const pitchRef = useRef();
+    const featuresRef = useRef();
+
+    useEffect(()=>{
+        if((mode === 'new-features') && (!featuresData.length) ){ //so it only calls on newfeatures mode
+            axios.get('/features')
+            .then(res => setFeaturesData(res.data))
+        }
+    }, [mode]);
 
     const onNavbarSectionChange = (e) => {
         const goto = e.target.getAttribute('goto');
@@ -17,6 +28,10 @@ const Landing = () => {
 
     function onLogoClick(){
         setMode('pitch');
+    }
+
+    function selectFeature(e){
+        console.log(e)
     }
 
     function selectedClass(ref){
@@ -33,6 +48,7 @@ const Landing = () => {
             <div id="navbar-mid-options">
                 <span className={`nav-button highlight-anim red-anim ${selectedClass(aboutRef)}`} goto='about' ref={aboutRef} onClick={onNavbarSectionChange}>About Us</span>
                 <span className={`nav-button highlight-anim red-anim ${selectedClass(pitchRef)}`} goto='pitch' ref={pitchRef} onClick={onNavbarSectionChange}>How we save you time</span>
+                <span className={`nav-button highlight-anim red-anim ${selectedClass(featuresRef)}`} goto='new-features' ref={featuresRef} onClick={onNavbarSectionChange}>New features</span>
             </div>
 
             <a id="goto-portal" className="highlight-anim red-anim nowrep-button" type="disabled" href="/signup">
@@ -76,10 +92,18 @@ const Landing = () => {
             <div className="heading-element">
                 <div className="heading-container">
                     <div className="heading heading-title text-center">
-                        <span>Turn 10-K reports into </span> 
-                        <span className="blue-text-accent">quick information</span></div>
-                    <div className="heading heading-subtitle text-center">with state of the art AI.</div>
-                    <div className="heading-subtitle text-center heading-third text-medium">Ask questions as if you were talking to the board itself.</div>
+                        The <span className="blue-text-accent"> one-stop-shop</span> for stock research</div>
+                        <p className="text-medium text-center">Searching through 10-K reports just got better.</p>
+                    {/* <div className="heading heading-subtitle text-center">with state of the art AI.</div> */}
+                    <div className="heading-subtitle text-center heading-third text-medium">
+                        <p className="text-SM">
+                            Get instant anwsers to your business-related questions, as if you were talking to the board itself.
+                        </p>
+                        <p className="text-SM">
+                            Powered by state of the art AI.
+                        </p>
+                    </div>
+             
                 </div>
 
                 <div id="main-goto-portal">
@@ -106,15 +130,6 @@ const Landing = () => {
 
                 <div className="pitch-element">
                     <div className="pitch-element-body">
-
-                        <div className="pitch-title">Find red flags in no time.</div>
-                        <div className="typing typing-anim1 typing_freq4 message">What does the company need the large amount of debt for?</div>
-                        <div className="delayed-text typing_response message ai-message-msg">The company has incurred significant net losses in each year since its inception. This history of losses indicates that the company is not generating enough revenue to cover its expenses and fund its operations. Additionally, the company is dependent on future performance for servicing its debt, which is subject to economic, financial, competitive, and other uncontrollable factors.</div>
-                    </div>
-                </div>
-
-                <div className="pitch-element">
-                    <div className="pitch-element-body">
                         <div className="pitch-title">No more sugarcoating. </div>
                         <div className="typing typing-anim1 typing_freq4 message">Is any business segment slowing down?</div>
                         <div className="delayed-text typing_response message ai-message-msg">In 2023, the company's laptop division saw a 36% reduction in net sales compared to 2022, primarily attributed to diminished sales in China, resulting from a decline in market share in the Asia region.</div>
@@ -127,7 +142,16 @@ const Landing = () => {
                         <div className="typing typing-anim1 typing_freq4 message">Does the company address the excess amount of cash?</div>
                         <div className="delayed-text typing_response message ai-message-msg">The report indicates that the company plans to allocate $8,843 million of its cash towards the creation of new self-storage units. Therefore, it seems that the company is addressing the excess amount of cash and has plans for utilizing it effectively.</div>
                     </div>
-                    <div className="pitch-text"><b></b></div>
+                    <div className="pitch-text"></div>
+                </div>
+
+                <div className="pitch-element">
+                    <div className="pitch-element-body">
+
+                        <div className="pitch-title">Get the big picture.</div>
+                        <div className="typing typing-anim1 typing_freq4 message">What does the company need the large amount of debt for?</div>
+                        <div className="delayed-text typing_response message ai-message-msg">The company has incurred significant net losses in each year since its inception. This history of losses indicates that the company is not generating enough revenue to cover its expenses and fund its operations. Additionally, the company is dependent on future performance for servicing its debt, which is subject to economic, financial, competitive, and other uncontrollable factors.</div>
+                    </div>
                 </div>
 
                 <div className="pitch-element">
@@ -173,6 +197,24 @@ const Landing = () => {
             </div>
         </section>
 
+        <section id="new-features" mode="new-features" className={`landing-section ${mode == 'new-features' ? 'active' : ''}`}>
+            <h2 className="text-medium">Choose two features you would use</h2>
+            <div id="featurecard-container">
+                {featuresData.map(feature => {
+                    return   <Card className="max-w-sm feature-card clickable" key={feature.code} onClick={selectFeature}>
+                        <h5 className="text-2xl font-bold tracking-tight text-black-900 dark:text-black">
+                            {feature.name}
+                        </h5>
+                        <p className="font-normal text-black-700 dark:text-black-400">
+                            {feature.description}
+                        </p>
+                    </Card>
+                })}
+            </div>
+          
+
+
+        </section>
 
     </>
 )
