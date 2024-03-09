@@ -12,6 +12,7 @@ const Landing = () => {
     const aboutRef = useRef();
     const pitchRef = useRef();
     const featuresRef = useRef();
+    const [selectedNavbar, setSelectedNavbar] = useState('pitch');
 
     useEffect(()=>{
         if((mode === 'new-features') && (!featuresData.length) ){ //so it only calls on newfeatures mode
@@ -22,6 +23,7 @@ const Landing = () => {
 
     const onNavbarSectionChange = (e) => {
         const goto = e.target.getAttribute('goto');
+        setSelectedNavbar(goto);
         if(ALLOWED_MODES.includes(goto)) return setMode(goto);
         else window.location.href = window.location.origin+'/'+goto;
     };
@@ -34,21 +36,14 @@ const Landing = () => {
         console.log(e)
     }
 
-    function selectedClass(ref){
-        if(!ref.current) return;
-        const currentSelection = ref.current.getAttribute('goto');
-        if(currentSelection == mode)
-            return 'selected-button';
-    }
-
   return (
     <>
         <nav id="landing-navbar" className="Navbar">
             <img id="landing-navbar-logo" src="nr_w_text_black.png" alt="Now Reports Logo" onClick={onLogoClick}></img>
             <div id="navbar-mid-options">
-                <span className={`nav-button highlight-anim red-anim ${selectedClass(aboutRef)}`} goto='about' ref={aboutRef} onClick={onNavbarSectionChange}>About Us</span>
-                <span className={`nav-button highlight-anim red-anim ${selectedClass(pitchRef)}`} goto='pitch' ref={pitchRef} onClick={onNavbarSectionChange}>How we save you time</span>
-                <span className={`nav-button highlight-anim red-anim ${selectedClass(featuresRef)}`} goto='new-features' ref={featuresRef} onClick={onNavbarSectionChange}>New features</span>
+                <span className={`nav-button highlight-anim red-anim ${(selectedNavbar === 'about') && 'selected-button'}`} goto='about' ref={aboutRef} onClick={onNavbarSectionChange}>About Us</span>
+                <span className={`nav-button highlight-anim red-anim ${(selectedNavbar === 'pitch') && 'selected-button'}`} goto='pitch' ref={pitchRef} onClick={onNavbarSectionChange}>How we save you time</span>
+                {/* <span className={`nav-button highlight-anim red-anim ${selectClass(featuresRef)}`} goto='new-features' ref={featuresRef} onClick={onNavbarSectionChange}>New features</span> */}
             </div>
 
             <a id="goto-portal" className="highlight-anim red-anim nowrep-button" type="disabled" href="/signup">
