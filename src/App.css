@@ -24,11 +24,6 @@ body{
     text-rendering: optimizeSpeed;
 }
 
-@media screen and (max-height: 880px) {
-    body {
-        overflow: scroll;
-    }
-}
 .App{
     flex-direction: column;
     font-family: 'Rethink sans';
@@ -90,7 +85,7 @@ body{
     color:green;
 }
 
-.Navbar{
+/* .Navbar{
     user-select: none;
     padding-left: 4%;
     padding-right: 4%;
@@ -100,10 +95,9 @@ body{
     align-items: center;
     justify-content: space-between;
     width: 100%;
-}
+} */
 .nav-button{
     cursor:pointer;
-    font-size: 1.2rem;
 }
 #navbar-mid-options{
     display:flex;
@@ -817,34 +811,6 @@ form label{
 #goto_portal_text{
     cursor:pointer;
 }
-#landing-navbar{
-    padding-right: 7vw;
-    width: 100%;
-    display:flex;
-    gap:2rem;
-    height: 7vh;
-    justify-content: center;
-    background-color: transparent;
-}
-.landing-navbar-container{
-    gap: 40px;
-    display: flex;
-    /* width: 100vw; */
-}
-#landing-navbar > div{
-    width: 100%;
-    display: flex;
-    /* flex-direction: row; */
-    justify-content: center;
-}
-/* #landing-navbar > div > div{
-    display: flex;
-    flex: 9;
-    justify-content: center;
-}
-#landing-navbar > div > a{
-    flex:1;
-} */
 .highlight-anim{
     position: relative;
     text-decoration: none;
@@ -895,11 +861,10 @@ form label{
 .selected-button{
     font-weight: bold;
 }
-.landing-section{
-    height: 100%;
-}
 .landing-section {  
-    height: 100%;
+    padding: 0px 10px 0px 10px;
+    display: none;
+    height: 98%;
     position: absolute;
     top: 100%; /* Start below the view */
     left: 0;
@@ -909,10 +874,10 @@ form label{
     width: 100vw;
   }
   .landing-section.active {
+    display:flex;
     top: 7%; /* Slide up to view */
   }
   #pitch{
-    display:flex;
     width:100%;
     flex-direction: column;
   }
@@ -924,14 +889,15 @@ form label{
   }
   .pitch-flex1{
     padding-top: 15vh;
-    padding-left: 20%;
     /* hack for typing animation  */
     width: 280%; 
+  }
+  .pitch-title{
+    font-weight: 900;
   }
   .typing-anim1{
     font-weight: 400;
     letter-spacing: -0.7px;
-    right: 13vw;
     position: relative;
   }
   @keyframes typing {
@@ -942,9 +908,6 @@ form label{
   @keyframes blink-caret {
     from, to { border-color: transparent; }
     50% { border-color: black; }
-  }
-  .typing,.delayed-text{
-    font-size: 2vw;
   }
   .typing {
     font-family: monospace;
@@ -970,7 +933,6 @@ form label{
     animation: typing 3.5s steps(120, end) infinite, blink-caret .75s step-end infinite;
   }
   .heading-element{
-    margin-top: 22vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -989,11 +951,11 @@ form label{
     background-color: var(--MESSAGE);
   }
   #main-chevron{
-    padding-top: 22vh;
+    padding-top: 14vh;
     align-self: center;
     color: lightgrey;
-    }
-  .pitch-element{
+}
+.pitch-element{
     display: flex;
     flex-direction: column;
     height: 76vh;
@@ -1009,72 +971,63 @@ form label{
 }
 .heading{
     font-weight: 900;
-    font-size: 4rem;
     color: var(--DARKSECTION);
     cursor:default;
     user-select: none;
 }
-  .pitch-title,.pitch-text{
-    font-size:6vw;
-  }
-  .pitch-line{
+.pitch-line{
     display:flex;   
-  }
-  .pitch-agent{
+}
+.pitch-agent{
     right: 18vw;
     position: relative;
     font-size:2.7vw;
     text-align: center;
     place-self:end;
     font-weight: bold;
-  }
-  .pitch-agent-ai{
+}
+.pitch-agent-ai{
     right: 5vw;
-  }
-  .pitch-text{
+}
+.pitch-text{
     font-size: 2vw;
-    }
-  .pitch-title{
-    font-weight: 900;
-    font-size: 4.5vw;
-  }
-  .typing_response{
+}
+.typing_response{
     text-wrap: wrap;
     width: calc(100vw - 13vw - 8vw);
-  }
-  #pitch-goto-portal{
-    width: 92vw;
+}
+#pitch-goto-portal{
     height: 15vh;
-    font-size: 2.5vw;
     font-weight: bold;
     right: 16vw;
     position: relative;
 }
 #main-goto-portal{
-    min-width: 11vw;
+    min-width: 13vw;
     max-width: 500px;
     align-self: center;
+    box-shadow: 0 2px 2px var(--BORDERS);
 }
-  .nowrep-button:hover{
+.nowrep-button:hover{
     cursor:pointer;
-  }
-  .delayed-text {
+}
+.delayed-text {
     opacity: 0; /* Start with the text being fully transparent */
     animation-name: fadeIn; /* Reference to the keyframes animation */
     animation-duration: 0.3s; /* Duration of the fade-in effect */
     animation-delay: 0.6s; /* Delay the start of the animation by 8 seconds */
     animation-fill-mode: forwards; /* Keep the final state after animation ends */
-  }
-  @keyframes fadeIn {
+}
+@keyframes fadeIn {
     to {
       opacity: 1; /* Animate to fully opaque */
     }
   }
-  .account-button{
+.account-button{
     width: clamp(49px, 200px, 9vw);
     font-weight: bold;
     font-size: 1vw;
-  }
+}
   /* ---------------- FOOTER ---------------- */
 
   #footer{
@@ -1099,17 +1052,12 @@ form label{
   #ending-pitch-filler{
     height: 10vh;
   }
-  #about-container > p{
-    font-size: 1.6vw;
-  }
   #about-container{
     display: flex;
     flex-direction: column;
     gap: 15vh;
-    font-size:1.4vw;
   }
   #about{
-    display: flex;
     align-items: center;
     justify-content: center;
     height: 85%;
@@ -1166,7 +1114,6 @@ form label{
 }
 #new-features{
     margin-top: 10vh;
-    display: flex;
     flex-direction: column;
     align-items: center;
     gap:2vh;
@@ -1185,7 +1132,130 @@ form label{
     flex-direction: column;
     align-items: center;
 }
-@media only screen and (max-width: 480px){
-
-
+.hidden{
+    display:'none';
+}
+@media only screen and (min-width: 50px){
+    .heading-element{
+        margin-top: 10vh;
+    }
+    .heading{
+        font-size: 40px;
+    }
+    .heading-secondary{
+        font-size:25px;
+    }
+    .pitch-flex1{
+        padding-left: 0%;
+    }
+    .typing-anim1{
+        right: 0vw;
+    }
+    .pitch-title{
+        font-weight: 900;
+        font-size: 6vw;
+    }
+    .typing,.delayed-text{
+        font-size: 2.3vw;
+    }
+    #pitch-goto-portal{
+        width: 115vw;
+        font-size: 5.5vw;
+    }
+    #about-container{
+        font-size: 2.5vw;
+    }
+}
+@media only screen and (min-width: 576px){
+    .heading-element{
+        margin-top: 10vh;
+    }
+    .heading{
+        font-size: 45px;
+    }
+    .heading-secondary{
+        font-size:30px;
+    }
+    .pitch-flex1{
+        padding-left: 7%;
+    }
+    .typing-anim1{
+        right: 5vw; 
+    }
+    .pitch-title{
+        font-weight: 900;
+        font-size: 5.5vw;
+    }
+    .typing,.delayed-text{
+        font-size: 2.3vw;
+    }
+    #pitch-goto-portal{
+        width: 115vw;
+        font-size: 5.5vw;
+    }
+    #about-container{
+        font-size: 2.2vw;
+    }
+}
+@media only screen and (min-width: 768px){
+    .heading-element{
+        margin-top: 20vh;
+    }
+    .heading{
+        font-size: 55px;
+    }
+    .heading-secondary{
+        font-size:35px;
+    }
+    .pitch-flex1{
+        padding-left: 15%;
+    }
+    .typing-anim1{
+        right: 13vw;
+    }
+    .pitch-title{
+        font-weight: 900;
+        font-size: 5vw;
+    }
+    .typing,.delayed-text{
+        font-size: 2.3vw;
+    }
+    #pitch-goto-portal{
+        width: 100vw;
+        font-size: 4vw;
+    }
+    #about-container{
+        font-size: 1.9vw;
+    }
+}
+@media only screen and (min-width: 992px){
+    .heading-element{
+        margin-top: 22vh;
+    }
+    .heading{
+        font-size: 75px;
+    }
+    .heading-secondary{
+        font-size:40px;
+    }
+    .pitch-flex1{
+        padding-left: 20%;
+    }
+    .typing-anim1{
+        right: 13vw;
+    }
+    .pitch-title{
+        font-weight: 900;
+        font-size: 4.5vw;
+    }
+    .typing,.delayed-text{
+        font-size: 2vw;
+    }
+    #pitch-goto-portal{
+        width: 92vw;
+        font-size: 2.7vw;
+    }
+    #about-container{
+        font-size: min(1.5vw, 22px);
+    }
 }

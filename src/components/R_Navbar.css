@@ -1,0 +1,94 @@
+
+
+.rui-navbar{
+    user-select: none;
+    padding-left: 2vw;
+    display: flex;
+    height: 7vh;
+    box-shadow: 0 1px 1px var(--BORDERS);
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0px 30px 0px 30px;
+    position: relative;
+}
+/* ---------------- ITEMS --------------- */
+.rui-navbar-items{
+    gap: 33px;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+/* ---------------- HAMBURGER --------------- */
+.rui-hamburger{
+    display:none;
+    font-size: 1.6rem;
+}
+
+.rui-hamburger-container{
+    position:relative;
+    display: none;
+    width: 50vw;
+    position: relative;
+    justify-content: flex-end;
+}
+
+.rui-hamburger-list{
+    display:none;
+    position: absolute;
+    border-radius:7px;
+    top: 100%;
+    left: 0;
+    width: 60vw;
+    background-color: #fff; 
+    z-index: 1; 
+    height: 0px;
+    overflow: hidden;
+    transition: height 0.5s ease; 
+    flex-direction: column;
+}
+
+.rui-hamburger-list.open {
+    border: 1px solid #ccc;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+    height: 300px;
+}
+
+.rui-hamburger-item{
+    font-size:20px;
+    padding: 15px;
+    border-bottom:1px solid rgb(197, 197, 197);
+}
+
+.rui-cta-item{
+    border:0px;
+    width: 100%;
+}
+
+@media only screen and (max-width: 576px){
+    .rui-hamburger,.rui-hamburger-list,.rui-hamburger-container{
+        display:flex;
+    }
+    .rui-navbar-items,.rui-cta{
+        display:none;
+    }
+
+}
+
+@media (min-width:576px) {
+    .rui-navbar-items {
+        font-size: 16px;
+    }
+}
+@media (min-width:768px) {
+    .rui-navbar-items {
+        font-size: 21px;
+    }
+}
+@media (min-width:992px) {
+    .rui-navbar-items {
+        font-size: 22px;
+    }
+}

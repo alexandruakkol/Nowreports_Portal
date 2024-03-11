@@ -1,18 +1,18 @@
-import {useState, useRef, useEffect} from 'react'
+import { useState, useRef, useEffect } from 'react'
 import Footer from '../components/Footer';
 import { HiOutlineChevronDoubleDown } from "react-icons/hi";
 import { Card, Button } from 'flowbite-react';
 import axios from 'axios';
 import Thankyou from '../components/Thankyou';
 import { Input } from 'antd';
-//import {Navbar} from 'readyui';
+import { Navbar } from 'readyui';
 
 const Landing = () => {
 
     const ALLOWED_MODES = ['pitch', 'about', 'new-features'];
     const MAX_FEATURE_SELECT = 2;
 
-    const [mode, setMode] = useState('pitch'); //TODO: main
+    const [mode, setMode] = useState('pitch'); 
     const [featuresData, setFeaturesData] = useState([]);
     const aboutRef = useRef();
     const pitchRef = useRef();
@@ -27,11 +27,17 @@ const Landing = () => {
     let pageSize = 'desktop';
 
     useEffect(() => {
-        if((mode === 'new-features') && (!featuresData.length) ){ //so it only calls on newfeatures mode
+        if((mode === 'new-features') && (!featuresData.length) ){ // only calls on newfeatures mode
             axios.get('/features')
             .then(res => setFeaturesData(res.data))
         }
+
+        const REFS = {'pitch':pitchRef, 'about':aboutRef, 'new-features':featuresRef};
+
+        REFS[mode].current.focus();
+
     }, [mode]);
+
 
     useEffect(() => {
         const handleResize = () => {
@@ -47,14 +53,24 @@ const Landing = () => {
                 setIsBurgerOpen(true);
             }
         }
+        document.addEventListener('keydown', handleTabKey);
 
         handleResize();
         window.addEventListener('resize', handleResize);
     
         return () => {
           window.removeEventListener('resize', handleResize);
+          document.removeEventListener('keydown', handleTabKey);
+
         };
     },[]);
+
+    const handleTabKey = (e) => {  // Tab breaks page when unhandled (goes to out of view pseudo-pages) TODO: handle 
+        const target = e.target;
+        if (e.key === 'Tab') {
+          e.preventDefault();
+        }
+    };
 
     const onNavbarSectionChange = (e) => {
         const goto = e.target.getAttribute('goto');
@@ -101,16 +117,21 @@ const Landing = () => {
         <span className={`nav-button highlight-anim red-anim ${(selectedNavbar === 'new-features') && 'selected-button'}`} goto='new-features' ref={featuresRef} onClick={onNavbarSectionChange}>New features</span>,
     ]
 
+    const cta = <button id="goto-portal" className="highlight-anim red-anim nowrep-button" type="disabled" 
+                        onClick={() => {window.location.pathname='/signup'}}>
+                        Try NowReports AI
+                </button>
+              
+
     const logo_el = <img id="landing-navbar-logo" style={
         {width: logo === 'nr_w_text_black.png' ? '12rem' : '4rem'}
     } alt="Now Reports Logo" src={logo}></img>; //TODO: onClick={onLogoClick}
 
   return (
     <>
-        <nav className="Navbar">
+        <nav>
             
-            <Navbar id="landing-navbar" className="Navbar" logo_el={logo_el} items={items}>
-            </Navbar>
+            <Navbar id="landing-navbar" logo_el={logo_el} items={items} cta_button={cta}></Navbar>
 
             {/* <div id="navbar-mid-options">
                 <span className={`nav-button highlight-anim red-anim ${(selectedNavbar === 'about') && 'selected-button'}`} goto='about' ref={aboutRef} onClick={onNavbarSectionChange}>About Us</span>
@@ -123,44 +144,15 @@ const Landing = () => {
             </a> */}
         </nav>
         {/* ----------------- MAIN MODE ----------------- */}
-        <section mode="main" className={`landing-section ${mode == 'main' ? 'active' : ''}`}>
-            <div id="landing-main">
-                <div id="main-flex1"></div>
-                <div id="main-flex2">
-                    <section className="home-section-a">
-                        <div className="home-textarea">
-                            <div id="main-text">
-                                <p>
-                                    <span className="highlight-anim red-anim">
-                                        <span className="main-text-p">Get the information you</span>
-                                        <span id="main-red" className="main-text-p"> need</span>
-                                    </span>
-                                </p>
-                            
-                            <p>
-                                <span className="highlight-anim red-anim main-text-p">faster.</span>
-                                </p>
-                            <p>
-                                <span className="highlight-anim red-anim main-text-p">better.</span>
-                                </p>
-                            </div>
-                        </div>
-                    </section>
-                </div>          
-                <div id="main-flex3">
-                    <p id="main-text2">Leverage AI to analyze company financial reports.</p>
-                </div>
-            </div>
-        </section>
 
         {/* ----------------- PITCH MODE ----------------- */}
 
-        <section id="pitch" mode="pitch" className={`landing-section ${mode == 'pitch' ? 'active' : ''}`}>
+        <section id="pitch" mode="pitch" className={`landing-section ${mode == 'pitch' ? 'active' : ''}` } role="region" aria-label="Main section">
             <div className="heading-element">
                 <div className="heading-container">
                     <div className="heading heading-title text-center">
                         The <span className="blue-text-accent"> one-stop-shop</span> for stock research</div>
-                        <p className="text-medium text-center">Searching through 10-K reports just got better.</p>
+                        <p className="text-medium text-center heading-secondary">Searching through 10-K reports just got better.</p>
                     {/* <div className="heading heading-subtitle text-center">with state of the art AI.</div> */}
                     <div className="heading-subtitle text-center heading-third text-medium">
                         <p className="text-SM">
@@ -175,7 +167,7 @@ const Landing = () => {
 
                 <div id="main-goto-portal">
                     <a id="goto-portal" className="highlight-anim red-anim nowrep-button" type="disabled" href="/signup">
-                        {mode == 'main' ? 'Go to Portal' : 'Try NowReports AI'}
+                        Try NowReports AI
                     </a>
                 </div>
 
@@ -242,7 +234,7 @@ const Landing = () => {
         </section>
 
         {/* ----------------- PITCH MODE ----------------- */}
-        <section id="about" mode="about" className={`landing-section ${mode == 'about' ? 'active' : ''}`}>
+        <section id="about" mode="about" className={`landing-section ${mode == 'about' ? 'active' : ''}`} role="region" aria-label="About us section">
             <div id="about-container">
                 <div className="about-section about-section1">
                    
@@ -264,7 +256,7 @@ const Landing = () => {
             </div>
         </section>
 
-        <section id="new-features" mode="new-features" className={`landing-section ${mode == 'new-features' ? 'active' : ''}`}>
+        <section id="new-features" mode="new-features" className={`landing-section ${mode == 'new-features' ? 'active' : ''}`} role="region" aria-label="New features section">
             <Thankyou hidden={!!!isSentFeatures}></Thankyou>
             <h1 className="text-medium">We're working on new features. Let us know what you need most.</h1>
             <h2 className="text-SM">Choose up to two features</h2>
