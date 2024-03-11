@@ -99,6 +99,7 @@ body{
     box-shadow: 0 1px 1px var(--BORDERS);
     align-items: center;
     justify-content: space-between;
+    width: 100%;
 }
 .nav-button{
     cursor:pointer;
@@ -111,7 +112,6 @@ body{
     gap:30px;
 }
 #Main{
-    height: 95vh;
     flex:20;
     display:flex;
 }
@@ -421,7 +421,6 @@ form label{
 /* END MAIN PAGE REDESIGN */
 
 #landing-navbar-logo,#signup-navbar-logo{
-    height: 3.4rem;
     cursor: pointer;
 }
 #navbar-logo{
@@ -437,7 +436,7 @@ form label{
     width:100%;
 }
 .sidebar-section{
-    flex:1
+    flex:1;
 }
 #convo-sidebar{
     flex:2;
@@ -819,12 +818,33 @@ form label{
     cursor:pointer;
 }
 #landing-navbar{
+    padding-right: 7vw;
     width: 100%;
     display:flex;
     gap:2rem;
     height: 7vh;
     justify-content: center;
+    background-color: transparent;
 }
+.landing-navbar-container{
+    gap: 40px;
+    display: flex;
+    /* width: 100vw; */
+}
+#landing-navbar > div{
+    width: 100%;
+    display: flex;
+    /* flex-direction: row; */
+    justify-content: center;
+}
+/* #landing-navbar > div > div{
+    display: flex;
+    flex: 9;
+    justify-content: center;
+}
+#landing-navbar > div > a{
+    flex:1;
+} */
 .highlight-anim{
     position: relative;
     text-decoration: none;
@@ -1164,4 +1184,8 @@ form label{
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+@media only screen and (max-width: 480px){
+
+
 }

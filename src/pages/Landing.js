@@ -5,6 +5,7 @@ import { Card, Button } from 'flowbite-react';
 import axios from 'axios';
 import Thankyou from '../components/Thankyou';
 import { Input } from 'antd';
+//import {Navbar} from 'readyui';
 
 const Landing = () => {
 
@@ -20,6 +21,10 @@ const Landing = () => {
     const [isSentFeatures, setIsSentFeatures] = useState(false);
     const [selectedFeatures, setSelectedFeatures] = useState([]);
     const [customSuggestion, setCustomSuggestion] = useState('');
+    const [isBurgerOpen, setIsBurgerOpen] = useState(false);
+    const [logo, setLogo] = useState('nr_w_text_black.png');
+
+    let pageSize = 'desktop';
 
     useEffect(() => {
         if((mode === 'new-features') && (!featuresData.length) ){ //so it only calls on newfeatures mode
@@ -27,6 +32,29 @@ const Landing = () => {
             .then(res => setFeaturesData(res.data))
         }
     }, [mode]);
+
+    useEffect(() => {
+        const handleResize = () => {
+            const screenWidth = window.innerWidth;
+            if (screenWidth >= 1200) {
+                pageSize = 'desktop';
+                setLogo('nr_w_text_black.png');
+                setIsBurgerOpen(false);
+            }
+            else {
+                pageSize = 'mobile';
+                setLogo('nr_logo.png');
+                setIsBurgerOpen(true);
+            }
+        }
+
+        handleResize();
+        window.addEventListener('resize', handleResize);
+    
+        return () => {
+          window.removeEventListener('resize', handleResize);
+        };
+    },[]);
 
     const onNavbarSectionChange = (e) => {
         const goto = e.target.getAttribute('goto');
@@ -66,19 +94,33 @@ const Landing = () => {
         setIsSentFeatures(true);
     }
 
+
+    const items = [
+        <span className={`nav-button highlight-anim red-anim ${(selectedNavbar === 'about') && 'selected-button'}`} goto='about' ref={aboutRef} onClick={onNavbarSectionChange}>About Us</span>,
+        <span className={`nav-button highlight-anim red-anim ${(selectedNavbar === 'pitch') && 'selected-button'}`} goto='pitch' ref={pitchRef} onClick={onNavbarSectionChange}>How we save you time</span>,
+        <span className={`nav-button highlight-anim red-anim ${(selectedNavbar === 'new-features') && 'selected-button'}`} goto='new-features' ref={featuresRef} onClick={onNavbarSectionChange}>New features</span>,
+    ]
+
+    const logo_el = <img id="landing-navbar-logo" style={
+        {width: logo === 'nr_w_text_black.png' ? '12rem' : '4rem'}
+    } alt="Now Reports Logo" src={logo}></img>; //TODO: onClick={onLogoClick}
+
   return (
     <>
-        <nav id="landing-navbar" className="Navbar">
-            <img id="landing-navbar-logo" src="nr_w_text_black.png" alt="Now Reports Logo" onClick={onLogoClick}></img>
-            <div id="navbar-mid-options">
+        <nav className="Navbar">
+            
+            <Navbar id="landing-navbar" className="Navbar" logo_el={logo_el} items={items}>
+            </Navbar>
+
+            {/* <div id="navbar-mid-options">
                 <span className={`nav-button highlight-anim red-anim ${(selectedNavbar === 'about') && 'selected-button'}`} goto='about' ref={aboutRef} onClick={onNavbarSectionChange}>About Us</span>
                 <span className={`nav-button highlight-anim red-anim ${(selectedNavbar === 'pitch') && 'selected-button'}`} goto='pitch' ref={pitchRef} onClick={onNavbarSectionChange}>How we save you time</span>
                 <span className={`nav-button highlight-anim red-anim ${(selectedNavbar === 'new-features') && 'selected-button'}`} goto='new-features' ref={featuresRef} onClick={onNavbarSectionChange}>New features</span>
             </div>
-
+           
             <a id="goto-portal" className="highlight-anim red-anim nowrep-button" type="disabled" href="/signup">
                 {mode == 'main' ? 'Go to Portal' : 'Try NowReports AI'}
-            </a>
+            </a> */}
         </nav>
         {/* ----------------- MAIN MODE ----------------- */}
         <section mode="main" className={`landing-section ${mode == 'main' ? 'active' : ''}`}>
@@ -122,7 +164,7 @@ const Landing = () => {
                     {/* <div className="heading heading-subtitle text-center">with state of the art AI.</div> */}
                     <div className="heading-subtitle text-center heading-third text-medium">
                         <p className="text-SM">
-                            Get instant anwsers to your business-related questions, as if you were talking to the board itself.
+                            Get instant answers to your business-related questions, as if you were talking to the board themselves.
                         </p>
                         <p className="text-SM">
                             Powered by state of the art AI.
