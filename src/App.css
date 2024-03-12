@@ -589,6 +589,9 @@ form label{
 .ai-message-msg{
     background-color: purple;
 }
+.ai-message-row{
+    display:flex;
+}
 #logo{
     display: flex;
     cursor: pointer;
