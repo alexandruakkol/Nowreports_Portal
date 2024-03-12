@@ -613,6 +613,7 @@ form label{
 }
 .loading-msg{
     animation: pulse 1s infinite;
+    width: 50px !important;
 }
 @keyframes pulse {
     0% {
@@ -1062,7 +1063,9 @@ form label{
     flex-direction: column;
     gap: 15px;
   }
-  
+  #convo-container .message{
+    width: auto;
+  }
 #feedback-container{
     display:flex;
     flex-direction:column;
