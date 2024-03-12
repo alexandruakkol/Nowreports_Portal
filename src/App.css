@@ -591,6 +591,7 @@ form label{
 }
 .ai-message-row{
     display:flex;
+    width: 75%;
 }
 #logo{
     display: flex;
