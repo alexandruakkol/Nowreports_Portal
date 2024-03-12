@@ -3,10 +3,12 @@ import { Button, Divider, Form, Input } from 'antd';
 import {auth, googleSignup} from '../firebase';
 import { StepForwardFilled, CheckCircleOutlined } from '@ant-design/icons';
 import axios from 'axios';
-import Navbar_out from '../components/Navbar_out';
+//import Navbar_out from '../components/Navbar_out';
 import { sendLog, FB_err_handler } from '../utils';
 import GoogleSignupButton from '../components/GoogleSignupButton';
 import {newAccountSequence, FBError} from '../account_operations';
+import {Navbar} from 'readyui';
+//import Navbar from '../components/Navbar';
 
 const Signup = () => {
 
@@ -143,12 +145,18 @@ const Signup = () => {
     </>
   }
 
+  const loginButton = <span className="highlight-anim red-anim nowrep-button" 
+        onClick={()=>{window.location.href = window.location.origin+'/login'}} 
+        type="disabled" goto="login">
+        Go to Login
+    </span>;
+
   return (
     <div id="login-container">
-         <Navbar_out></Navbar_out>
+         <Navbar large_logo={<img src="nr_w_text_black.png" onClick={()=>window.location.pathname="/"} className="clickable"></img>} items={[]} cta_button={loginButton}></Navbar>
         {formSuccess ? <AfterSuccess/> : <BeforeSuccess/>}
     </div>
   )
 }
 
-export default Signup
+export default Signup;

@@ -13,13 +13,13 @@
     position: relative;
 }
 /* ---------------- ITEMS --------------- */
+
 .rui-navbar-items{
     gap: 33px;
     display: flex;
     width: 100%;
     justify-content: center;
 }
-
 /* ---------------- HAMBURGER --------------- */
 .rui-hamburger{
     display:none;
@@ -74,6 +74,9 @@
     .rui-navbar-items,.rui-cta{
         display:none;
     }
+    .rui-logo{
+        width: 35vw;
+    }
 
 }
 
@@ -81,14 +84,24 @@
     .rui-navbar-items {
         font-size: 16px;
     }
+    .rui-logo{
+        width: 25vw;
+    }
+    
 }
 @media (min-width:768px) {
     .rui-navbar-items {
         font-size: 21px;
     }
+    .rui-logo{
+        width: 23vw;
+    }
 }
 @media (min-width:992px) {
     .rui-navbar-items {
         font-size: 22px;
+    }
+    .rui-logo{
+        width: min(22vw, 200px);
     }
 }

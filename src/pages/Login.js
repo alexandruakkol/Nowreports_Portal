@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import { Button, Checkbox, Form, Input, Divider } from "antd";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth, googleSignup } from "../firebase";
-import Navbar_out from "../components/Navbar_out";
 import GoogleSignupButton from "../components/GoogleSignupButton";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
+import {Navbar} from 'readyui';
+//import {Navbar} from '../components/Navbar';
 
 const Login = () => {
   const [formErr, setFormErr] = useState("");
@@ -30,9 +31,18 @@ const Login = () => {
     );
   }
 
+  const large_logo = <img  
+      style={{width: '12rem'}}
+      className="clickable"
+      alt="Now Reports Logo"
+      src='./nr_w_text_black.png'
+      onClick={()=>{window.location.pathname='/login'}}
+    ></img>//TODO: centralize
+
+
   return (
     <div id="login-container">
-      <Navbar_out page="login"></Navbar_out>
+      <Navbar large_logo={large_logo} items={[]}></Navbar>
       <div id="login-text1" className="text-center text-bold text-medium rethink">Sign in</div>
       <div id="login-signup-square">
         <Form
@@ -105,79 +115,6 @@ const Login = () => {
             </p>
           </div>
         </div>
-
-
-
-{/* 
-        <Form
-          name="basic"
-          className="login-form"
-          labelCol={{ span: 8 }}
-          wrapperCol={{ span: 16 }}
-          style={{ maxWidth: 600 }}
-          // initialValues={{remember: true}}
-          onFinish={onFinish}
-          autoComplete="off"
-        >
-          <Form.Item
-            label="Email"
-            name="email"
-            rules={[
-              {
-                required: true,
-                message: "Please input your email!",
-              },
-            ]}
-          >
-            <Input />
-          </Form.Item>
-
-          <Form.Item
-            label="Password"
-            name="password"
-            rules={[
-              {
-                required: true,
-                message: "Please input your password!",
-              },
-            ]}
-          >
-            <Input.Password />
-          </Form.Item>
-
-          <Form.Item
-            wrapperCol={{
-              offset: 8,
-              span: 16,
-            }}
-          >
-            <div id="signin-methods">
-              <Button
-                htmlType="submit"
-                className="nowrep-button highlight-anim red-anim account-button gsi-material-button login-form-button"
-              >
-                Sign in
-              </Button>
-              <a onClick={signinGoogle}>
-                <GoogleSignupButton text="Sign in with Google"></GoogleSignupButton>
-              </a>
-            </div>
-          </Form.Item>
-          <div className="error-msg">{formErr}</div>
-          <div className="subscribe-text">
-            Not a member?{" "}
-            <p>
-              <u
-                className="pointer"
-                onClick={() =>
-                  (window.location.href = window.location.origin + "/signup")
-                }
-              >
-                Subscribe here
-              </u>
-            </p>
-          </div>
-        </Form> */}
 
       </div>
     </div>

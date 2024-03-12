@@ -4,7 +4,7 @@ import {
   RouterProvider,
   useNavigate
 } from "react-router-dom";
-import Navbar from './Navbar';
+import Old_navbar from './Old_navbar';
 import Settings from '../pages/Settings';
 import { AutoComplete, Input, Dropdown } from 'antd';
 import axios from 'axios';
@@ -57,7 +57,7 @@ const MainRouter = () => {
 function WithNavbar(El){
   return (
     <>
-      <Navbar></Navbar>
+      <Old_navbar></Old_navbar>
       <div id="Main">
         <El></El>
       </div>

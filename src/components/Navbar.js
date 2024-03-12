@@ -1,68 +1,59 @@
-import React, { useState, useContext } from 'react';
-import { AppstoreOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons';
-import { Menu, Avatar, Popover, Button } from 'antd';
-import {AuthContext} from '../App';
-import {LogoutOutlined} from '@ant-design/icons';
-import { fb_signOut } from '../firebase';
-import { useNavigate } from 'react-router-dom';
-import { IoReturnDownBack } from "react-icons/io5";
-import { FaUser } from "react-icons/fa";
+import React, {useState, useEffect} from 'react'
+import './Navbar.css';
+import { GiHamburgerMenu } from "react-icons/gi";
 
-const Navbar = () => {
+const Navbar = (props) => {
+    let {items, large_logo, small_logo, cta_button} = props;
+    if(!small_logo) small_logo = large_logo;
 
-  const {FB_USER} = useContext(AuthContext);
-  const navigate = useNavigate();
-
-  const avatarContext = (
-    <div id="avatar-context">
-      <p className='avatar-context-option' onClick={()=>navigate('/settings')}>
-        <FaUser></FaUser>Account and settings</p>
-      <p className='avatar-context-option' onClick={() => {window.location.href=window.location.origin}}>
-        <IoReturnDownBack></IoReturnDownBack>
-        Go to Home
-      </p>
-      <p className='avatar-context-option' onClick={fb_signOut}><LogoutOutlined></LogoutOutlined> Logout</p>
-    </div>
-  );
-
-    function CreditCounter(){
-      return FB_USER.credits ? <div id="credit-counter">
-        {/* <div>{FB_USER.credits}</div>
-        <div>Queries remaining</div> */}
-      </div> : <></>
+    // --- check CTA
+    let haveCTA = true;
+    if(!cta_button) {
+        haveCTA = false;
+        cta_button = <></>;
     }
 
+    const [isListShown, setIsListShown] = useState(false);
+    const [logo, setLogo] = useState(small_logo);
 
-  const [current, setCurrent] = useState('mail');
+    useEffect(() => {
+        const handleResize = () => {
+            const screenWidth = window.innerWidth;
+            if (screenWidth >= 1000) {
+                setLogo(large_logo);
+            }
+            else {
+                setLogo(small_logo);
+            }
+        }
 
-  const onClick = (e) => {
-    setCurrent(e.key);
-  };
+        handleResize();
+        window.addEventListener('resize', handleResize);
+    
+        return () => {
+          window.removeEventListener('resize', handleResize);
+        };
+    },[]);
+    console.log(cta_button)
 
-
-  return (
-    <nav className="Navbar">
-      <div id="navbar-1" onClick={()=>navigate('/portal')}>
-        <img id="navbar-logo" src="nr_logo.png"></img>
-      </div>
-      {/* <Menu onClick={onClick} selectedKeys={[current]} mode="horizontal" items={items} /> */}
-      <div id="navbar-2">
-        <Popover content={avatarContext} width  title={`Welcome, ${FB_USER.name}`} placement="bottomRight">
-          <Avatar
-            style={{
-              backgroundColor: '#343434',
-              verticalAlign: 'middle',
-            }}
-            size="large"
-          >
-            {FB_USER.name[0]}
-          </Avatar>
-        </Popover>
-        <CreditCounter></CreditCounter>
-      </div>
-
+    return (
+    <nav className='rui-navbar'>
+        <div className="rui-logo">{logo}</div>
+        <div className='rui-hamburger-container'>
+            {(items.length || haveCTA) ? <GiHamburgerMenu className="rui-hamburger" onClick={() => {setIsListShown(!isListShown)}}/> : <></>}
+            <div className={`rui-hamburger-list ${isListShown ? 'open' : ''}`}>
+                {items.map((item, index) => <div key={index} className="rui-hamburger-item">{item}</div>)}
+                <div key={'last'} className={`rui-hamburger-item rui-cta-item`}>{cta_button}</div>
+            </div>
+        </div>
+        <div className="rui-navbar-items">
+            {items}
+        </div>
+        <div className="rui-cta">{cta_button}</div>
     </nav>
-  )
+  );
+
 }
 
-export default Navbar
+
+export {Navbar}

@@ -5,7 +5,8 @@ import { Card, Button } from 'flowbite-react';
 import axios from 'axios';
 import Thankyou from '../components/Thankyou';
 import { Input } from 'antd';
-import { Navbar } from 'readyui';
+import {Navbar} from 'readyui';
+//import {Navbar} from '../components/Navbar';
 
 const Landing = () => {
 
@@ -40,28 +41,10 @@ const Landing = () => {
 
 
     useEffect(() => {
-        const handleResize = () => {
-            const screenWidth = window.innerWidth;
-            if (screenWidth >= 1200) {
-                pageSize = 'desktop';
-                setLogo('nr_w_text_black.png');
-                setIsBurgerOpen(false);
-            }
-            else {
-                pageSize = 'mobile';
-                setLogo('nr_logo.png');
-                setIsBurgerOpen(true);
-            }
-        }
         document.addEventListener('keydown', handleTabKey);
 
-        handleResize();
-        window.addEventListener('resize', handleResize);
-    
         return () => {
-          window.removeEventListener('resize', handleResize);
           document.removeEventListener('keydown', handleTabKey);
-
         };
     },[]);
 
@@ -123,26 +106,28 @@ const Landing = () => {
                 </button>
               
 
-    const logo_el = <img id="landing-navbar-logo" style={
-        {width: logo === 'nr_w_text_black.png' ? '12rem' : '4rem'}
-    } alt="Now Reports Logo" src={logo}></img>; //TODO: onClick={onLogoClick}
+    const small_logo = <img 
+        style={{width: '4rem'}} 
+        alt="Now Reports Logo" src='./nr_logo.png'></img>; //TODO: onClick={onLogoClick}
+
+    const large_logo = <img 
+        style={{width: '12rem'}}
+    alt="Now Reports Logo" src='./nr_w_text_black.png'></img>; //TODO: onClick={onLogoClick}
 
   return (
     <>
-        <nav>
-            
-            <Navbar id="landing-navbar" logo_el={logo_el} items={items} cta_button={cta}></Navbar>
+        <Navbar id="landing-navbar" large_logo={large_logo} small_logo={small_logo} items={items} cta_button={cta}></Navbar>
 
-            {/* <div id="navbar-mid-options">
-                <span className={`nav-button highlight-anim red-anim ${(selectedNavbar === 'about') && 'selected-button'}`} goto='about' ref={aboutRef} onClick={onNavbarSectionChange}>About Us</span>
-                <span className={`nav-button highlight-anim red-anim ${(selectedNavbar === 'pitch') && 'selected-button'}`} goto='pitch' ref={pitchRef} onClick={onNavbarSectionChange}>How we save you time</span>
-                <span className={`nav-button highlight-anim red-anim ${(selectedNavbar === 'new-features') && 'selected-button'}`} goto='new-features' ref={featuresRef} onClick={onNavbarSectionChange}>New features</span>
-            </div>
-           
-            <a id="goto-portal" className="highlight-anim red-anim nowrep-button" type="disabled" href="/signup">
-                {mode == 'main' ? 'Go to Portal' : 'Try NowReports AI'}
-            </a> */}
-        </nav>
+        {/* <div id="navbar-mid-options">
+            <span className={`nav-button highlight-anim red-anim ${(selectedNavbar === 'about') && 'selected-button'}`} goto='about' ref={aboutRef} onClick={onNavbarSectionChange}>About Us</span>
+            <span className={`nav-button highlight-anim red-anim ${(selectedNavbar === 'pitch') && 'selected-button'}`} goto='pitch' ref={pitchRef} onClick={onNavbarSectionChange}>How we save you time</span>
+            <span className={`nav-button highlight-anim red-anim ${(selectedNavbar === 'new-features') && 'selected-button'}`} goto='new-features' ref={featuresRef} onClick={onNavbarSectionChange}>New features</span>
+        </div>
+        
+        <a id="goto-portal" className="highlight-anim red-anim nowrep-button" type="disabled" href="/signup">
+            {mode == 'main' ? 'Go to Portal' : 'Try NowReports AI'}
+        </a> */}
+
         {/* ----------------- MAIN MODE ----------------- */}
 
         {/* ----------------- PITCH MODE ----------------- */}
