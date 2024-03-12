@@ -29,7 +29,7 @@ const Landing = () => {
 
     useEffect(() => {
         if((mode === 'new-features') && (!featuresData.length) ){ // only calls on newfeatures mode
-            axios.get('/features')
+            axios.get(`${API_ADDR}/features`)
             .then(res => setFeaturesData(res.data))
         }
 
