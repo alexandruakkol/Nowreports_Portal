@@ -15,9 +15,10 @@
     --SIDEBAR-DARK: #181717;
     --DARK-SELECT: #202233;
     --OFFWHITE:#CBCACB;
-    --MESSAGE:#007bff;
+    --MESSAGE:#4D8CBB;
     --SLIGHTGREY: #cecece;
-    --SELECT-REDDISH: #ffbaba;
+    --SELECT-REDDISH: #bb7d4d38;
+    --COLOR2: #BB7C4D;
 }
 body{
     overflow: hidden;
@@ -49,7 +50,7 @@ body{
 .text-medium{
     font-size: 1.7rem;
 }
-.text-SM{
+.text-smallm{
     font-size: 1.2rem;
 }
 
@@ -84,7 +85,9 @@ body{
 .green{
     color:green;
 }
-
+.main-blue-bkg{
+    background-color: var(--MESSAGE) !important;
+}
 .Navbar{
     user-select: none;
     padding-left: 4%;
@@ -116,7 +119,7 @@ body{
     margin-right: 1px;
     margin-left: 1px;
     margin-top: 7px;
-    border-radius: 10px;
+    border-radius: 7px;
     text-align: center;
 } 
 #main-section-left{
@@ -232,7 +235,7 @@ form label{
     display: flex;
     flex-direction: column;
     align-items: center;
-    border-radius: 3px;
+    border-radius: 7px;
     padding: 50px 100px 50px 100px;
 }
 #login-header{
@@ -256,7 +259,7 @@ form label{
     display: flex;
     cursor: pointer;
     text-align: center;
-    border-radius: 8px;
+    border-radius: 7px;
     height: 2rem;
     justify-content: flex-start;
     align-items: center;
@@ -456,7 +459,7 @@ form label{
 }
 #sidebar-upper hr,.sidebar-hr{
     border-color: #242424;
-    border-radius:5px;
+    border-radius:7px;
     margin: 0px 30px 0px 30px;
 }
 .convo-pane{
@@ -465,7 +468,7 @@ form label{
     alignItems: center;
     justifyContent: center;
     background-color: rgb(246, 246, 246);
-    border-radius:2px;
+    border-radius:7px;
 }
 #convo-pane-left{
     border-right:5px solid rgb(221, 221, 221);
@@ -528,10 +531,13 @@ form label{
     justify-content: space-between;
     color: var(--OFFWHITE);    
     margin: 4px;
-    border-radius: 8px;
+    border-radius: 7px;
     font-size: 0.9rem;
-    font-family: 'Krub', sans-serif;
+    font-family: 'Rethink sans';
     transition: all 0.25s ease;
+}
+.ant-popover-inner{
+    font-family: 'Rethink sans';
 }
 .convo-red{
     color: #c66969;
@@ -574,7 +580,7 @@ form label{
     background-color: var(--MESSAGE);
     color: white;
     padding: 3px 15px;
-    border-radius: 8px;
+    border-radius: 7px;
     margin: 5px 0;
     word-wrap: break-word;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
@@ -752,7 +758,7 @@ form label{
     gap:15px;
     padding:30px;
     border:1px solid var(--SECONDARY-GREY);
-    border-radius: 10px;
+    border-radius: 7px;
     font-size:1.2rem;
 }
 .price-text{
@@ -771,7 +777,7 @@ form label{
     width: 88%;
     align-self: center;
     padding: 5px;
-    border-radius: 8px;
+    border-radius: 7px;
     justify-content: center;
     align-items: center;
 }
@@ -810,7 +816,7 @@ form label{
 #signup-success-container{
     font-size: 1.4rem;
     border:1px solid green;
-    border-radius: 8px;
+    border-radius: 7px;
     padding: 30px;
 }
 #goto_portal_text{
@@ -840,15 +846,17 @@ form label{
     height: 100%;
 }
 .nowrep-button{
-    font-size: 1.14rem;
+    background-color: var(--COLOR2);
+    color:white;
+    font-size: 1.3rem;
     font-weight: 900;
-    padding:8px;
+    padding: 1vw 2vw 1vw 2vw;
     text-wrap: nowrap;
     display: flex;
     justify-content: center;
     align-items: center;
     border: 1px solid var(--DARKSECTION);
-    border-radius: 3px;
+    border-radius: 7px;
 }
 .pointer{
     cursor:pointer;
@@ -857,11 +865,11 @@ form label{
     transform: scaleX(1); /* Set the width to 100% on hover */
     transform-origin: bottom left;
 }
-.red-anim{
-    color: #333;
-}
 .red-anim::before{
-    background-color: var(--SELECT-REDDISH);
+    background-color: var(--COLOR2) !important;
+}
+.red-anim-light::before{
+    background-color: #bb7d4d3e !important;
 }
 .selected-button{
     font-weight: bold;
@@ -895,6 +903,22 @@ form label{
   .pitch-flex1{
     padding-top: 15vh;
     /* hack for typing animation  */
+  }
+  .pitch-flex .pitch-element:nth-child(1){
+    background-color: #4D8CBB1c;  
+    }
+    .pitch-flex1 .pitch-element:nth-child(2){
+        background-color: #BB7C4D1c;        
+    }
+    .pitch-flex1 .pitch-element:nth-child(3){
+        background-color: #001dff1c;
+
+    }
+    .pitch-flex1 .pitch-element:nth-child(4){
+      background-color: #ff83001c;
+    }
+    .pitch-flex1 .pitch-element:nth-child(5){
+    background-color: #4D8CBB1c;  
   }
   .pitch-title{
     font-weight: 900;
@@ -1002,6 +1026,13 @@ form label{
     right: 16vw;
     position: relative;
 }
+.ant-select-item-option-content{
+    font-family: 'Rethink sans' !important;
+    font-size: min(3vw, 17px);
+}
+.ant-input{
+    font-family:'Rethink sans'
+}
 #main-goto-portal{
     min-width: 13vw;
     max-width: 500px;
@@ -1028,6 +1059,9 @@ form label{
     font-weight: bold;
     font-size: 1vw;
 }
+.rui-logo{
+    width: min(24vw, 240px) !important;
+}
   /* ---------------- FOOTER ---------------- */
 
   #footer{
@@ -1048,6 +1082,12 @@ form label{
   }
   .footer-logotext{
     gap:25px;
+  }
+  #footer h2{
+    font-size:1.3rem;
+  }
+  #footer ul{
+    font-size:1rem;
   }
   #ending-pitch-filler{
     height: 10vh;
@@ -1109,7 +1149,7 @@ form label{
     flex-wrap: wrap;
 }
 .feature-card.selected{
-    border: 3px solid #192C50;
+    border: 3px solid var(--MESSAGE);
 }
 .feature-send-btn{
     width: 30vw;

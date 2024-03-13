@@ -71,6 +71,7 @@ const Signup = () => {
                 <Form.Item
                     label="Email"
                     name="email"
+                    type="email"
                     rules={[
                     {
                         required: true,
@@ -119,17 +120,17 @@ const Signup = () => {
                 </Form.Item>
 
                 <Form.Item>
-                    <Button htmlType="submit" className="nowrep-button highlight-anim red-anim account-button gsi-material-button login-form-button"> 
+                    <Button htmlType="submit" className="rethink nowrep-button highlight-anim red-anim account-button gsi-material-button login-form-button"> 
                         Create account
                     </Button>
                 </Form.Item>
                 <div className="error-msg">{formErr}</div>
             </Form> 
 
-            <Divider ><span className="text-small">Or continue with</span></Divider>
+            <Divider ><span className="text-small rethink">Or continue with</span></Divider>
 
-            <a onClick={signupGoogleFend}>
-                <GoogleSignupButton></GoogleSignupButton>
+            <a onClick={signupGoogleFend}> 
+                <GoogleSignupButton className='rethink'></GoogleSignupButton>
             </a>
         </div>
     </>

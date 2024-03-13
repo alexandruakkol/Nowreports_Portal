@@ -18,8 +18,8 @@ const r_Footer = (props) => {
               alt="Now Reports Logo"
             />
              <div>
-              <p>Found a bug or have an idea?</p>
-              <p>Email us at support@nowreports.com</p>
+              <ul>Found a bug or have an idea?</ul>
+              <ul>Email us at support@nowreports.com</ul>
             </div>
           </div>
           <div className="flex-row footer-categs">

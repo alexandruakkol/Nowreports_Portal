@@ -95,9 +95,9 @@ const Landing = () => {
 
 
     const items = [
-        <span className={`nav-button highlight-anim red-anim ${(selectedNavbar === 'about') && 'selected-button'}`} goto='about' ref={aboutRef} onClick={onNavbarSectionChange}>About Us</span>,
-        <span className={`nav-button highlight-anim red-anim ${(selectedNavbar === 'pitch') && 'selected-button'}`} goto='pitch' ref={pitchRef} onClick={onNavbarSectionChange}>How we save you time</span>,
-        <span className={`nav-button highlight-anim red-anim ${(selectedNavbar === 'new-features') && 'selected-button'}`} goto='new-features' ref={featuresRef} onClick={onNavbarSectionChange}>New features</span>,
+        <span className={`nav-button highlight-anim red-anim-light ${(selectedNavbar === 'about') && 'selected-button'}`} goto='about' ref={aboutRef} onClick={onNavbarSectionChange}>About Us</span>,
+        <span className={`nav-button highlight-anim red-anim-light ${(selectedNavbar === 'pitch') && 'selected-button'}`} goto='pitch' ref={pitchRef} onClick={onNavbarSectionChange}>How we save you time</span>,
+        <span className={`nav-button highlight-anim red-anim-light ${(selectedNavbar === 'new-features') && 'selected-button'}`} goto='new-features' ref={featuresRef} onClick={onNavbarSectionChange}>New features</span>,
     ]
 
     const cta = <button id="goto-portal" className="highlight-anim red-anim nowrep-button" type="disabled" 
@@ -140,10 +140,10 @@ const Landing = () => {
                         <p className="text-medium text-center heading-secondary">Searching through 10-K reports just got better.</p>
                     {/* <div className="heading heading-subtitle text-center">with state of the art AI.</div> */}
                     <div className="heading-subtitle text-center heading-third text-medium">
-                        <p className="text-SM">
+                        <p className="text-smallm">
                             Get instant answers to your business-related questions, as if you were talking to the board themselves.
                         </p>
-                        <p className="text-SM">
+                        <p className="text-smallm">
                             Powered by state of the art AI.
                         </p>
                     </div>
@@ -191,18 +191,18 @@ const Landing = () => {
 
                 <div className="pitch-element">
                     <div className="pitch-element-body">
-
-                        <div className="pitch-title">Get the big picture.</div>
-                        <div className="typing typing-anim1 typing_freq4 message">What does the company need the large amount of debt for?</div>
-                        <div className="delayed-text typing_response message ai-message-msg">The company has incurred significant net losses in each year since its inception. This history of losses indicates that the company is not generating enough revenue to cover its expenses and fund its operations. Additionally, the company is dependent on future performance for servicing its debt, which is subject to economic, financial, competitive, and other uncontrollable factors.</div>
+                        <div className="pitch-title">Gain complex insights, effortlessly.</div>
+                        <div className="typing typing-anim1 typing_freq4 message">What does the company invest the most in? How much is it, as % of net income?</div>
+                        <div className="delayed-text typing_response message ai-message-msg">The company invests the most in equity investments (securities and privately held companies), totaling $1,834 million. This represents approximately 88% of the net income.</div>
                     </div>
                 </div>
 
                 <div className="pitch-element">
                     <div className="pitch-element-body">
-                        <div className="pitch-title">Gain complex insights, effortlessly.</div>
-                        <div className="typing typing-anim1 typing_freq4 message">What does the company invest the most in? How much is it, as % of net income?</div>
-                        <div className="delayed-text typing_response message ai-message-msg">The company invests the most in equity investments (securities and privately held companies), totaling $1,834 million. This represents approximately 88% of the net income.</div>
+
+                        <div className="pitch-title">Get the big picture.</div>
+                        <div className="typing typing-anim1 typing_freq4 message">What does the company need the large amount of debt for?</div>
+                        <div className="delayed-text typing_response message ai-message-msg">The company has incurred significant net losses in each year since its inception. This history of losses indicates that the company is not generating enough revenue to cover its expenses and fund its operations. Additionally, the company is dependent on future performance for servicing its debt, which is subject to economic, financial, competitive, and other uncontrollable factors.</div>
                     </div>
                 </div>
 
@@ -244,7 +244,7 @@ const Landing = () => {
         <section id="new-features" mode="new-features" className={`landing-section ${mode == 'new-features' ? 'active' : ''}`} role="region" aria-label="New features section">
             <Thankyou hidden={!!!isSentFeatures}></Thankyou>
             <h1 className="text-medium">We're working on new features. Let us know what you need most.</h1>
-            <h2 className="text-SM">Choose up to two features</h2>
+            <h2 className="text-smallm">Choose up to two features</h2>
             <div id="featurecard-container">
                 {featuresData.map(feature => {
                     return   <Card className="max-w-sm feature-card clickable" key={feature.code} id={feature.code} onClick={selectFeature}>
@@ -259,7 +259,7 @@ const Landing = () => {
 
             </div>
                 <div style={{width:'40vw'}}>
-                    <h5 className="text-SM">Have another feature in mind? Write it here.</h5>
+                    <h5 className="text-smallm">Have another feature in mind? Write it here.</h5>
                     <Input.TextArea
                         onChange={ (a) => setCustomSuggestion(a.target.value) } 
                         placeholder="Write us your own suggestion"
@@ -267,7 +267,7 @@ const Landing = () => {
 
                     </Input.TextArea>
                 </div>
-                <Button disabled={!selectedFeatures.length && !customSuggestion.length} className="feature-send-btn" onClick={sendFeatures}>Send</Button>
+                <Button disabled={!selectedFeatures.length && !customSuggestion.length} className="feature-send-btn main-blue-bkg" onClick={sendFeatures}>Send</Button>
         </section>
 
     </>

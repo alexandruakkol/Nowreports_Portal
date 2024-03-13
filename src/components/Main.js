@@ -161,8 +161,10 @@ function DefPage(){
           options={options.map(x=>renderOption(x))}
           style={{width: '42vw'}}
           onSelect={onSelectCompany}
-          onSearch={(text) => getSuggestions(text)}>
-            <Input.Search size="large" placeholder="Search for a company"/>
+          onSearch={(text) => getSuggestions(text)}
+          className="rethink"
+        >
+            <Input.Search className="rethink" size="large" placeholder="Search for a company"/>
         </AutoComplete>
       </div>
       <div className='main-section' id="main-section-3"></div>

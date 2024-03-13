@@ -56,6 +56,7 @@ const Login = () => {
             name="email"
             rules={[{ required: true, message: "Please input your Username!" }]}
             label="Email"
+            type="email"
           >
             <Input
               prefix={<UserOutlined className="site-form-item-icon" />}
@@ -94,7 +95,7 @@ const Login = () => {
 
         <div className="error-msg">{formErr}</div>
 
-        <Divider ><span className="text-small">Or continue with</span></Divider>
+        <Divider ><span className="text-small rethink">Or continue with</span></Divider>
           <div className="lower-login">
             <a onClick={signinGoogle} type="d">
               <GoogleSignupButton text="Sign in with Google"></GoogleSignupButton>

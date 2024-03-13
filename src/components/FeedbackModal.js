@@ -39,7 +39,7 @@ const FeedbackModal = (props) => {
         cancelButtonProps={'hidden'} 
         width={'40vw'}
         footer={[
-          (modalState === 'normal' && <Button className='max-width' onClick={ () => sendFeedback(text)}>Send</Button>)
+          (modalState === 'normal' && <Button className='max-width main-blue-bkg' onClick={ () => sendFeedback(text)}>Send</Button>)
         ]}
       >
 
