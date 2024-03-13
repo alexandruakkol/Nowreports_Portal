@@ -122,7 +122,7 @@ body{
     margin-right: 1px;
     margin-left: 1px;
     margin-top: 7px;
-    border-radius: 7px;
+    border-radius: 6px;
     text-align: center;
 } 
 #main-section-left{
@@ -238,7 +238,7 @@ form label{
     display: flex;
     flex-direction: column;
     align-items: center;
-    border-radius: 7px;
+    border-radius: 6px;
     padding: 50px 100px 50px 100px;
 }
 #login-header{
@@ -262,7 +262,7 @@ form label{
     display: flex;
     cursor: pointer;
     text-align: center;
-    border-radius: 7px;
+    border-radius: 6px;
     height: 2rem;
     justify-content: flex-start;
     align-items: center;
@@ -462,7 +462,7 @@ form label{
 }
 #sidebar-upper hr,.sidebar-hr{
     border-color: #242424;
-    border-radius:7px;
+    border-radius:6px;
     margin: 0px 30px 0px 30px;
 }
 .convo-pane{
@@ -471,7 +471,7 @@ form label{
     alignItems: center;
     justifyContent: center;
     background-color: rgb(246, 246, 246);
-    border-radius:7px;
+    border-radius:6px;
 }
 #convo-pane-left{
     border-right:5px solid rgb(221, 221, 221);
@@ -534,7 +534,7 @@ form label{
     justify-content: space-between;
     color: var(--OFFWHITE);    
     margin: 4px;
-    border-radius: 7px;
+    border-radius: 6px;
     font-size: 0.9rem;
     font-family: 'Rethink sans';
     transition: all 0.25s ease;
@@ -583,7 +583,7 @@ form label{
     background-color: var(--MESSAGE);
     color: white;
     padding: 3px 15px;
-    border-radius: 7px;
+    border-radius: 6px;
     margin: 5px 0;
     word-wrap: break-word;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
@@ -761,7 +761,7 @@ form label{
     gap:15px;
     padding:30px;
     border:1px solid var(--SECONDARY-GREY);
-    border-radius: 7px;
+    border-radius: 6px;
     font-size:1.2rem;
 }
 .price-text{
@@ -780,7 +780,7 @@ form label{
     width: 88%;
     align-self: center;
     padding: 5px;
-    border-radius: 7px;
+    border-radius: 6px;
     justify-content: center;
     align-items: center;
 }
@@ -819,7 +819,7 @@ form label{
 #signup-success-container{
     font-size: 1.4rem;
     border:1px solid green;
-    border-radius: 7px;
+    border-radius: 6px;
     padding: 30px;
 }
 #goto_portal_text{
@@ -860,7 +860,7 @@ form label{
     align-items: center;
     box-shadow: 0 2px 2px var(--BORDERS);
     border: 1px solid var(--DARKSECTION);
-    border-radius: 7px;
+    border-radius: 6px;
 }
 .pointer{
     cursor:pointer;
@@ -915,7 +915,7 @@ form label{
         background-color: #BB7C4D1c;        
     }
     .pitch-flex1 .pitch-element:nth-child(3){
-        background-color: #001dff1c;
+        background-color: #f2f2f2;
 
     }
     .pitch-flex1 .pitch-element:nth-child(4){
@@ -975,7 +975,7 @@ form label{
   .blue-text-accent{
     text-wrap: nowrap;
     color: white;
-    border-radius: 7px;
+    border-radius: 6px;
     padding: 5px;
     background-color: var(--MESSAGE);
   }
@@ -1013,7 +1013,11 @@ form label{
 }
 #benefits-card{
     width: auto;
-    background-color:var(--CREME);
+    background-color:#f2f2f2;
+}
+#benefits-card b{
+    font-size:1.2rem;
+    color:black;
 }
 #benefits-card ul{
     list-style: inside;
@@ -1049,9 +1053,8 @@ form label{
 }
 #pitch-goto-portal{
     height: 15vh;
-    font-weight: bold;
-    right: 16vw;
-    position: relative;
+    width: 100%;
+    margin-top: 5vh;
 }
 .ant-select-item-option-content{
     font-family: 'Rethink sans' !important;
@@ -1233,7 +1236,6 @@ form label{
         font-size: 5.5vw;
     }
     #pitch-goto-portal{
-        width: 115vw;
         font-size: 5.5vw;
     }
     #about-container{
@@ -1278,7 +1280,6 @@ form label{
         font-size: 4.5vw;
     }
     #pitch-goto-portal{
-        width: 115vw;
         font-size: 5.5vw;
     }
     #about-container{
@@ -1328,7 +1329,6 @@ form label{
         font-size: 2.3vw;
     }
     #pitch-goto-portal{
-        width: 100vw;
         font-size: 4vw;
     }
     #about-container{
@@ -1344,6 +1344,7 @@ form label{
         display:flex;
         font-size:0.9rem;
     }
+
 }
 @media only screen and (min-width: 992px){
     .heading-element{
@@ -1374,7 +1375,6 @@ form label{
         font-size: 1.7vw;
     }
     #pitch-goto-portal{
-        width: 92vw;
         font-size: 2.7vw;
     }
     #about-container{

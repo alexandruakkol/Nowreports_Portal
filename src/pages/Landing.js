@@ -163,7 +163,7 @@ const Landing = () => {
                     </div>
                     <div className="horiz-benefit text-grey">
                         <Card id="benefits-card">
-                            <b>Why investors love Now Reports AI:</b>
+                            <b>Why investors love our tool:</b>
                             <ul>
                                 <li>It's faster and more accurate than Google.</li>
                                 <li>It's quicker than finding 10-K reports and filtering through them.</li>
@@ -223,10 +223,12 @@ const Landing = () => {
                 </div>
 
 
+                {/* <Footer></Footer> */}
+            </div>
+            <div className="flex-row">
                 <div id="pitch-goto-portal" className="highlight-anim red-anim nowrep-button" goto="signup" onClick={onNavbarSectionChange}>
                     Start NowReports AI
                 </div>
-                {/* <Footer></Footer> */}
             </div>
             <div>
                 <Footer fn_goto_about={()=>setMode('about')}></Footer>
