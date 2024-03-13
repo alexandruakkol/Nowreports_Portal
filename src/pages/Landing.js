@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react'
 import Footer from '../components/Footer';
 import { HiOutlineChevronDoubleDown } from "react-icons/hi";
-import { Card, Button } from 'flowbite-react';
+import { Card, Button, List } from 'flowbite-react';
 import axios from 'axios';
 import Thankyou from '../components/Thankyou';
 import { Input } from 'antd';
@@ -102,7 +102,7 @@ const Landing = () => {
 
     const cta = <button id="goto-portal" className="highlight-anim red-anim nowrep-button" type="disabled" 
                         onClick={() => {window.location.pathname='/signup'}}>
-                        Try NowReports AI
+                        Start NowReports AI
                 </button>
               
 
@@ -121,7 +121,7 @@ const Landing = () => {
         {/* <div id="navbar-mid-options">
             <span className={`nav-button highlight-anim red-anim ${(selectedNavbar === 'about') && 'selected-button'}`} goto='about' ref={aboutRef} onClick={onNavbarSectionChange}>About Us</span>
             <span className={`nav-button highlight-anim red-anim ${(selectedNavbar === 'pitch') && 'selected-button'}`} goto='pitch' ref={pitchRef} onClick={onNavbarSectionChange}>How we save you time</span>
-            <span className={`nav-button highlight-anim red-anim ${(selectedNavbar === 'new-features') && 'selected-button'}`} goto='new-features' ref={featuresRef} onClick={onNavbarSectionChange}>New features</span>
+            <span className={`nav-button highlight-anim      ${(selectedNavbar === 'new-features') && 'selected-button'}`} goto='new-features' ref={featuresRef} onClick={onNavbarSectionChange}>New features</span>
         </div>
         
         <a id="goto-portal" className="highlight-anim red-anim nowrep-button" type="disabled" href="/signup">
@@ -136,15 +136,15 @@ const Landing = () => {
             <div className="heading-element">
                 <div className="heading-container">
                     <div className="heading heading-title text-center">
-                        The <span className="blue-text-accent"> one-stop-shop</span> for stock research</div>
-                        <p className="text-medium text-center heading-secondary">Searching through 10-K reports just got better.</p>
+                        Stock research just got <span className="blue-text-accent">  better</span></div>
+                        <p className="text-medium text-center heading-secondary">Get company information on demand. Just ask our AI.</p>
                     {/* <div className="heading heading-subtitle text-center">with state of the art AI.</div> */}
                     <div className="heading-subtitle text-center heading-third text-medium">
                         <p className="text-smallm">
                             Get instant answers to your business-related questions, as if you were talking to the board themselves.
                         </p>
                         <p className="text-smallm">
-                            Powered by state of the art AI.
+                            Learn more about a company, in less time.
                         </p>
                     </div>
              
@@ -152,12 +152,28 @@ const Landing = () => {
 
                 <div id="main-goto-portal">
                     <a id="goto-portal" className="highlight-anim red-anim nowrep-button" type="disabled" href="/signup">
-                        Try NowReports AI
+                        Start NowReports AI
                     </a>
+                    <div className="text-grey">* for free, no credit card required.</div>
                 </div>
+                <div id="benefits-list">
+                    <div className="horiz-benefit"></div>
+                    <div id="main-chevron">
+                        <HiOutlineChevronDoubleDown style={{fontSize:70}}/>
+                    </div>
+                    <div className="horiz-benefit text-grey">
+                        <Card id="benefits-card">
+                            <b>Why investors love Now Reports AI:</b>
+                            <ul>
+                                <li>It's faster and more accurate than Google.</li>
+                                <li>It's quicker than finding 10-K reports and filtering through them.</li>
+                                <li>No more time spent on manually calculating indicators.</li>
+                                <li>Skip the corporate lingo. Good means good and bad means bad.</li>
+                                <li>Get your information the exact way you want it.</li>
+                            </ul>
 
-                <div id="main-chevron">
-                    <HiOutlineChevronDoubleDown style={{fontSize:70}}/>
+                        </Card>
+                    </div>
                 </div>
             </div>
             <div className="pitch-flex1 pitch-flex">
@@ -208,7 +224,7 @@ const Landing = () => {
 
 
                 <div id="pitch-goto-portal" className="highlight-anim red-anim nowrep-button" goto="signup" onClick={onNavbarSectionChange}>
-                    Try NowReports AI
+                    Start NowReports AI
                 </div>
                 {/* <Footer></Footer> */}
             </div>

@@ -18,7 +18,7 @@
     --MESSAGE:#4D8CBB;
     --SLIGHTGREY: #cecece;
     --SELECT-REDDISH: #bb7d4d38;
-    --COLOR2: #BB7C4D;
+    --COLOR2: #c67b44;
 }
 body{
     overflow: hidden;
@@ -75,6 +75,9 @@ body{
 }
 .clickable{
     cursor:pointer;
+}
+.text-grey{
+    color: #4d4949;
 }
 /* CONVO PAGE */
 .convo-logo-container{
@@ -855,6 +858,7 @@ form label{
     display: flex;
     justify-content: center;
     align-items: center;
+    box-shadow: 0 2px 2px var(--BORDERS);
     border: 1px solid var(--DARKSECTION);
     border-radius: 7px;
 }
@@ -976,9 +980,12 @@ form label{
     background-color: var(--MESSAGE);
   }
   #main-chevron{
-    padding-top: 14vh;
+    flex:1;
+    padding-top: 20vh;
     align-self: center;
     color: lightgrey;
+    display: flex;
+    justify-content: center;
 }
 .pitch-element{
     display: flex;
@@ -998,6 +1005,26 @@ form label{
     color: var(--DARKSECTION);
     cursor:default;
     user-select: none;
+}
+#benefits-list {
+    width: 100%;
+    display:flex;
+    align-self: flex-end;
+}
+#benefits-card{
+    width: auto;
+    background-color:var(--CREME);
+}
+#benefits-card ul{
+    list-style: inside;
+
+}
+.horiz-benefit{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    flex: 1.3;
+    align-items: flex-end;
 }
 .pitch-line{
     display:flex;   
@@ -1037,7 +1064,6 @@ form label{
     min-width: 13vw;
     max-width: 500px;
     align-self: center;
-    box-shadow: 0 2px 2px var(--BORDERS);
 }
 .nowrep-button:hover{
     cursor:pointer;
@@ -1179,7 +1205,7 @@ form label{
 }
 @media only screen and (min-width: 50px){
     .heading-element{
-        margin-top: 10vh;
+        margin-top: 15vh;
     }
     .heading{
         font-size: 40px;
@@ -1219,10 +1245,13 @@ form label{
     .pitch-element{
         height:72vh;
     }
+    #benefits-card{
+        display:none;
+    }
 }
 @media only screen and (min-width: 576px){
     .heading-element{
-        margin-top: 10vh;
+        margin-top: 18vh;
     }
     .heading{
         font-size: 45px;
@@ -1260,6 +1289,10 @@ form label{
     }
     .pitch-element{
         height:72vh;
+    }
+    #benefits-card{
+        display:flex;
+        font-size:0.8rem;
     }
 }
 @media only screen and (min-width: 768px){
@@ -1307,13 +1340,17 @@ form label{
     .pitch-element{
         height:72vh;
     }
+    #benefits-card{
+        display:flex;
+        font-size:0.9rem;
+    }
 }
 @media only screen and (min-width: 992px){
     .heading-element{
-        margin-top: 22vh;
+        margin-top: 17vh;
     }
     .heading{
-        font-size: 75px;
+        font-size: min(6vw,85px);
     }
     .heading-secondary{
         font-size:40px;
@@ -1348,5 +1385,9 @@ form label{
     }
     .pitch-element{
         height:72vh;
+    }
+    #benefits-card{
+        display:flex;
+        font-size:1.1rem;
     }
 }
