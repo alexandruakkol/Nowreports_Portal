@@ -100,14 +100,14 @@ const Landing = () => {
         <span className={`nav-button highlight-anim red-anim-light ${(selectedNavbar === 'new-features') && 'selected-button'}`} goto='new-features' ref={featuresRef} onClick={onNavbarSectionChange}>New features</span>,
     ]
 
-    const cta = <button className="highlight-anim red-anim nowrep-button" type="disabled" 
+    const cta = <button id="nowrep-menu" className="highlight-anim red-anim nowrep-button" type="disabled" 
                         onClick={() => {window.location.pathname='/signup'}}>
                         Start NowReports AI
                 </button>
               
 
     const small_logo = <img 
-        style={{width: '4rem'}} 
+        style={{width: '3.3rem'}} 
         alt="Now Reports Logo" src='./nr_logo.png'></img>; //TODO: onClick={onLogoClick}
 
     const large_logo = <img 
@@ -146,6 +146,9 @@ const Landing = () => {
                         <p className="text-smallm">
                             Learn more about a company, in less time.
                         </p>
+                        <p className="text-smallm">
+                            Use AI on 10-K reports.
+                        </p>
                     </div>
              
                 </div>
@@ -163,7 +166,7 @@ const Landing = () => {
                     </div>
                     <div className="horiz-benefit text-grey">
                         <Card id="benefits-card">
-                            <b>Why investors love our tool:</b>
+                            <b>Why investors love our AI tool:</b>
                             <ul>
                                 <li>It's faster and more accurate than searching on Google.</li>
                                 <li>It's quicker than finding 10-K reports and filtering through them.</li>

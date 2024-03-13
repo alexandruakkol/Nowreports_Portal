@@ -828,7 +828,6 @@ form label{
 .highlight-anim{
     position: relative;
     text-decoration: none;
-    z-index:1;
     display:inline-block;
 }
 .highlight-anim::before{
@@ -861,6 +860,9 @@ form label{
     box-shadow: 0 2px 2px var(--BORDERS);
     border: 1px solid var(--DARKSECTION);
     border-radius: 6px;
+}
+#nowrep-menu{
+    font-size:0.85rem;
 }
 .pointer{
     cursor:pointer;
@@ -943,7 +945,6 @@ form label{
   }
   .typing {
     font-family: monospace;
-    white-space: nowrap;
     overflow: hidden;
     border-right: .15em solid black;
     width: 0;
@@ -1096,7 +1097,6 @@ form label{
   #footer{
     background-color: transparent;
     color: black;
-    height: 30vh;
     padding-left: 15vw;
     padding-right: 15vw;
   }
@@ -1205,7 +1205,7 @@ form label{
 }
 @media only screen and (min-width: 50px){
     .heading-element{
-        margin-top: 15vh;
+        margin-top: 7vh;
     }
     .heading{
         font-size: 40px;
@@ -1223,6 +1223,7 @@ form label{
     }
     .typing-anim1{
         right: 0vw;
+        white-space: normal;
     }
     .pitch-title{
         font-weight: 900;
@@ -1242,7 +1243,7 @@ form label{
         animation: none;
     }
     .pitch-element{
-        height:73vh;
+        min-height:55vh;
     }
     #benefits-card{
         display:none;
@@ -1271,6 +1272,7 @@ form label{
     }
     .typing-anim1{
         right: 0vw; 
+        white-space: normal;
     }
     .pitch-title{
         font-weight: 900;
@@ -1289,7 +1291,7 @@ form label{
         animation: none;
     }
     .pitch-element{
-        height:72vh;
+        min-height:55vh;   
     }
     #benefits-card{
         display:flex;
@@ -1319,6 +1321,7 @@ form label{
     }
     .typing-anim1{
         right: 13vw;
+        white-space: nowrap;
     }
     .delayed-text{
         width: 75vw;
@@ -1341,7 +1344,7 @@ form label{
         animation: typing 3.5s steps(120, end) infinite, blink-caret .75s step-end infinite;
     }
     .pitch-element{
-        height:72vh;
+        min-height:55vh;
     }
     #benefits-card{
         display:flex;
@@ -1372,6 +1375,7 @@ form label{
     }
     .typing-anim1{
         right: 13vw;
+        white-space: nowrap;
     }
     .pitch-title{
         font-weight: 900;
@@ -1390,7 +1394,7 @@ form label{
         animation: typing 3.5s steps(120, end) infinite, blink-caret .75s step-end infinite;
     }
     .pitch-element{
-        height:72vh;
+        min-height:55vh;
     }
     #benefits-card{
         display:flex;
@@ -1400,3 +1404,5 @@ form label{
         font-size:1.3rem;
     }
 }
+
+
