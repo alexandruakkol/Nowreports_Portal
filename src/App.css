@@ -1112,9 +1112,6 @@ form label{
   .footer-logotext{
     gap:25px;
   }
-  #footer h2{
-    font-size:1.3rem;
-  }
   #footer ul{
     font-size:1rem;
   }
@@ -1233,7 +1230,7 @@ form label{
         margin-bottom: 50px;
     }
     .typing,.delayed-text{
-        font-size: 5.5vw;
+        font-size: 4.5vw;
     }
     #pitch-goto-portal{
         font-size: 5.5vw;
@@ -1245,10 +1242,13 @@ form label{
         animation: none;
     }
     .pitch-element{
-        height:72vh;
+        height:73vh;
     }
     #benefits-card{
         display:none;
+    }
+    #footer h2{
+        font-size:1rem;
     }
 }
 @media only screen and (min-width: 576px){
@@ -1277,7 +1277,7 @@ form label{
         font-size: 5.5vw;
     }
     .typing,.delayed-text{
-        font-size: 4.5vw;
+        font-size: 3.3vw;
     }
     #pitch-goto-portal{
         font-size: 5.5vw;
@@ -1294,6 +1294,9 @@ form label{
     #benefits-card{
         display:flex;
         font-size:0.8rem;
+    }
+    #footer h2{
+        font-size:1.1rem;
     }
 }
 @media only screen and (min-width: 768px){
@@ -1344,6 +1347,9 @@ form label{
         display:flex;
         font-size:0.9rem;
     }
+    #footer h2{
+        font-size:1.3rem;
+    }
 
 }
 @media only screen and (min-width: 992px){
@@ -1389,5 +1395,8 @@ form label{
     #benefits-card{
         display:flex;
         font-size:1.1rem;
+    }
+    #footer h2{
+        font-size:1.3rem;
     }
 }

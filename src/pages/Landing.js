@@ -100,7 +100,7 @@ const Landing = () => {
         <span className={`nav-button highlight-anim red-anim-light ${(selectedNavbar === 'new-features') && 'selected-button'}`} goto='new-features' ref={featuresRef} onClick={onNavbarSectionChange}>New features</span>,
     ]
 
-    const cta = <button id="goto-portal" className="highlight-anim red-anim nowrep-button" type="disabled" 
+    const cta = <button className="highlight-anim red-anim nowrep-button" type="disabled" 
                         onClick={() => {window.location.pathname='/signup'}}>
                         Start NowReports AI
                 </button>
@@ -165,7 +165,7 @@ const Landing = () => {
                         <Card id="benefits-card">
                             <b>Why investors love our tool:</b>
                             <ul>
-                                <li>It's faster and more accurate than Google.</li>
+                                <li>It's faster and more accurate than searching on Google.</li>
                                 <li>It's quicker than finding 10-K reports and filtering through them.</li>
                                 <li>No more time spent on manually calculating indicators.</li>
                                 <li>Skip the corporate lingo. Good means good and bad means bad.</li>
