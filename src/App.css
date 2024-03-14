@@ -861,9 +861,7 @@ form label{
     border: 1px solid var(--DARKSECTION);
     border-radius: 6px;
 }
-#nowrep-menu{
-    font-size:0.85rem;
-}
+
 .pointer{
     cursor:pointer;
 }
@@ -1251,6 +1249,9 @@ form label{
     #footer h2{
         font-size:1rem;
     }
+    #nowrep-menu{
+        font-size:0.85rem;
+    }
 }
 @media only screen and (min-width: 576px){
     .heading-element{
@@ -1299,6 +1300,9 @@ form label{
     }
     #footer h2{
         font-size:1.1rem;
+    }
+    #nowrep-menu{
+        font-size:0.85rem;
     }
 }
 @media only screen and (min-width: 768px){
@@ -1353,6 +1357,9 @@ form label{
     #footer h2{
         font-size:1.3rem;
     }
+    #nowrep-menu{
+        font-size:1.1rem;
+    }
 
 }
 @media only screen and (min-width: 992px){
@@ -1402,6 +1409,9 @@ form label{
     }
     #footer h2{
         font-size:1.3rem;
+    }
+    #nowrep-menu{
+        font-size:1.1rem;
     }
 }
 

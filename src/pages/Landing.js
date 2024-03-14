@@ -244,7 +244,7 @@ const Landing = () => {
             <div id="about-container">
                 <div className="about-section about-section1">
                    
-                    <b>Our Vision</b>
+                    <b>Our Mission</b>
 
                     <p>We provide advanced tools for business research.</p>
                     <p>Our goal is to transform business information into a more adaptable and readily available resource.</p>
