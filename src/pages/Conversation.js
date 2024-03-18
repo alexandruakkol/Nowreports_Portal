@@ -38,7 +38,6 @@ const Conversation = (props) => {
             setSymbol(convoData.symbol);
         });
     }, []);
-    console.log({reportData})
     useEffect( () => { 
         // scroll chat div to end
         if (endOfChatRef.current) {

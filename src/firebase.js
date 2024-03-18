@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import {getAuth, signOut, GoogleAuthProvider, signInWithPopup} from 'firebase/auth';
+import {getAuth, signOut, GoogleAuthProvider, signInWithPopup, getAnalytics} from 'firebase/auth';
 
 let authProviders = {};
 authProviders.google = new GoogleAuthProvider();
@@ -19,7 +19,7 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-//const analytics = getAnalytics(app);
+const analytics = getAnalytics(app);
 
 const auth = getAuth(app);
 
