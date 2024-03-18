@@ -1,5 +1,6 @@
 import { initializeApp } from "firebase/app";
-import {getAuth, signOut, GoogleAuthProvider, signInWithPopup, getAnalytics} from 'firebase/auth';
+import {getAuth, signOut, GoogleAuthProvider, signInWithPopup} from 'firebase/auth';
+import {getAnalytics} from "firebase/analytics";
 
 let authProviders = {};
 authProviders.google = new GoogleAuthProvider();
