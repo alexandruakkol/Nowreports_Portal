@@ -70,7 +70,7 @@ const Conversation = (props) => {
                 }).then(response => {    
                     const reader = response.body.getReader();
                     
-                    const decoder = new TextDecoder();
+                    const decoder = new TextDecoder('utf-8');
                     let result = '';
                     
                     // -------------- SUBTRACT INTERFACE CREDIT -------------- \\
@@ -80,8 +80,9 @@ const Conversation = (props) => {
 
                     reader.read().then(function processText({ done, value }) {
                         result += decoder.decode(value, { stream: true });
+                        result = result.replaceAll('\n\n\n','<br>');
                         const messages = result.split('\n');
-
+                        
                         if (done) {
                             const lastMessage = convo.pop();
                             // Handle not enough credits msg
@@ -158,7 +159,6 @@ const Conversation = (props) => {
         const convo_res = await axios.get(`${window.appdata.API_ADDR}/conversations/${convoID}`)
             .catch(err => sendLog('Code 4 conversations ' + String(err)));
         const convo_obj = convo_res?.data;
-        console.log({convo_obj})
         let [convo, reportData] = convo_obj;
         convo.forEach(x => x.sent=true) //mark as sent
         setConvo(convo);
@@ -181,7 +181,10 @@ const Conversation = (props) => {
                     const divtype = (message.agent === 'ai' ? 'ai-message-msg' : 'user-message-msg');
                     const loadingClass = message.first ? 'loading-msg' : ''
                     return <div className={rowtype} key={messageCounter}>
-                                <div className={`message ${divtype} ${loadingClass}`}>{message.msg || '...'}</div>
+                                <div className={`message ${divtype} ${loadingClass}`}>
+                                    {message.msg?.split('<br>')?.map((paragraph, ix) => <div key={ix}>{ix>1 && <br></br>}<p>{paragraph}</p></div>) || '...'}
+                                    {/* {message.msg || '...'} */}
+                                </div>
                             </div>
                 })}
             </>);
