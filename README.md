@@ -36,6 +36,8 @@ Errors are centralized throughout the application through a React Context.
 
 <i>Production</i> and <i>development</i> environments can be toggled using the `REACT_APP_ENV` environment variable.
 
+The React application is deployed using Nginx. The availability and performance are monitored with Uptime Robot.
+
 ## Features
 
 The Portal contains the following notable features:
