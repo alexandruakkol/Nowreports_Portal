@@ -1,70 +1,45 @@
-# Getting Started with Create React App
+# Nowreports Portal Module
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## What is Nowreports?
+Nowreports is a web application composed of three modules: Portal, API and AI, each having its own Github repository.
+Nowreports leverages company financial reports in order to allow users to inquire about the way a certain business works and is performing. State-of-the-art AI techniques are used to process data and create models that will allow the user to chat with the AI just like they would with the executive board of their chosen company. This enables users to obtain valuable insights into the internal business processes that may not be as easily accessible through other sources.
 
-## Available Scripts
+The Portal is built with React and Google Firebase
 
-In the project directory, you can run:
+Firebase is used for authentication and analytics only.
 
-### `npm start`
+## Application Structure
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+The frontend objects are divided into Pages and Components.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Most pages are placed behind a Login wall through the `Auth.js` logical wrapper component.
 
-### `npm test`
+`account_operations.js` contains the user creation procedure, which gets handled though the API. This includes:
+- Stripe customer creation
+- Database user insert
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Users can sign in either with username and password, or with a Google account.
 
-### `npm run build`
+## CSS
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+The CSS rules are divided into reusable classes (`.text-center`, `.flex`, etc.), and individual ones.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Logging
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Caught errors will be sent via API to the SQL database for debugging. 
 
-### `npm run eject`
+For security purposes, client-facing error messages on sensitive mechanisms display a generic message and a code for debugging purposes, ex. `<i>Unexpected error. Code 27</i>`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Errors are centralized throughout the application through a React Context.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Environments
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+<i>Production</i> and <i>development</i> environments can be toggled using the `REACT_APP_ENV` environment variable.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Features
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+The Portal contains the following notable features:
+- Feedback collection section on the landing page and in the AI app
+- Resizable section that displays an external webpage (financial report) through an iframe, in the AI app.
+- Streaming capability in the conversation: characters arrive in the chat in chunks, not all at once, as they are being generated by the AI server.
+- Stripe hosted webpage for payment with coupon code mechanism
