@@ -8,6 +8,8 @@ The Portal is built with React and Google Firebase.
 
 Firebase is used for authentication and analytics only.
 
+Deployed on [Nowreports.com](https://www.nowreports.com)
+
 ## Application Structure
 
 The frontend objects are divided into Pages and Components.
