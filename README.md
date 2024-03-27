@@ -22,6 +22,8 @@ Most pages are placed behind a Login wall through the `Auth.js` logical wrapper 
 
 Users can sign in either with username and password, or with a Google account.
 
+Reusable and accessible React components will be provided by my own library, ReadyUI.
+
 ## CSS
 
 The CSS rules are divided into reusable classes (`.text-center`, `.flex`, etc.), and individual ones.
