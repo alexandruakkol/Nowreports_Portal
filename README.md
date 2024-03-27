@@ -13,7 +13,7 @@ Deployed on [Nowreports.com](https://www.nowreports.com)
 ## Application Structure
 
 The frontend objects are divided into Pages and Components.
-
+ 
 Most pages are placed behind a Login wall through the `Auth.js` logical wrapper component.
 
 `account_operations.js` contains the user creation procedure, which gets handled though the API. This includes:
