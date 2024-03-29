@@ -34,7 +34,6 @@ const Navbar = (props) => {
           window.removeEventListener('resize', handleResize);
         };
     },[]);
-    console.log(cta_button)
 
     return (
     <nav className='rui-navbar'>

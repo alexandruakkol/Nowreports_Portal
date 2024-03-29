@@ -9,6 +9,7 @@ import {SendOutlined} from '@ant-design/icons';
 import {AuthContext} from '../App';
 import { sendLog } from '../utils';
 import FeedbackModal from '../components/FeedbackModal';
+import { BsCheckLg } from 'react-icons/bs';
 
 const Conversation = (props) => {
 
@@ -58,9 +59,9 @@ const Conversation = (props) => {
 
             if(incoming){
                 function decodeAgent(agent){return {'cl':'user', 'ai':'assistant'}[agent]}
-                let last_5_msgs = convo.slice(-5).map(el => {return {role:decodeAgent(el.agent), content:el.msg}});
-                let messages = last_5_msgs;
-                const ai_payload = {messages:JSON.stringify(messages.filter(x => x.content)), filingID};
+                let last_4_msgs = convo.slice(-5).map(el => {return {role:decodeAgent(el.agent), content:el.msg?.slice(0,200)}});
+                let messages = last_4_msgs;
+                const ai_payload = {messages:JSON.stringify(messages.filter(x => x.content)), filingID, convoID};
 
                 if(first) fetch(`${window.appdata.API_ADDR}/completionproxy`, {   
                     method:'POST', 
@@ -80,9 +81,7 @@ const Conversation = (props) => {
 
                     reader.read().then(function processText({ done, value }) {
                         result += decoder.decode(value, { stream: true });
-                        result = result.replaceAll('\n\n\n','<br>');
-                        const messages = result.split('\n');
-                        
+                        let messages = result?.split('[ss]');
                         if (done) {
                             const lastMessage = convo.pop();
                             // Handle not enough credits msg
@@ -101,6 +100,8 @@ const Conversation = (props) => {
                         result = messages.pop();
 
                         messages.forEach(message => {
+                            message = message.replaceAll('\n\n', '\n');
+                            message = message.replaceAll('\n', '<br>');
                             try {
                                 let incomingMsg;
                                 let newConvo = [];
