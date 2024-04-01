@@ -6,9 +6,9 @@
     --BORDERS:#e0e0e0;
     --scale-factor:1;
     --RED:#de0000;
-    --BLUE:#009FBD;
-    --CREME:#f5f7fa;
-    --DARKSECTION: #3b3c40;
+    --LIGHTTEXT:#f9f9f9;
+    --LIGHTTEXT80: #f9f9f9de;
+    --CREAM:#FFFAF6;
     --DARKBLUE:#000478;
     --SECONDARY-GREY:#3b3c40bf;
     --MID-TEXT-GREY:#5b5d62bf;
@@ -19,6 +19,9 @@
     --SLIGHTGREY: #cecece;
     --SELECT-REDDISH: #bb7d4d38;
     --COLOR2: #c67b44;
+    --MAIN-ACCENT:#4dbbac;
+    --ACCENT-PURPLE:#7059D0;
+    --ACCENT-PURPLE20:#7159d04c;
 }
 body{
     overflow: hidden;
@@ -27,9 +30,9 @@ body{
 
 .App{
     flex-direction: column;
-    font-family: 'Rethink sans';
+    font-family: 'Inter';
     height:100vh;
-    background-color: var(--CREME);
+    background-color: var(--CREAM);
 }
 .flex-row{
     display: flex;
@@ -50,16 +53,17 @@ body{
 .text-medium{
     font-size: 1.7rem;
 }
-.text-smallm{
-    font-size: 1.2rem;
+.text-large{
+    font-size: 2.8rem;
 }
-
+.text-smallm{
+    font-size: 1.3rem;
+}
 .text-slightgrey{
     color:var(--MID-TEXT-GREY);
 }
-
 .rethink{
-    font-family: 'Rethink Sans';
+    font-family: 'Inter';
 }
 .text-center{
     text-align: center;
@@ -78,6 +82,12 @@ body{
 }
 .text-grey{
     color: #4d4949;
+}
+.text-white{
+    color: var(--LIGHTTEXT);
+}
+.text-white80{
+    color: var(--LIGHTTEXT80);
 }
 /* CONVO PAGE */
 .convo-logo-container{
@@ -187,7 +197,7 @@ body{
 }
 .main-title{
     font-size: 40px;
-    font-family: 'Rethink sans';
+    font-family: 'Inter';
     transition: opacity 0.5s ease-in-out;
 }
 .main-title-search{
@@ -224,7 +234,7 @@ body{
 }
 form label{
     font-size: 0.94rem !important;
-    font-family: 'Rethink sans';
+    font-family: 'Inter';
 }
 .ant-col-rtl .login-form-forgot {
     float: left;
@@ -317,7 +327,7 @@ form label{
     color: var(--RED);
 }
 .title-secondary{
-    color: var(--DARKSECTION);
+    color: var(--LIGHTTEXT);
     font-size: 1.17rem;
 }
 .filing-ddown-container{
@@ -327,6 +337,10 @@ form label{
 .moveUp {
     transform: translateY(-16.5vh); /* Adjust the value to control how much the div moves up */
     transition-duration:1000ms;
+}
+.bkg{
+    position:absolute;
+    z-index: 0;
 }
 .fadeOut{
     visibility: hidden;
@@ -369,7 +383,7 @@ form label{
 /* MAIN PAGE REDESIGN */
 
 #home-section-a, #home-section-b{
-    background-color: var(--CREME);
+    background-color: var(--CREAM);
 }
 .home-textarea{
     background-color: transparent !important;
@@ -381,14 +395,18 @@ form label{
     font-weight: 600;
     line-height: 110px;
     font-size: 5rem;
-    font-family: 'Rethink sans';
-    color: var(--DARKSECTION);
+    font-family: 'Inter';
+    color: var(--LIGHTTEXT);
 }
 #main-text span{
     margin:0;
     line-height: 95px;
 }
-
+.no-cc{
+    margin-top: 2vh;
+    font-size:12px;
+    font-weight: 400;
+}
 #main-text-container {
     position: relative; /* Allows absolute positioning relative to this container */
     display: inline-block; /* Fit the width to the content */
@@ -400,8 +418,8 @@ form label{
 .main-text-p{
     font-weight: 600;
     font-size: 5rem !important;
-    font-family: 'Rethink sans';
-    color: var(--DARKSECTION);
+    font-family: 'Inter';
+    color: var(--LIGHTTEXT);
     cursor:default;
 }
 #main-red{
@@ -536,11 +554,11 @@ form label{
     margin: 4px;
     border-radius: 6px;
     font-size: 0.9rem;
-    font-family: 'Rethink sans';
+    font-family: 'Inter';
     transition: all 0.25s ease;
 }
 .ant-popover-inner{
-    font-family: 'Rethink sans';
+    font-family: 'Inter';
 }
 .convo-red{
     color: #c66969;
@@ -648,7 +666,25 @@ form label{
     justify-content: center;
     align-items: center;
 }
-
+.why-pitch-element{
+    padding: 100px 6vw 100px 6vw;
+    width: 100%;
+    gap:30px;
+}
+.why-li{
+    margin-top: 20px;
+    gap:12px;
+}
+.why-pitch-title{
+    text-align: center;
+    font-weight: 600;
+    font-size: 3.6rem;
+}
+.why-li-icon{
+    font-size: 25px;
+    font-weight: 900;
+    color:var(--ACCENT-PURPLE);
+}
 .sk-folding-cube {
     margin: 20px auto;
     width: 40px;
@@ -848,18 +884,16 @@ form label{
     height: 100%;
 }
 .nowrep-button{
-    background-color: var(--COLOR2);
-    color:white;
-    font-size: 1.3rem;
-    font-weight: 900;
-    padding: 1vw 2vw 1vw 2vw;
+    color:var(--LIGHTTEXT);
+    background-color:#000010;
+    font-weight: 500;
     text-wrap: nowrap;
     display: flex;
     justify-content: center;
     align-items: center;
-    box-shadow: 0 2px 2px var(--BORDERS);
-    border: 1px solid var(--DARKSECTION);
-    border-radius: 6px;
+    border-radius: 1000px;
+    border: 0.5px solid #2C167F;
+    box-shadow: inset 0 -2.5px 2px 0 rgba(249, 249, 249, 0.34);
 }
 
 .pointer{
@@ -873,13 +907,13 @@ form label{
     background-color: var(--COLOR2) !important;
 }
 .red-anim-light::before{
-    background-color: #bb7d4d3e !important;
+    background-color: var(--ACCENT-PURPLE20) !important;
 }
 .selected-button{
     font-weight: bold;
 }
 .landing-section {  
-    padding: 0px 10px 0px 10px;
+    /* padding: 0px 10px 0px 10px; */
     display: none;
     height: 98%;
     position: absolute;
@@ -897,16 +931,13 @@ form label{
   #pitch{
     width:100%;
     flex-direction: column;
+    background-color: var(--CREAM);
   }
   .pitch-flex{
     display: flex;
     gap: 202px;
     flex: 1;
     flex-direction: column;
-  }
-  .pitch-flex1{
-    padding-top: 15vh;
-    /* hack for typing animation  */
   }
   .pitch-flex .pitch-element:nth-child(1){
     background-color: #4D8CBB1c;  
@@ -961,22 +992,26 @@ form label{
 
   }
   .heading-element{
+    background-image: url('../public/bkg.svg');
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    z-index: 1;
+    align-items: center;
   }
   .heading-container{
     padding-bottom: 4vh;
     display: flex;
     flex-direction: column;
     gap: 3rem;
-  }
+    color: var(--LIGHTTEXT);
+}
   .blue-text-accent{
     text-wrap: nowrap;
     color: white;
     border-radius: 6px;
-    padding: 5px;
-    background-color: var(--MESSAGE);
+    padding: 0px 10px;
+    background-color: var(--MAIN-ACCENT);
   }
   #main-chevron{
     flex:1;
@@ -1000,10 +1035,20 @@ form label{
     gap: 20px;
 }
 .heading{
-    font-weight: 900;
-    color: var(--DARKSECTION);
+    font-weight: 600;
     cursor:default;
     user-select: none;
+    letter-spacing: -2.7px;
+    align-self: center;
+    max-width: 550px;
+}
+.heading p{
+    text-wrap: nowrap;
+    text-align: center;
+}
+.heading-secondary{
+    font-weight: 500;
+    line-height:24px;
 }
 #benefits-list {
     width: 100%;
@@ -1052,20 +1097,23 @@ form label{
 }
 #pitch-goto-portal{
     height: 15vh;
-    width: 100%;
+    width: 80%;
     margin-top: 5vh;
 }
 .ant-select-item-option-content{
-    font-family: 'Rethink sans' !important;
+    font-family: 'Inter' !important;
     font-size: min(3vw, 17px);
 }
 .ant-input{
-    font-family:'Rethink sans'
+    font-family:'Inter'
 }
 #main-goto-portal{
     min-width: 13vw;
     max-width: 500px;
-    align-self: center;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
 }
 .nowrep-button:hover{
     cursor:pointer;
@@ -1090,11 +1138,18 @@ form label{
 .rui-logo{
     width: min(24vw, 240px) !important;
 }
+.rui-navbar{
+    background-color: var(--CREAM) !important;
+}
+.rui-cta{
+    display:flex;   
+    width: 300px !important;
+}
   /* ---------------- FOOTER ---------------- */
 
   #footer{
     background-color: transparent;
-    color: black;
+    color: rgb(255, 255, 255);
     padding-left: 15vw;
     padding-right: 15vw;
   }
@@ -1155,7 +1210,7 @@ form label{
     align-items: center;
 }
 .feedback-result-container > h3{
-    font-family: 'Rethink sans';
+    font-family: 'Inter';
     font-size: 1.5rem;
 }
 .feature-card{
@@ -1188,7 +1243,7 @@ form label{
 .thankyou-overlay{
     z-index: 99;
     position: absolute;
-    background: var(--CREME);
+    background: var(--CREAM);
     height: 100%;
     width: 100%;
 }
@@ -1201,15 +1256,84 @@ form label{
 .hidden{
     display:'none';
 }
+#main-desktop-sk{
+    bottom:4vh;
+    align-self: center;
+    width: 51vw;
+}   
+.main-sk{
+    z-index:2;
+    position: relative;
+    bottom:14vh;
+    display: flex;
+    justify-content: center;
+}
+.nowrep-signup{
+    background-color:#000010;
+    font-weight: 500;
+    text-wrap: nowrap;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 1000px;
+    border: 0.5px solid #2C167F;
+    box-shadow: inset 0 -2.5px 2px 0 rgba(249, 249, 249, 0.34);
+    color: white;
+    padding: 10px 30px 10px 30px;
+}
+.final-ctadiv-container{
+    margin: 0 6vw 0 6vw;
+    border-radius:40px;
+    display:flex;
+    justify-content: center;
+    background-image: url('../public/bkg.svg');
+}
+.final-ctadiv{
+    padding:35px 0 35px 0;
+    display:flex;
+    align-items: center;
+    flex-direction: column;
+    width: 50vw;
+}
+.ctadiv-text1{
+    font-weight: 700;
+    line-height: 30px;
+}
+.why-pitch-container{
+    display:flex;
+}
 @media only screen and (min-width: 50px){
+    .heading-container{
+        max-width: 300px;  
+    }
+    .mobile-only{
+        display:flex;
+    }
+    .desktop-only{
+        display:none;
+    }
+    .ctadiv-text1{
+        font-size:1.2rem;
+    }
+    .why-pitch-container{
+        flex-direction:column;
+    }
+    .nowrep-button{
+        height: 55px;
+        width: 240px;
+        padding: 12px 32px 12px 32px;
+        font-size: 16px;
+    }
     .heading-element{
-        margin-top: 7vh;
+        padding-bottom: 100px;
+        padding-top: 70px;
     }
     .heading{
-        font-size: 40px;
+        font-size: 50px;
+        line-height: 45px;
     }
     .heading-secondary{
-        font-size:25px;
+        font-size:16px;
     }
     .pitch-flex1{
         padding-left: 0%;
@@ -1249,19 +1373,42 @@ form label{
     #footer h2{
         font-size:1rem;
     }
-    #nowrep-menu{
+    #nowrep-menu,#login-btn{
         font-size:0.85rem;
     }
 }
 @media only screen and (min-width: 576px){
+    .heading-container{
+        max-width: 450px;  
+    }
+    .mobile-only{
+        display:flex;
+    }
+    .desktop-only{
+        display:none;
+    }
+    .ctadiv-text1{
+        font-size:1.3rem;
+    }
+    .why-pitch-container{
+        flex-direction:column;
+    }
+    .nowrep-button{
+        height: 65px;
+        width: 240px;
+        padding: 12px 32px 12px 32px;
+        font-size: 18px;
+    }
     .heading-element{
-        margin-top: 18vh;
+        padding-bottom: 150px;
+        padding-top: 100px;
     }
     .heading{
-        font-size: 45px;
+        font-size: 65px;
+        line-height: 55px;
     }
     .heading-secondary{
-        font-size:30px;
+        font-size:22px;
     }
     .pitch-flex1{
         padding-left: 0%;
@@ -1301,19 +1448,41 @@ form label{
     #footer h2{
         font-size:1.1rem;
     }
-    #nowrep-menu{
+    #nowrep-menu,#login-btn{
         font-size:0.85rem;
     }
 }
 @media only screen and (min-width: 768px){
+    .heading-container{
+        max-width: 650px;  
+    }
+    .mobile-only{
+        display:none;
+    }
+    .desktop-only{
+        display:flex;
+    }
+    .ctadiv-text1{
+        font-size:1.6rem;
+    }
+    .why-pitch-container{
+        flex-direction:row;
+    }
+    .nowrep-button{
+        height: 65px;
+        width: 240px;
+        padding: 12px 32px 12px 32px;
+        font-size: 18px;
+    }
     .heading-element{
-        margin-top: 20vh;
+        padding-bottom: 180px;
+        padding-top: 110px;
     }
     .heading{
-        font-size: 55px;
+        font-size: 70px;
     }
     .heading-secondary{
-        font-size:35px;
+        font-size:25px;
     }
     .pitch-flex1{
         padding-left: 15%;
@@ -1357,20 +1526,42 @@ form label{
     #footer h2{
         font-size:1.3rem;
     }
-    #nowrep-menu{
+    #nowrep-menu,#login-btn{
         font-size:1.1rem;
     }
-
 }
 @media only screen and (min-width: 992px){
+    .heading-container{
+        max-width: 650px;  
+    }
+    .mobile-only{
+        display:none;
+    }
+    .desktop-only{
+        display:flex;
+    }
+    .ctadiv-text1{
+        font-size:1.7rem;
+    }
+    .why-pitch-container{
+        flex-direction:row;
+    }
+    .nowrep-button{
+        height: 70px;
+        width: 290px;
+        padding: 12px 32px 12px 32px;
+        font-size: 22px;
+    }
     .heading-element{
-        margin-top: 17vh;
+        padding-bottom: 200px;
+        padding-top: 120px;
     }
     .heading{
-        font-size: min(6vw,85px);
+        font-size: 83px;
+        line-height: 75px;
     }
     .heading-secondary{
-        font-size:40px;
+        font-size:23px;
     }
     .pitch-flex1{
         padding-left: 20%;
@@ -1410,7 +1601,7 @@ form label{
     #footer h2{
         font-size:1.3rem;
     }
-    #nowrep-menu{
+    #nowrep-menu,#login-btn{
         font-size:1.1rem;
     }
 }

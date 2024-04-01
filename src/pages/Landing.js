@@ -1,11 +1,13 @@
 import { useState, useRef, useEffect } from 'react'
 import Footer from '../components/Footer';
 import { HiOutlineChevronDoubleDown } from "react-icons/hi";
+import { FaRegCheckCircle } from "react-icons/fa";
 import { Card, Button, List } from 'flowbite-react';
 import axios from 'axios';
 import Thankyou from '../components/Thankyou';
 import { Input } from 'antd';
 import {Navbar} from 'readyui';
+
 //import {Navbar} from '../components/Navbar';
 
 const Landing = () => {
@@ -22,8 +24,6 @@ const Landing = () => {
     const [isSentFeatures, setIsSentFeatures] = useState(false);
     const [selectedFeatures, setSelectedFeatures] = useState([]);
     const [customSuggestion, setCustomSuggestion] = useState('');
-    const [isBurgerOpen, setIsBurgerOpen] = useState(false);
-    const [logo, setLogo] = useState('nr_w_text_black.png');
 
     let pageSize = 'desktop';
 
@@ -100,10 +100,13 @@ const Landing = () => {
         <span className={`nav-button highlight-anim red-anim-light ${(selectedNavbar === 'new-features') && 'selected-button'}`} goto='new-features' ref={featuresRef} onClick={onNavbarSectionChange}>New features</span>,
     ]
 
-    const cta = <button id="nowrep-menu" className="highlight-anim red-anim nowrep-button" type="disabled" 
+    const cta = <div className="flex-row" style={{gap:'15px'}}>   
+                    <button id="login-btn" onClick={() => {window.location.pathname='/login'}}>Log in</button>
+                    <button id="nowrep-menu" className="nowrep-signup" type="disabled" 
                         onClick={() => {window.location.pathname='/signup'}}>
-                        Start NowReports AI
-                </button>
+                        Sign up
+                    </button>
+                </div>
               
 
     const small_logo = <img 
@@ -136,11 +139,11 @@ const Landing = () => {
             <div className="heading-element">
                 <div className="heading-container">
                     <div className="heading heading-title text-center">
-                        Stock research just got <span className="blue-text-accent">  better</span></div>
-                        <p className="text-medium text-center heading-secondary">Get company information on demand. Just ask our AI.</p>
+                        <p>Stock research</p><p>just got better</p><span className="blue-text-accent-commented">  </span></div>
+                        <p className="text-medium text-center heading-secondary text-white80">Get company information on demand. Just ask our AI.</p>
                     {/* <div className="heading heading-subtitle text-center">with state of the art AI.</div> */}
                     <div className="heading-subtitle text-center heading-third text-medium">
-                        <p className="text-smallm">
+                        {/* <p className="text-smallm">
                             Get instant answers to your business-related questions, as if you were talking to the board themselves.
                         </p>
                         <p className="text-smallm">
@@ -148,23 +151,23 @@ const Landing = () => {
                         </p>
                         <p className="text-smallm">
                             Use AI on 10-K reports.
-                        </p>
+                        </p> */}
                     </div>
              
                 </div>
 
                 <div id="main-goto-portal">
-                    <a id="goto-portal" className="highlight-anim red-anim nowrep-button" type="disabled" href="/signup">
-                        Start NowReports AI
+                    <a id="goto-portal" className="nowrep-button" type="disabled" href="/signup">
+                        Get Started for free
                     </a>
-                    <div className="text-grey">* for free, no credit card required.</div>
+                    <div className="text-white80 no-cc">* No credit card required.</div>
                 </div>
                 <div id="benefits-list">
                     <div className="horiz-benefit"></div>
-                    <div id="main-chevron">
+                    {/* <div id="main-chevron">
                         <HiOutlineChevronDoubleDown style={{fontSize:70}}/>
-                    </div>
-                    <div className="horiz-benefit text-grey">
+                    </div> */}
+                    {/* <div className="horiz-benefit text-grey">
                         <Card id="benefits-card">
                             <b>Why investors love our AI tool:</b>
                             <ul>
@@ -176,11 +179,17 @@ const Landing = () => {
                             </ul>
 
                         </Card>
-                    </div>
+                    </div> */}
                 </div>
             </div>
-            <div className="pitch-flex1 pitch-flex">
+            <img src="skeletons/mobile_sk.svg" className="mobile-only main-sk"></img>
+            <div className="desktop-only main-sk" id="main-desktop-sk">
+                <img src="skeletons/side_sk.svg" className="main-sk"></img>
+                <img src="skeletons/main_sk.svg" className="main-sk"></img>
+                <img src="skeletons/side_sk.svg" className="main-sk"></img>
+            </div>
 
+            <div className="pitch-flex1 pitch-flex">
 
                 <div className="pitch-element">
                     <div className="pitch-element-body">
@@ -228,10 +237,46 @@ const Landing = () => {
 
                 {/* <Footer></Footer> */}
             </div>
-            <div className="flex-row">
-                <div id="pitch-goto-portal" className="highlight-anim red-anim nowrep-button" goto="signup" onClick={onNavbarSectionChange}>
-                    Start NowReports AI
+
+            <div className="why-pitch-element flex-column">
+                <div className="why-pitch-title">Why investors love our AI tool</div>
+                <div className="flex-row why-pitch-container" style={{'justifyContent': 'center'}}>
+                    <div>
+                        <ul>
+                            <li><div className="flex-row why-li text-smallm"><FaRegCheckCircle className="why-li-icon"/>It's faster and more accurate than searching on Google.</div></li>
+                            <li><div className="flex-row why-li text-smallm"><FaRegCheckCircle className="why-li-icon"/>It's quicker than finding 10-K reports and filtering through them.</div></li>
+                            <li><div className="flex-row why-li text-smallm"><FaRegCheckCircle className="why-li-icon"/>No more time spent on manually calculating indicators.</div></li>
+                            <li><div className="flex-row why-li text-smallm"><FaRegCheckCircle className="why-li-icon"/>Skip the corporate lingo. Good means good and bad means bad.</div></li>
+                            <li><div className="flex-row why-li text-smallm"><FaRegCheckCircle className="why-li-icon"/>Get your information the exact way you want it.</div></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <img src='/skeletons/secondary.svg'></img>
+                    </div>
                 </div>
+            </div>
+
+            <div>
+                <div className="final-ctadiv-container">
+                    <div className="final-ctadiv">
+                        <div className="flex-column flex-center">
+                            <p className="text-white ctadiv-text1">Get instant answers to your</p>
+                            <p className="text-white ctadiv-text1">business related questions</p>
+                        </div>
+                        <div style={{marginTop:'30px', marginBottom:'30px'}}>
+                            <p className="text-smallm text-center text-white80">Get started for free, and upgrade later for $20 per month</p>
+                        </div>
+                        <a id="goto-portal" className="nowrep-button" type="disabled" href="/signup">
+                            Sign up now
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div className="flex-row" style={{justifyContent:'center'}}>
+                {/* <div id="pitch-goto-portal" className="highlight-anim red-anim nowrep-button" goto="signup" onClick={onNavbarSectionChange}>
+                    Start NowReports AI
+                </div> */}
             </div>
             <div>
                 <Footer fn_goto_about={()=>setMode('about')}></Footer>
@@ -244,7 +289,7 @@ const Landing = () => {
             <div id="about-container">
                 <div className="about-section about-section1">
                    
-                    <b>Our Mission</b>
+                    <b className="text-center ">Our Mission</b>
 
                     <p>We provide advanced tools for business research.</p>
                     <p>Our goal is to transform business information into a more adaptable and readily available resource.</p>

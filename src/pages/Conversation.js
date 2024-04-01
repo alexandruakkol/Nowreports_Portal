@@ -9,7 +9,6 @@ import {SendOutlined} from '@ant-design/icons';
 import {AuthContext} from '../App';
 import { sendLog } from '../utils';
 import FeedbackModal from '../components/FeedbackModal';
-import { BsCheckLg } from 'react-icons/bs';
 
 const Conversation = (props) => {
 

@@ -146,7 +146,7 @@ const Signup = () => {
     </>
   }
 
-  const loginButton = <span className="highlight-anim red-anim nowrep-button" 
+  const loginButton = <span className="nowrep-button" 
         onClick={()=>{window.location.href = window.location.origin+'/login'}} 
         type="disabled" goto="login">
         Go to Login
