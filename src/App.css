@@ -24,7 +24,6 @@
     --ACCENT-PURPLE20:#7159d04c;
 }
 body{
-    overflow: hidden;
     text-rendering: optimizeSpeed;
 }
 
@@ -106,7 +105,7 @@ body{
     padding-left: 4%;
     padding-right: 4%;
     display: flex;
-    height: 7vh;
+    height: max(7vh, 70px);
     box-shadow: 0 1px 1px var(--BORDERS);
     align-items: center;
     justify-content: space-between;
@@ -926,7 +925,7 @@ form label{
   }
   .landing-section.active {
     display:flex;
-    top: 7%; /* Slide up to view */
+    top: max(7vh, 70px);
   }
   #pitch{
     width:100%;
@@ -1603,6 +1602,16 @@ form label{
     }
     #nowrep-menu,#login-btn{
         font-size:1.1rem;
+    }
+}
+@media only screen and (max-height: 800px){
+    body{
+        overflow: auto;
+    }
+}
+@media only screen and (min-height: 801px){
+    body{
+        overflow: scroll;
     }
 }
 
