@@ -313,8 +313,8 @@ const Landing = () => {
             <h2 className="text-smallm">Choose up to two features</h2>
             <div id="featurecard-container">
                 {featuresData.map(feature => {
-                    return   <Card className="max-w-sm feature-card clickable" key={feature.code} id={feature.code} onClick={selectFeature}>
-                        <h5 className="text-2xl font-bold tracking-tight text-black-900 dark:text-black">
+                    return   <Card className="max-w-sm feature-card clickable feature-cardtext" key={feature.code} id={feature.code} onClick={selectFeature}>
+                        <h5 className="font-bold tracking-tight text-black-900 dark:text-black">
                             {feature.name}
                         </h5>
                         <p className="font-normal text-black-700 dark:text-black-400">

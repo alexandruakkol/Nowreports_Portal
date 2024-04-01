@@ -1301,7 +1301,13 @@ form label{
 .why-pitch-container{
     display:flex;
 }
+.feature-card{
+    min-height: 260px;
+}
 @media only screen and (min-width: 50px){
+    .feature-cardtext{
+        font-size:90%;
+    }
     .heading-container{
         max-width: 300px;  
     }
@@ -1377,6 +1383,9 @@ form label{
     }
 }
 @media only screen and (min-width: 576px){
+    .feature-cardtext{
+        font-size:100%;
+    }
     .heading-container{
         max-width: 450px;  
     }
@@ -1452,6 +1461,9 @@ form label{
     }
 }
 @media only screen and (min-width: 768px){
+    .feature-cardtext{
+        font-size:100%;
+    }
     .heading-container{
         max-width: 650px;  
     }
@@ -1530,6 +1542,9 @@ form label{
     }
 }
 @media only screen and (min-width: 992px){
+    .feature-cardtext{
+        font-size:100%;
+    }
     .heading-container{
         max-width: 650px;  
     }
