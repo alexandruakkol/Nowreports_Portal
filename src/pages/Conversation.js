@@ -62,66 +62,75 @@ const Conversation = (props) => {
                 let messages = last_4_msgs;
                 const ai_payload = {messages:JSON.stringify(messages.filter(x => x.content)), filingID, convoID};
 
-                if(first) fetch(`${window.appdata.API_ADDR}/completionproxy`, {   
-                    method:'POST', 
-                    body:JSON.stringify(ai_payload), 
-                    headers:{'Content-Type':'application/json', responseType:'stream'},
-                    credentials: 'include',
-                }).then(response => {    
-                    const reader = response.body.getReader();
-                    
-                    const decoder = new TextDecoder('utf-8');
-                    let result = '';
-                    
-                    // -------------- SUBTRACT INTERFACE CREDIT -------------- \\
-                    if(response.status ===  200) setCREDITS(CREDITS-1);
-
-                    // -------------- PROCESS INCOMING STREAM -------------- \\
-
-                    reader.read().then(function processText({ done, value }) {
-                        result += decoder.decode(value, { stream: true });
-                        let messages = result?.split('[ss]');
-                        if (done) {
-                            const lastMessage = convo.pop();
-                            // Handle not enough credits msg
-
-                            if(result == 'Monthly query limit exceeded' && response.status == 403){
-                                return setConvo([...convo, {agent:'ai', msg:result , incoming:false, db_notsend:true}]);
-                            }
-
-                            db_payload.msg = lastMessage.msg;
-                            setConvo([...convo, {...lastMessage, incoming:false, db_notsend:true}]);
-                            const db_promise = sendMessageToDB(db_payload, headers);
-                            return;
+                function send_completion(){
+                    fetch(`${window.appdata.API_ADDR}/completionproxy`, {   
+                        method:'POST', 
+                        body:JSON.stringify(ai_payload), 
+                        headers:{'Content-Type':'application/json', responseType:'stream'},
+                        credentials: 'include',
+                    }).then(response => {    
+                        if(response.status != 200){
+                            return setConvo([...convo, {agent:'ai', msg:'An error occured. Please refresh and try again.' , incoming:false, db_notsend:true}]);
                         }
+
+                        const reader = response.body.getReader();
                         
-                        // Last entry might be incomplete if not ended with a newline
-                        result = messages.pop();
-
-                        messages.forEach(message => {
-                            message = message.replaceAll('\n\n', '\n');
-                            message = message.replaceAll('\n', '<br>');
-                            try {
-                                let incomingMsg;
-                                let newConvo = [];
-                                for(let msg of convo){
-                                    if(msg.incoming) incomingMsg=msg;
-                                    else newConvo.push(msg);
-                                }   
-                                if(!incomingMsg) throw new Error('No incoming msg found (sync issue?)'); 
-                                incomingMsg.msg = (incomingMsg.msg ?? '') + message; 
-                                incomingMsg.first=false;
-                                setConvo([...newConvo, incomingMsg]);
-                            } catch (err) {
-                                console.error('Error parsing message:', message, err);
+                        const decoder = new TextDecoder('utf-8');
+                        let result = '';
+                        
+                        // -------------- SUBTRACT INTERFACE CREDIT -------------- \\
+                        if(response.status ===  200) setCREDITS(CREDITS-1);
+    
+                        // -------------- PROCESS INCOMING STREAM -------------- \\
+    
+                        reader.read().then(function processText({ done, value }) {
+                            result += decoder.decode(value, { stream: true });
+                            let messages = result?.split('[ss]');
+                            if (done) {
+                                const lastMessage = convo.pop();
+                                // Handle not enough credits msg
+    
+                                if(result == 'Monthly query limit exceeded' && response.status == 403){
+                                    return setConvo([...convo, {agent:'ai', msg:result , incoming:false, db_notsend:true}]);
+                                }
+    
+                                db_payload.msg = lastMessage.msg;
+                                setConvo([...convo, {...lastMessage, incoming:false, db_notsend:true}]);
+                                const db_promise = sendMessageToDB(db_payload, headers);
+                                return;
                             }
+                            
+                            // Last entry might be incomplete if not ended with a newline
+                            result = messages.pop();
+    
+                            messages.forEach(message => {
+                                message = message.replaceAll('\n\n', '\n');
+                                message = message.replaceAll('\n', '<br>');
+                                try {
+                                    let incomingMsg;
+                                    let newConvo = [];
+                                    for(let msg of convo){
+                                        if(msg.incoming) incomingMsg=msg;
+                                        else newConvo.push(msg);
+                                    }   
+                                    if(!incomingMsg) throw new Error('No incoming msg found (sync issue?)'); 
+                                    incomingMsg.msg = (incomingMsg.msg ?? '') + message; 
+                                    incomingMsg.first=false;
+                                    setConvo([...newConvo, incomingMsg]);
+                                } catch (err) {
+                                    console.error('Error parsing message:', message, err);
+                                }
+                            });
+            
+                            // Read the next chunk
+                            reader.read().then(processText);
                         });
-        
-                        // Read the next chunk
-                        reader.read().then(processText);
-                    });
+                    })
+                }
 
-                })
+                if(first) send_completion();
+                
+                
                 return;
             }
 
