@@ -7,7 +7,7 @@
     --scale-factor:1;
     --RED:#de0000;
     --LIGHTTEXT:#f9f9f9;
-    --LIGHTTEXT80: #f9f9f9de;
+    --LIGHTTEXT80: #f9f9f9c9;
     --CREAM:#FFFAF6;
     --DARKBLUE:#000478;
     --SECONDARY-GREY:#3b3c40bf;
@@ -403,8 +403,9 @@ form label{
 }
 .no-cc{
     margin-top: 2vh;
-    font-size:12px;
+    font-size:16px;
     font-weight: 400;
+    gap:5px;
 }
 #main-text-container {
     position: relative; /* Allows absolute positioning relative to this container */
@@ -893,6 +894,7 @@ form label{
     border-radius: 1000px;
     border: 0.5px solid #2C167F;
     box-shadow: inset 0 -2.5px 2px 0 rgba(249, 249, 249, 0.34);
+    gap: 7px;
 }
 
 .pointer{
@@ -1037,9 +1039,9 @@ form label{
     font-weight: 600;
     cursor:default;
     user-select: none;
-    letter-spacing: -2.7px;
+    letter-spacing: -3px;
     align-self: center;
-    max-width: 550px;
+    /* max-width: 550px; */
 }
 .heading p{
     text-wrap: nowrap;
@@ -1048,6 +1050,8 @@ form label{
 .heading-secondary{
     font-weight: 500;
     line-height:24px;
+    width: 200%;
+    align-self:center;
 }
 #benefits-list {
     width: 100%;
@@ -1256,7 +1260,7 @@ form label{
     display:'none';
 }
 #main-desktop-sk{
-    bottom:4vh;
+    bottom:9vh;
     align-self: center;
     width: 51vw;
 }   
@@ -1304,6 +1308,19 @@ form label{
 .feature-card{
     min-height: 260px;
 }
+.main-cta-container{
+    gap:15px;
+    align-items: flex-start;
+}
+#main-goto-demo{
+    background-color: var(--CREAM);
+    color:#000010;
+}
+#demo-vid-container{
+    z-index: 5;
+    width: 90%;
+    height: 100%;
+}
 @media only screen and (min-width: 50px){
     .feature-cardtext{
         font-size:90%;
@@ -1325,7 +1342,7 @@ form label{
     }
     .nowrep-button{
         height: 55px;
-        width: 240px;
+        width: 47vw;
         padding: 12px 32px 12px 32px;
         font-size: 16px;
     }
@@ -1338,7 +1355,7 @@ form label{
         line-height: 45px;
     }
     .heading-secondary{
-        font-size:16px;
+        font-size:13px;
     }
     .pitch-flex1{
         padding-left: 0%;
@@ -1409,11 +1426,11 @@ form label{
     }
     .heading-element{
         padding-bottom: 150px;
-        padding-top: 100px;
+        padding-top: 80px;
     }
     .heading{
-        font-size: 65px;
-        line-height: 55px;
+        font-size: 85px;
+        line-height: 75px;
     }
     .heading-secondary{
         font-size:22px;
@@ -1487,10 +1504,11 @@ form label{
     }
     .heading-element{
         padding-bottom: 180px;
-        padding-top: 110px;
+        padding-top: 80px;
     }
     .heading{
-        font-size: 70px;
+        font-size: 90px;
+        line-height: 85px;
     }
     .heading-secondary{
         font-size:25px;
@@ -1568,14 +1586,14 @@ form label{
     }
     .heading-element{
         padding-bottom: 200px;
-        padding-top: 120px;
+        padding-top: 80px;
     }
     .heading{
-        font-size: 83px;
-        line-height: 75px;
+        font-size: 105px;
+        line-height: 100px;
     }
     .heading-secondary{
-        font-size:23px;
+        font-size:29px;
     }
     .pitch-flex1{
         padding-left: 20%;
@@ -1626,8 +1644,7 @@ form label{
 }
 @media only screen and (min-height: 801px){
     body{
-        overflow: scroll;
+        overflow: hidden;
     }
 }
-
 
