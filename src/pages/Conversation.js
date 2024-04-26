@@ -58,7 +58,7 @@ const Conversation = (props) => {
 
             if(incoming){
                 function decodeAgent(agent){return {'cl':'user', 'ai':'assistant'}[agent]}
-                let last_4_msgs = convo.slice(-5).map(el => {return {role:decodeAgent(el.agent), content:el.msg?.slice(0,200)}});
+                let last_4_msgs = convo.slice(-5).map(el => {return {role:decodeAgent(el.agent), content:el.msg?.slice(0,2000)}});
                 let messages = last_4_msgs;
                 const ai_payload = {messages:JSON.stringify(messages.filter(x => x.content)), filingID, convoID};
 
@@ -229,13 +229,9 @@ const Conversation = (props) => {
 
             <div id="convo-sidebar">
                 <div id="sidebar-upper" className="sidebar-section">
-                    {/* <div className="text-center flex-center">
-                        <img src="/nr_logo.png" id="logo-convo"></img>
-                    </div> */}
               
                     <div className="flex-row convo-logo-container darken-hover">
-                        <img src="/nr_logo.png" id="logo-convo"></img>
-                        <div id="logo" onClick={() => navigate('/portal')}><img src="/nr_full_logo.svg"></img></div>
+                        <div id="logo" onClick={() => navigate('/portal')}><img src="/CEOChat_combo.png"></img></div>
                     </div>
                     <div className="convo-symboldata">
                         <div className="convo-symboldata-title">Symbol</div>

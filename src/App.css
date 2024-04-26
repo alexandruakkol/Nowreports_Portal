@@ -149,14 +149,14 @@ body{
     width:100%;
     margin-left: 4vw;    
     justify-content: center;
-    padding-top: 13vh;
+    padding-top: 12vh;
 }
 .main-section{
     flex:1;
     width:100%;
     text-align: center;
     display: flex;
-    gap: 8vh;
+    gap: 4vh;
     flex-direction: column;
     align-items: center;
 }
@@ -200,7 +200,7 @@ body{
     transition: opacity 0.5s ease-in-out;
 }
 .main-title-search{
-    height: 3.9rem;
+    height: 5rem;
 }
 #navbar-1{
     font-size:30px;
@@ -624,7 +624,6 @@ form label{
     display: flex;
     cursor: pointer;
     justify-content: center;
-    padding: 13px;
     width: 100%;
 }
 #logo-convo{
@@ -632,7 +631,7 @@ form label{
     width: 23%;
 }
 #logo > img{
-    height: 25px;
+    height: 110px;
     width: auto;
 }
 .noreport_option{

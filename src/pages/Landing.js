@@ -117,11 +117,11 @@ const Landing = () => {
 
     const small_logo = <img 
         style={{width: '3.3rem'}} 
-        alt="Now Reports Logo" src='./nr_logo.png'></img>; //TODO: onClick={onLogoClick}
+        alt="CEOChat Logo" src='./ceochat_logo.png'></img>; //TODO: onClick={onLogoClick}
 
     const large_logo = <img 
         style={{width: '12rem'}}
-    alt="Now Reports Logo" src='./nr_w_text_black.png'></img>; //TODO: onClick={onLogoClick}
+    alt="CEOChat Logo" src='./CEOChat_combo_inline_black.png'></img>; //TODO: onClick={onLogoClick}
 
   return (
     <>
@@ -151,7 +151,7 @@ const Landing = () => {
                 <div className="heading-container">
                     <div className="heading heading-title text-center">
                         <p>Stock research</p><p>just got better</p><span className="blue-text-accent-commented">  </span></div>
-                        <p className="text-medium text-center heading-secondary text-white80">Get company information on demand. Just ask our AI.</p>
+                        <p className="text-medium text-center heading-secondary text-white80">Get company information on demand. Chat with the virtual CEO of a public company!</p>
                     {/* <div className="heading heading-subtitle text-center">with state of the art AI.</div> */}
                     <div className="heading-subtitle text-center heading-third text-medium">
                         {/* <p className="text-smallm">
@@ -215,7 +215,7 @@ const Landing = () => {
                     <div className="pitch-element-body">
                         <div className="pitch-title">Find a needle in a haystack.</div>
                         <div className="typing typing-anim1 typing_freq4 message">Does the company address the excess amount of cash?</div>
-                        <div className="delayed-text typing_response message ai-message-msg">The report indicates that the company plans to allocate $8,843 million of its cash towards the creation of new self-storage units. Therefore, it seems that the company is addressing the excess amount of cash and has plans for utilizing it effectively.</div>
+                        <div className="delayed-text typing_response message ai-message-msg">The company plans to allocate $8,843 million of its cash towards the creation of new self-storage units. Therefore, it seems that the company is addressing the excess amount of cash and has plans for utilizing it effectively.</div>
                     </div>
                     <div className="pitch-text"></div>
                 </div>
@@ -247,10 +247,10 @@ const Landing = () => {
                     <div>
                         <ul>
                             <li><div className="flex-row why-li text-smallm"><FaRegCheckCircle className="why-li-icon"/>It's faster and more accurate than searching on Google.</div></li>
-                            <li><div className="flex-row why-li text-smallm"><FaRegCheckCircle className="why-li-icon"/>It's quicker than finding 10-K reports and filtering through them.</div></li>
-                            <li><div className="flex-row why-li text-smallm"><FaRegCheckCircle className="why-li-icon"/>No more time spent on manually calculating indicators.</div></li>
+                            <li><div className="flex-row why-li text-smallm"><FaRegCheckCircle className="why-li-icon"/>It's much quicker than filtering through financial reports and public data.</div></li>
+                            <li><div className="flex-row why-li text-smallm"><FaRegCheckCircle className="why-li-icon"/>It's the closest thing to chatting with company management.</div></li>
                             <li><div className="flex-row why-li text-smallm"><FaRegCheckCircle className="why-li-icon"/>Skip the corporate lingo. Good means good and bad means bad.</div></li>
-                            <li><div className="flex-row why-li text-smallm"><FaRegCheckCircle className="why-li-icon"/>Get your information the exact way you want it.</div></li>
+                            <li><div className="flex-row why-li text-smallm"><FaRegCheckCircle className="why-li-icon"/>Get your information the exact way you want it. Phrase your concerns your way.</div></li>
                         </ul>
                     </div>
                     <div>

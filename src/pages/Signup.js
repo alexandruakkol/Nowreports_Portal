@@ -154,7 +154,7 @@ const Signup = () => {
 
   return (
     <div id="login-container">
-         <Navbar large_logo={<img src="nr_w_text_black.png" onClick={()=>window.location.pathname="/"} className="clickable"></img>} items={[]} cta_button={loginButton}></Navbar>
+         <Navbar large_logo={<img src="CEOChat_combo_inline_black.png" onClick={()=>window.location.pathname="/"} className="clickable"></img>} items={[]} cta_button={loginButton}></Navbar>
         {formSuccess ? <AfterSuccess/> : <BeforeSuccess/>}
     </div>
   )
