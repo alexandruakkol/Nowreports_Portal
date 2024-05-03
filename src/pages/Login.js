@@ -34,8 +34,8 @@ const Login = () => {
   const large_logo = <img  
       style={{width: '12rem'}}
       className="clickable"
-      alt="Now Reports Logo"
-      src='./nr_w_text_black.png'
+      alt="CEOChat Logo"
+      src='./CEOChat_combo_inline_black.png'
       onClick={()=>{window.location.pathname='/login'}}
     ></img>//TODO: centralize
 

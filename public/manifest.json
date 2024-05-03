@@ -1,7 +1,7 @@
 {
-  "short_name": "Now Reports",
-  "name": "Now Reports | AI for 10-K reports",
-  "description":"AI for 10-K reports | Stock research just got better",
+  "short_name": "CEOChat",
+  "name": "CEOChat | Chat with the virtual CEO of a public company",
+  "description":"Chat with the virtual CEO of a public company using AI| Stock research just got better",
   "icons": [
     {
       "src": "favicon.ico",
