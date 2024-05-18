@@ -7,6 +7,10 @@ import axios from 'axios';
 import Thankyou from '../components/Thankyou';
 import { Input } from 'antd';
 import {Navbar} from 'readyui';
+import { LuPlay } from "react-icons/lu";
+import { IoCheckmarkDone } from "react-icons/io5";
+import ReactPlayer from 'react-player/lazy'
+import { Modal } from 'antd';
 
 //import {Navbar} from '../components/Navbar';
 
@@ -24,8 +28,14 @@ const Landing = () => {
     const [isSentFeatures, setIsSentFeatures] = useState(false);
     const [selectedFeatures, setSelectedFeatures] = useState([]);
     const [customSuggestion, setCustomSuggestion] = useState('');
-
-    let pageSize = 'desktop';
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    
+    const handleVidOK = () => {
+        setIsModalOpen(false);
+    };
+    const handleVidCancel = () => {
+        setIsModalOpen(false);
+    };
 
     useEffect(() => {
         if((mode === 'new-features') && (!featuresData.length) ){ // only calls on newfeatures mode
@@ -136,6 +146,9 @@ const Landing = () => {
         {/* ----------------- PITCH MODE ----------------- */}
 
         <section id="pitch" mode="pitch" className={`landing-section ${mode == 'pitch' ? 'active' : ''}` } role="region" aria-label="Main section">
+            <Modal cancelButtonProps={{hidden:'true'}}width={'90vw'} id="demo-vid-container" open={isModalOpen} onOk={handleVidOK} onCancel={handleVidCancel}>
+                <ReactPlayer width={'100%'} height={'83vh'} url='https://nowreports.com/api/demo_video.mp4' controls='true' playing='true'/>
+            </Modal>
             <div className="heading-element">
                 <div className="heading-container">
                     <div className="heading heading-title text-center">
@@ -155,13 +168,20 @@ const Landing = () => {
                     </div>
              
                 </div>
-
-                <div id="main-goto-portal">
-                    <a id="goto-portal" className="nowrep-button" type="disabled" href="/signup">
-                        Get Started for free
-                    </a>
-                    <div className="text-white80 no-cc">* No credit card required.</div>
+                <div className="flex-row main-cta-container">
+                    <div id="main-goto-portal">
+                            <a id="goto-portal" className="nowrep-button" type="disabled" href="/signup">
+                                Get Started for free
+                            </a>
+                        </div>
+                        <div id="main-goto-portal">
+                            <a id="main-goto-demo" className="nowrep-button" type="disabled" onClick={()=>setIsModalOpen(true)}>
+                                <LuPlay></LuPlay>See a demo video
+                            </a>
+                    </div>
                 </div>
+                <div className="text-white80 no-cc text-center flex-row"><IoCheckmarkDone></IoCheckmarkDone> No credit card required.</div>
+
                 <div id="benefits-list">
                     <div className="horiz-benefit"></div>
                     {/* <div id="main-chevron">
