@@ -11,6 +11,10 @@ import { LuPlay } from "react-icons/lu";
 import { IoCheckmarkDone } from "react-icons/io5";
 import ReactPlayer from 'react-player/lazy'
 import { Modal } from 'antd';
+import { LuPlay } from "react-icons/lu";
+import { IoCheckmarkDone } from "react-icons/io5";
+import ReactPlayer from 'react-player/lazy'
+import { Modal } from 'antd';
 
 //import {Navbar} from '../components/Navbar';
 
@@ -72,10 +76,6 @@ const Landing = () => {
         else window.location.href = window.location.origin+'/'+goto;
     };
 
-    function onLogoClick(){
-        setMode('pitch');
-    }
-
     function selectFeature(e){
         const classlist = e.currentTarget.classList;
         if(classlist.contains('selected')) {
@@ -121,11 +121,11 @@ const Landing = () => {
 
     const small_logo = <img 
         style={{width: '3.3rem'}} 
-        alt="Now Reports Logo" src='./nr_logo.png'></img>; //TODO: onClick={onLogoClick}
+        alt="CEOChat Logo" src='./ceochat_logo.png'></img>; //TODO: onClick={onLogoClick}
 
     const large_logo = <img 
         style={{width: '12rem'}}
-    alt="Now Reports Logo" src='./nr_w_text_black.png'></img>; //TODO: onClick={onLogoClick}
+    alt="CEOChat Logo" src='./CEOChat_combo_inline_black.png'></img>; //TODO: onClick={onLogoClick}
 
   return (
     <>
@@ -153,7 +153,7 @@ const Landing = () => {
                 <div className="heading-container">
                     <div className="heading heading-title text-center">
                         <p>Stock research</p><p>just got better</p><span className="blue-text-accent-commented">  </span></div>
-                        <p className="text-medium text-center heading-secondary text-white80">Get company information on demand. Just ask our AI.</p>
+                        <p className="text-medium text-center heading-secondary text-white80">Get company information on demand. Chat with the virtual CEO of a public company!</p>
                     {/* <div className="heading heading-subtitle text-center">with state of the art AI.</div> */}
                     <div className="heading-subtitle text-center heading-third text-medium">
                         {/* <p className="text-smallm">
@@ -184,24 +184,9 @@ const Landing = () => {
 
                 <div id="benefits-list">
                     <div className="horiz-benefit"></div>
-                    {/* <div id="main-chevron">
-                        <HiOutlineChevronDoubleDown style={{fontSize:70}}/>
-                    </div> */}
-                    {/* <div className="horiz-benefit text-grey">
-                        <Card id="benefits-card">
-                            <b>Why investors love our AI tool:</b>
-                            <ul>
-                                <li>It's faster and more accurate than searching on Google.</li>
-                                <li>It's quicker than finding 10-K reports and filtering through them.</li>
-                                <li>No more time spent on manually calculating indicators.</li>
-                                <li>Skip the corporate lingo. Good means good and bad means bad.</li>
-                                <li>Get your information the exact way you want it.</li>
-                            </ul>
-
-                        </Card>
-                    </div> */}
                 </div>
             </div>
+
             <img src="skeletons/mobile_sk.svg" className="mobile-only main-sk"></img>
             <div className="desktop-only main-sk" id="main-desktop-sk">
                 <img src="skeletons/side_sk.svg" className="main-sk"></img>
@@ -213,7 +198,6 @@ const Landing = () => {
 
                 <div className="pitch-element">
                     <div className="pitch-element-body">
-
                         <div className="pitch-title">Quickly find business weakpoints.</div>
                         <div className="typing typing-anim1 typing_freq4 message">Is the company over-exposed to one vendor, customer, or anything else?</div>
                         <div className="delayed-text typing_response message ai-message-msg">The company's risk disclosure indicates potential over-exposure to key customers. Approximately 51.8% of the company's revenue comes from only two customers.</div>
@@ -232,7 +216,7 @@ const Landing = () => {
                     <div className="pitch-element-body">
                         <div className="pitch-title">Find a needle in a haystack.</div>
                         <div className="typing typing-anim1 typing_freq4 message">Does the company address the excess amount of cash?</div>
-                        <div className="delayed-text typing_response message ai-message-msg">The report indicates that the company plans to allocate $8,843 million of its cash towards the creation of new self-storage units. Therefore, it seems that the company is addressing the excess amount of cash and has plans for utilizing it effectively.</div>
+                        <div className="delayed-text typing_response message ai-message-msg">The company plans to allocate $8,843 million of its cash towards the creation of new self-storage units. Therefore, it seems that the company is addressing the excess amount of cash and has plans for utilizing it effectively.</div>
                     </div>
                     <div className="pitch-text"></div>
                 </div>
@@ -264,10 +248,10 @@ const Landing = () => {
                     <div>
                         <ul>
                             <li><div className="flex-row why-li text-smallm"><FaRegCheckCircle className="why-li-icon"/>It's faster and more accurate than searching on Google.</div></li>
-                            <li><div className="flex-row why-li text-smallm"><FaRegCheckCircle className="why-li-icon"/>It's quicker than finding 10-K reports and filtering through them.</div></li>
-                            <li><div className="flex-row why-li text-smallm"><FaRegCheckCircle className="why-li-icon"/>No more time spent on manually calculating indicators.</div></li>
+                            <li><div className="flex-row why-li text-smallm"><FaRegCheckCircle className="why-li-icon"/>It's much quicker than filtering through financial reports and public data.</div></li>
+                            <li><div className="flex-row why-li text-smallm"><FaRegCheckCircle className="why-li-icon"/>It's the closest thing to chatting with company management.</div></li>
                             <li><div className="flex-row why-li text-smallm"><FaRegCheckCircle className="why-li-icon"/>Skip the corporate lingo. Good means good and bad means bad.</div></li>
-                            <li><div className="flex-row why-li text-smallm"><FaRegCheckCircle className="why-li-icon"/>Get your information the exact way you want it.</div></li>
+                            <li><div className="flex-row why-li text-smallm"><FaRegCheckCircle className="why-li-icon"/>Get your information the exact way you want it. Phrase your concerns your way.</div></li>
                         </ul>
                     </div>
                     <div>

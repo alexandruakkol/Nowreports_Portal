@@ -14,8 +14,8 @@ const r_Footer = (props) => {
         <div className="grid w-full justify-between sm:flex sm:justify-between md:flex md:grid-cols-1">
           <div className="flex-column footer-logotext">
             <Footer.Brand
-              src="nr_full_logo_black.svg"
-              alt="Now Reports Logo"
+              src="CEOChat_combo_inline_black.png"
+              alt="CEOChat logo"
             />
              <div>
               <ul>Found a bug or have an idea?</ul>
@@ -26,7 +26,7 @@ const r_Footer = (props) => {
             <div>
               <Footer.Title title="about" />
               <Footer.LinkGroup col>
-                <Footer.Link onClick={fn_goto_about} className="footer-link">Now Reports</Footer.Link>
+                <Footer.Link onClick={fn_goto_about} className="footer-link">CEOChat</Footer.Link>
               </Footer.LinkGroup>
             </div>
             {/* <div>
@@ -47,7 +47,7 @@ const r_Footer = (props) => {
         </div>
         <Footer.Divider />
         <div className="w-full sm:flex sm:items-center sm:justify-between">
-          <Footer.Copyright href="#" by="Now Reports. All rights reserved." year={(new Date()).getFullYear()} />
+          <Footer.Copyright href="#" by="CEOChat. All rights reserved." year={(new Date()).getFullYear()} />
           <div className="mt-4 flex space-x-6 sm:mt-0 sm:justify-center">
             {/* <Footer.Icon href="#" icon={BsFacebook} />
             <Footer.Icon href="#" icon={BsInstagram} />
