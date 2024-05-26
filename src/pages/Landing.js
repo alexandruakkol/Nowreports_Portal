@@ -11,10 +11,7 @@ import { LuPlay } from "react-icons/lu";
 import { IoCheckmarkDone } from "react-icons/io5";
 import ReactPlayer from 'react-player/lazy'
 import { Modal } from 'antd';
-import { LuPlay } from "react-icons/lu";
-import { IoCheckmarkDone } from "react-icons/io5";
-import ReactPlayer from 'react-player/lazy'
-import { Modal } from 'antd';
+
 
 //import {Navbar} from '../components/Navbar';
 
@@ -153,7 +150,7 @@ const Landing = () => {
                 <div className="heading-container">
                     <div className="heading heading-title text-center">
                         <p>Stock research</p><p>just got better</p><span className="blue-text-accent-commented">  </span></div>
-                        <p className="text-medium text-center heading-secondary text-white80">Get company information on demand. Chat with the virtual CEO of a public company!</p>
+                        <p className="text-medium text-center heading-secondary text-white80">Chat with the virtual CEO of a public company.</p>
                     {/* <div className="heading heading-subtitle text-center">with state of the art AI.</div> */}
                     <div className="heading-subtitle text-center heading-third text-medium">
                         {/* <p className="text-smallm">
