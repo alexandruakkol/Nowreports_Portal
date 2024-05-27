@@ -144,7 +144,7 @@ const Landing = () => {
 
         <section id="pitch" mode="pitch" className={`landing-section ${mode == 'pitch' ? 'active' : ''}` } role="region" aria-label="Main section">
             <Modal cancelButtonProps={{hidden:'true'}}width={'90vw'} id="demo-vid-container" open={isModalOpen} onOk={handleVidOK} onCancel={handleVidCancel}>
-                <ReactPlayer width={'100%'} height={'83vh'} url='https://nowreports.com/api/demo_video.mp4' controls='true' playing='true'/>
+                <ReactPlayer width={'100%'} height={'83vh'} url='https://ceochat.nowreports.com/api/demo_video.mp4' controls='true' playing='true'/>
             </Modal>
             <div className="heading-element">
                 <div className="heading-container">
@@ -225,7 +225,7 @@ const Landing = () => {
                         <div className="delayed-text typing_response message ai-message-msg">The company invests the most in equity investments (securities and privately held companies), totaling $1,834 million. This represents approximately 88% of the net income.</div>
                     </div>
                 </div>
-
+s
                 <div className="pitch-element">
                     <div className="pitch-element-body">
 
