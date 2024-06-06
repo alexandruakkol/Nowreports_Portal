@@ -534,6 +534,7 @@ form label{
 #chat-bar{
     padding: 0.7rem;
     display: flex;
+    height: 80px;
 }
 .iframe-cover {/* To fix resizing sections over the iframe */
     position: absolute;
@@ -640,6 +641,7 @@ form label{
 }
 #chat-body{
     overflow-y: auto;
+    height: 100%;
 }
 .loading-msg{
     animation: pulse 1s infinite;
@@ -1332,6 +1334,30 @@ form label{
     z-index: 5;
     width: 90%;
     height: 100%;
+}
+#empty-convo{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    height: 100%;
+    padding:10%;
+}
+.empty-convo-text{
+    font-family: 'Inter';
+    font-size: large;
+    font-size: 1.1rem;
+}
+.genreport-btn{
+    border:1px solid grey;
+    padding:10px;
+    border-radius: 6px;
+}
+.genreport-btn:hover{
+    cursor:pointer;
+    background-color: var(--SIDEBAR-DARK);
+    color:white;
 }
 @media only screen and (min-width: 50px){
     .feature-cardtext{

@@ -180,10 +180,23 @@ const Conversation = (props) => {
         setLink(`${window.appdata.API_ADDR}/lastreport/${cik}`);
     }
     
+    async function callReport(){
+        try{
+            if(!reportData?.filingid) throw new Error('Code 8 error');
+            await axios.get(`${window.appdata.API_ADDR}/report?filingID=${reportData?.filingid}`)
+        } catch(err){ console.log(err); }
+    }
+
     function renderMessages(){
-        if(!convo.length) return <></>
+        if(!convo.length) return (
+            <div id="empty-convo" >
+                <p className="empty-convo-text">
+                    <button onClick={callReport} className="clickable genreport-btn">Generate a CEO Chat report</button> or ask your own questions in the input below
+                </p>
+            </div>
+        )
         return (
-            <>
+            <div id="chat-body" ref={endOfChatRef} >
                 {convo?.map(message => {
                     messageCounter++;
                     const rowtype = (message.agent === 'ai' ? 'ai-message-row' : 'user-message-row');
@@ -196,7 +209,7 @@ const Conversation = (props) => {
                                 </div>
                             </div>
                 })}
-            </>);
+            </div>);
     }    
 
     function sendMessage(msg, agent){
@@ -310,7 +323,7 @@ const Conversation = (props) => {
                     <Pane minSize={20} maxSize='80%' id="convo-pane-right">
                         <section className="convo-pane" id="chat-container">
                             
-                            <div id="chat-body" ref={endOfChatRef} >{
+                            {
                                 <>
 
                                     {renderMessages()}
@@ -320,7 +333,8 @@ const Conversation = (props) => {
                                         </div>
                                     </div>} */}
 
-                                </>}</div>
+                                </>}
+                            
                             <div id="chat-bar">
                                 <SendOutlined onClick={onMsgSend} id="msg-send-icon"/>
                                 <Input.TextArea 

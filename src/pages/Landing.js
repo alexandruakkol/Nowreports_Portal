@@ -225,7 +225,7 @@ const Landing = () => {
                         <div className="delayed-text typing_response message ai-message-msg">The company invests the most in equity investments (securities and privately held companies), totaling $1,834 million. This represents approximately 88% of the net income.</div>
                     </div>
                 </div>
-s
+
                 <div className="pitch-element">
                     <div className="pitch-element-body">
 
