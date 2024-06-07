@@ -14,7 +14,7 @@ const ScanReport = (props) => {
             <div className="async-headerline scanreport-scantype"><p>Type: <span className='scanreport-scantype-tag'>Critical Business Scan</span></p></div>
             <div className="headerline"><span><h3>{symboldata.name}</h3><h6>{symboldata.symbol}</h6></span></div>
             <div className="headerline"><h4>Nowreports AI Scan Report</h4></div>
-            
+                
             <div className="header-spacing"></div>
         </div>
         <div>{aidata.map((question, ix) => {

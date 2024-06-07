@@ -188,6 +188,7 @@ const Conversation = (props) => {
             if(!reportData?.filingid) throw new Error('Code 8 error');
             setIsAIReportLoading(true);
             let report_data = (await axios.get(`${window.appdata.API_ADDR}/report?filingID=${reportData?.filingid}`))?.data;
+            if(report_data.length) setCREDITS(CREDITS-2); //TODO: move this cost to come from the backend
             setIsAIReportLoading(false);
             setAIReportData(report_data);
             setMode('aireport');
