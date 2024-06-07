@@ -5,7 +5,6 @@ import { BsDribbble, BsFacebook, BsGithub, BsInstagram, BsTwitter } from 'react-
 const r_Footer = (props) => {
 
   const fn_goto_about = props.fn_goto_about || (()=>{});
-
   return (
     <>
     <Footer.Divider />

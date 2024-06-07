@@ -1,17 +1,16 @@
 import { useState, useRef, useEffect } from 'react'
 import Footer from '../components/Footer';
-import { HiOutlineChevronDoubleDown } from "react-icons/hi";
 import { FaRegCheckCircle } from "react-icons/fa";
 import { Card, Button, List } from 'flowbite-react';
 import axios from 'axios';
 import Thankyou from '../components/Thankyou';
-import { Input } from 'antd';
+import { Input, Divider, Modal } from 'antd';
 import {Navbar} from 'readyui';
 import { LuPlay } from "react-icons/lu";
 import { IoCheckmarkDone } from "react-icons/io5";
 import ReactPlayer from 'react-player/lazy'
-import { Modal } from 'antd';
-
+import PitchCard from '../components/PitchCard';
+import PitchcardList from '../components/PitchcardList';
 
 //import {Navbar} from '../components/Navbar';
 
@@ -98,8 +97,10 @@ const Landing = () => {
             axios.post(`${window.appdata.API_ADDR}/feedback`, obj);   
         }
         setIsSentFeatures(true);
-    }
+    } 
 
+    const pitchcardTags_techniques = ['financial metric recognition and computation', 'NLP analysis and classificiation'];
+    const pitchcardTags_scans = ['key contracts', 'lawsuits', 'new ventures'];
 
     const items = [
         <span className={`nav-button highlight-anim red-anim-light ${(selectedNavbar === 'about') && 'selected-button'}`} goto='about' ref={aboutRef} onClick={onNavbarSectionChange}>About Us</span>,
@@ -108,8 +109,8 @@ const Landing = () => {
     ]
 
     const cta = <div className="flex-row" style={{gap:'15px'}}>   
-                    <button id="login-btn" onClick={() => {window.location.pathname='/login'}}>Log in</button>
-                    <button id="nowrep-menu" className="nowrep-signup" type="disabled" 
+                    <button id="login-btn" className="highlight-anim red-anim-light" onClick={() => {window.location.pathname='/login'}}>Log in</button>
+                    <button id="nowrep-menu" className="nowrep-signup darken-button" type="disabled" 
                         onClick={() => {window.location.pathname='/signup'}}>
                         Sign up
                     </button>
@@ -143,13 +144,13 @@ const Landing = () => {
         {/* ----------------- PITCH MODE ----------------- */}
 
         <section id="pitch" mode="pitch" className={`landing-section ${mode == 'pitch' ? 'active' : ''}` } role="region" aria-label="Main section">
-            <Modal cancelButtonProps={{hidden:'true'}}width={'90vw'} id="demo-vid-container" open={isModalOpen} onOk={handleVidOK} onCancel={handleVidCancel}>
+            <Modal cancelButtonProps={{hidden:'true'}} width={'90vw'} id="demo-vid-container" open={isModalOpen} onOk={handleVidOK} onCancel={handleVidCancel}>
                 <ReactPlayer width={'100%'} height={'83vh'} url='https://ceochat.nowreports.com/api/demo_video.mp4' controls='true' playing='true'/>
             </Modal>
-            <div className="heading-element">
+            <div className="heading-element custom-purple-bkg">
                 <div className="heading-container">
                     <div className="heading heading-title text-center">
-                        <p>Stock research</p><p>just got better</p><span className="blue-text-accent-commented">  </span></div>
+                        <p>Stock research</p><p>done better</p><span className="blue-text-accent-commented">  </span></div>
                         <p className="text-medium text-center heading-secondary text-white80">Chat with the virtual CEO of a public company.</p>
                     {/* <div className="heading heading-subtitle text-center">with state of the art AI.</div> */}
                     <div className="heading-subtitle text-center heading-third text-medium">
@@ -167,12 +168,12 @@ const Landing = () => {
                 </div>
                 <div className="flex-row main-cta-container">
                     <div id="main-goto-portal">
-                            <a id="goto-portal" className="nowrep-button" type="disabled" href="/signup">
+                            <a id="goto-portal" className="nowrep-button darken-button" type="disabled" href="/signup">
                                 Get Started for free
                             </a>
                         </div>
                         <div id="main-goto-portal">
-                            <a id="main-goto-demo" className="nowrep-button" type="disabled" onClick={()=>setIsModalOpen(true)}>
+                            <a id="main-goto-demo" className="nowrep-button darken-button" type="disabled" onClick={()=>setIsModalOpen(true)}>
                                 <LuPlay></LuPlay>See a demo video
                             </a>
                     </div>
@@ -190,9 +191,33 @@ const Landing = () => {
                 <img src="skeletons/main_sk.svg" className="main-sk"></img>
                 <img src="skeletons/side_sk.svg" className="main-sk"></img>
             </div>
+            
+            <div className="activity-pitch flex-column">
+                <div className="main-pitch heading heading-title text-center">What we do</div>
+                <div className="text-medium text-center">
+                {/* <Divider></Divider> */}
+                        We provide factual business insights through our highly specialized, fine-tuned AI models.
+                </div>
+                <div className="pitchcard-container">
+                        <PitchcardList>
+                            <PitchCard title="Knowledge base">We centralize data from various SEC filings and earnings call transcripts, and use it to build our AI-oriented knowledge base.</PitchCard>
+                            <PitchCard title="Auto updates">We sustain a continous process of keeping the knowledge base up to date with the 500 largest U.S companies. You always get the latest information, all in one place.</PitchCard>
+                            <PitchCard title="AI models">We use proprietary AI models with a deep understanding of financial reporting, accounting, and business.</PitchCard>
+                            <PitchCard title="AI augmentation" tags={pitchcardTags_techniques}>We integrate unique techniques that help generate the most accurate and insightful answers.</PitchCard>
+                            <PitchCard title="Business scans" tags={pitchcardTags_scans}>Our AI scanner is able to generate a report highliting key business concerns.</PitchCard>
+                        </PitchcardList>
+                </div>
+            </div>
+
+            <div className="activity-pitch activity-pitch2 flex-column">
+                <div className="main-pitch heading heading-title text-center gain-title">What you gain</div>
+                <div className="text-medium text-center">
+                    {/* <Divider></Divider> */}
+                        The ability to ask quick questions to a virtual CEO of a company, and get instant answers.
+                </div>
+            </div>
 
             <div className="pitch-flex1 pitch-flex">
-
                 <div className="pitch-element">
                     <div className="pitch-element-body">
                         <div className="pitch-title">Quickly find business weakpoints.</div>
@@ -240,7 +265,7 @@ const Landing = () => {
             </div>
 
             <div className="why-pitch-element flex-column">
-                <div className="why-pitch-title">Why investors love our AI tool</div>
+                <div className="why-pitch-title main-pitch heading heading-title text-center gain-title">Why investors love our AI tool</div>
                 <div className="flex-row why-pitch-container" style={{'justifyContent': 'center'}}>
                     <div>
                         <ul>
@@ -267,7 +292,7 @@ const Landing = () => {
                         <div style={{marginTop:'30px', marginBottom:'30px'}}>
                             <p className="text-smallm text-center text-white80">Get started for free, and upgrade later for $20 per month</p>
                         </div>
-                        <a id="goto-portal" className="nowrep-button" type="disabled" href="/signup">
+                        <a id="goto-portal" className="nowrep-button darken-button" type="disabled" href="/signup">
                             Sign up now
                         </a>
                     </div>

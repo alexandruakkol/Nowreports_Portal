@@ -1,6 +1,6 @@
 import React, {useEffect, useState, useRef, useContext} from 'react'
 import axios from 'axios';
-import {useParams, useNavigate} from 'react-router-dom';
+import { useNavigate} from 'react-router-dom';
 import {Input} from 'antd';
 import SplitPane, { Pane } from 'split-pane-react';
 import 'split-pane-react/esm/themes/default.css';
@@ -9,7 +9,7 @@ import {SendOutlined} from '@ant-design/icons';
 import {AuthContext} from '../App';
 import { sendLog } from '../utils';
 import FeedbackModal from '../components/FeedbackModal';
-
+import ScanReport from '../components/ScanReport';
 const Conversation = (props) => {
 
     const {convoID} = props;
@@ -24,6 +24,9 @@ const Conversation = (props) => {
     const [isReportLoading, setIsReportLoading] = useState(false);
     const [isOpenErrorModal, setIsOpenErrorModal] = useState(false);
     const [isOpenSuggestionModal, setIsOpenSuggestionModal] = useState(false);
+    const [isAIReportLoading, setIsAIReportLoading] = useState(false);
+    const [AIReportData, setAIReportData] = useState([]);
+    const [mode, setMode] = useState('chat');
 
     const navigate = useNavigate();
     const endOfChatRef = useRef(null);
@@ -183,16 +186,39 @@ const Conversation = (props) => {
     async function callReport(){
         try{
             if(!reportData?.filingid) throw new Error('Code 8 error');
-            await axios.get(`${window.appdata.API_ADDR}/report?filingID=${reportData?.filingid}`)
-        } catch(err){ console.log(err); }
+            setIsAIReportLoading(true);
+            let report_data = (await axios.get(`${window.appdata.API_ADDR}/report?filingID=${reportData?.filingid}`))?.data;
+            setIsAIReportLoading(false);
+            setAIReportData(report_data);
+            setMode('aireport');
+        } catch(err){ 
+            console.log(err);
+            setIsAIReportLoading(false);
+            //TODO: centralized error show here
+        }
     }
 
+
     function renderMessages(){
+
+        /// CHAT MODE
+
         if(!convo.length) return (
             <div id="empty-convo" >
-                <p className="empty-convo-text">
-                    <button onClick={callReport} className="clickable genreport-btn">Generate a CEO Chat report</button> or ask your own questions in the input below
-                </p>
+                <div className="empty-convo-text">
+                    <span><button onClick={callReport} className="clickable genreport-btn">Generate a business scan report</button>, or ask a question below</span>
+                    <div className={`report-loading-anim-container flex-row ${isAIReportLoading || 'hidden'}`}>
+                        <span>Your document is being generated</span>
+                        <div id="">
+                            <div className="sk-folding-cube sk-folding-cube-small">
+                                <div className="sk-cube1 sk-cube"></div>
+                                <div className="sk-cube2 sk-cube"></div>
+                                <div className="sk-cube4 sk-cube"></div>
+                                <div className="sk-cube3 sk-cube"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         )
         return (
@@ -209,7 +235,8 @@ const Conversation = (props) => {
                                 </div>
                             </div>
                 })}
-            </div>);
+            </div>
+        );
     }    
 
     function sendMessage(msg, agent){
@@ -235,7 +262,7 @@ const Conversation = (props) => {
         return datestring;
     }
     
-    return (
+        return (
         <div id="convo-container">
             <FeedbackModal isOpen={isOpenSuggestionModal} setIsOpen={setIsOpenSuggestionModal} title={'Write us a suggestion'}></FeedbackModal>
             <FeedbackModal isOpen={isOpenErrorModal} setIsOpen={setIsOpenErrorModal} title={'Report a problem'}></FeedbackModal>
@@ -314,25 +341,24 @@ const Conversation = (props) => {
                             {isReportShown ? <HTMLviewer link={link} title={symbol}></HTMLviewer> 
                             : <div id="convo-pane-left-beforeloading">
                                 <button onClick={()=>{setIsReportShown(true)}} type="button" className="h-12 py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
-                                    Read report</button>
+                                    Read annual report</button>
                             </div>}
                         </section> 
         
                     </Pane>
 
                     <Pane minSize={20} maxSize='80%' id="convo-pane-right">
-                        <section className="convo-pane" id="chat-container">
-                            
+                        <div className="convo-pane-right-container">
+                            {mode == 'chat' &&
+                            <div className="convo-pane" id="chat-container">
                             {
                                 <>
-
                                     {renderMessages()}
                                     {/* {isWaiting && <div id="messages-container">
                                         <div className='ai-message-row'>
                                             <div className={`message ai-message-msg loading-msg`}>...</div>
                                         </div>
                                     </div>} */}
-
                                 </>}
                             
                             <div id="chat-bar">
@@ -347,14 +373,19 @@ const Conversation = (props) => {
                                     rows={1}
                                 />
                             </div>
+                            </div>
+                            }
+                            {
+                                mode == 'aireport' && <ScanReport aidata={AIReportData} symboldata={reportData}></ScanReport>
+                            }
+                        </div>
                         
-                        </section>
                     </Pane>
                 </SplitPane>
             </div>
-        </div>
-        
-    )
+        </div>           
+    );
+
 }
 
 export default Conversation;

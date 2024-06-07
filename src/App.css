@@ -22,6 +22,7 @@
     --MAIN-ACCENT:#4dbbac;
     --ACCENT-PURPLE:#7059D0;
     --ACCENT-PURPLE20:#7159d04c;
+    --ACCENT-PURPLE-DARK:#7158D0;
 }
 body{
     text-rendering: optimizeSpeed;
@@ -123,6 +124,7 @@ body{
 #Main{
     flex:20;
     display:flex;
+    flex-direction: column;
 }
 .Main-noNavbar{
     height:100vh !important;
@@ -337,10 +339,6 @@ form label{
     transform: translateY(-16.5vh); /* Adjust the value to control how much the div moves up */
     transition-duration:1000ms;
 }
-.bkg{
-    position:absolute;
-    z-index: 0;
-}
 .fadeOut{
     visibility: hidden;
     opacity: 0;
@@ -407,14 +405,6 @@ form label{
     font-weight: 400;
     gap:5px;
 }
-#main-text-container {
-    position: relative; /* Allows absolute positioning relative to this container */
-    display: inline-block; /* Fit the width to the content */
-}
-
-#main-text-container p {
-    margin: 0; /* Remove default margin */
-}
 .main-text-p{
     font-weight: 600;
     font-size: 5rem !important;
@@ -453,6 +443,7 @@ form label{
 #convo-container{
     display: flex;
     width:100%;
+    height: 100%;
 }
 .sidebar-section{
     flex:1;
@@ -496,6 +487,9 @@ form label{
 }
 #convo-pane-right{
     border-left:5px solid rgb(221, 221, 221);
+}
+.convo-pane-right-container{
+    height: 100vh;
 }
 .sidebar-subscribe-button{
     display: flex;
@@ -642,6 +636,9 @@ form label{
 #chat-body{
     overflow-y: auto;
     height: 100%;
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: column;
 }
 .loading-msg{
     animation: pulse 1s infinite;
@@ -670,7 +667,7 @@ form label{
 .why-pitch-element{
     padding: 100px 6vw 100px 6vw;
     width: 100%;
-    gap:30px;
+    gap: 15px;
 }
 .why-li{
     margin-top: 20px;
@@ -678,13 +675,16 @@ form label{
 }
 .why-pitch-title{
     text-align: center;
-    font-weight: bold;
-    font-size: 3.6rem;
+    font-size: 4.7rem !important;
 }
 .why-li-icon{
     font-size: 25px;
     font-weight: 900;
     color:var(--ACCENT-PURPLE);
+}
+.sk-folding-cube.sk-folding-cube-small{
+    width: 17px !important;
+    height: 17px !important;
 }
 .sk-folding-cube {
     margin: 20px auto;
@@ -918,7 +918,7 @@ form label{
     /* padding: 0px 10px 0px 10px; */
     display: none;
     height: 98%;
-    position: absolute;
+    /* position: absolute; */
     top: 100%; /* Start below the view */
     left: 0;
     transition: top 0.5s; /* Adjust the speed of the animation */
@@ -957,9 +957,7 @@ form label{
     .pitch-flex1 .pitch-element:nth-child(5){
     background-color: #4D8CBB1c;  
   }
-  .pitch-title{
-    font-weight: 900;
-  }
+
   .typing-anim1{
     font-weight: 400;
     letter-spacing: -0.7px;
@@ -994,12 +992,14 @@ form label{
 
   }
   .heading-element{
-    background-image: url('../public/bkg.svg');
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     z-index: 1;
     align-items: center;
+  }
+  .custom-purple-bkg{
+    background-image: url('../public/bkg.svg');
   }
   .heading-container{
     padding-bottom: 4vh;
@@ -1080,17 +1080,6 @@ form label{
 }
 .pitch-line{
     display:flex;   
-}
-.pitch-agent{
-    right: 18vw;
-    position: relative;
-    font-size:2.7vw;
-    text-align: center;
-    place-self:end;
-    font-weight: bold;
-}
-.pitch-agent-ai{
-    right: 5vw;
 }
 .pitch-text{
     font-size: 2vw;
@@ -1271,7 +1260,7 @@ form label{
     align-items: center;
 }
 .hidden{
-    display:'none';
+    display: none;
 }
 #main-desktop-sk{
     bottom:4vh;
@@ -1286,7 +1275,7 @@ form label{
     justify-content: center;
 }
 .nowrep-signup{
-    background-color:#000010;
+    background-color:var(--ACCENT-PURPLE-DARK);
     font-weight: 500;
     text-wrap: nowrap;
     display: flex;
@@ -1297,6 +1286,12 @@ form label{
     box-shadow: inset 0 -2.5px 2px 0 rgba(249, 249, 249, 0.34);
     color: white;
     padding: 10px 30px 10px 30px;
+}
+.darken-button:hover{
+    cursor:pointer;
+    /* background-color:#634eb7; */
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3); /* Darken effect */
+    filter: brightness(0.95); /* Darken effect */
 }
 .final-ctadiv-container{
     margin: 0 6vw 0 6vw;
@@ -1359,6 +1354,30 @@ form label{
     background-color: var(--SIDEBAR-DARK);
     color:white;
 }
+.main-pitch{
+    width: 100% !important;
+    max-width: 100% !important;
+}
+.activity-pitch{
+    display: flex;
+    gap: 3rem;
+    padding: 0px 20px 0px 20px;
+
+}
+.activity-pitch2{
+    margin-bottom:150px;
+}
+.prow{
+    justify-content: center;
+}
+.gain-title{
+    margin: 230px 0px 0px 0px;
+}
+.report-loading-anim-container{
+    gap:15px;
+    font-size: 14px;
+    padding-left: 10px;
+}
 @media only screen and (min-width: 50px){
     .feature-cardtext{
         font-size:90%;
@@ -1408,7 +1427,8 @@ form label{
         white-space: normal;
     }
     .pitch-title{
-        font-weight: 900;
+        font-weight: 600;
+        letter-spacing: -3px;
         font-size: 8vw;
         margin-bottom: 50px;
     }
@@ -1486,7 +1506,6 @@ form label{
         white-space: normal;
     }
     .pitch-title{
-        font-weight: 900;
         font-size: 5.5vw;
     }
     .typing,.delayed-text{
@@ -1567,7 +1586,6 @@ form label{
         text-wrap: wrap;
     }
     .pitch-title{
-        font-weight: 900;
         font-size: 5vw; 
     }
     .typing,.delayed-text{
@@ -1645,7 +1663,6 @@ form label{
         white-space: nowrap;
     }
     .pitch-title{
-        font-weight: 900;
         font-size: 4.5vw;
     }
     .typing,.delayed-text{

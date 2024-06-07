@@ -1,0 +1,24 @@
+.pitchcardlist{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 17px;
+
+}
+.pitchcardrow{
+    display:flex;
+    justify-content: center;
+    gap: 17px;
+}
+
+@media only screen and (min-width: 50px){
+    .pitchcardrow{
+        flex-direction: column;
+    }
+
+}
+@media only screen and (min-width: 992px){
+    .pitchcardrow{
+        flex-direction: row;
+    }
+}

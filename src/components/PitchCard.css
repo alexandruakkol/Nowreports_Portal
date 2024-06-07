@@ -1,0 +1,70 @@
+.card{
+    
+}
+.pitchcard{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #E3DDFC;
+    border-radius: 10px;
+    border: 1.5px solid #7058d04b;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 10px;
+    transition: all 0.3s ease;
+    height: 23vw;
+    overflow: hidden;
+    max-width: 380px;
+    max-height: 330px;
+    min-height: 330px;
+}
+/* card effect hover effects*/
+.pitchcard:hover{
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+.pitchcard-text{
+    flex: 1;
+    overflow: auto; /* Add scrollbars for overflow content */
+    word-wrap: break-word; /* Break words to fit within the div */
+    text-align: center;
+    align-content: center;
+    font-size: 1.2rem;
+}
+.pitchcard-title{
+    font-weight: bold;
+    text-align: center;
+    font-size: 1.4rem;
+}
+.pitchcard-tag{
+    background: #c3bdd9b3;
+    place-self: center;
+    font-size: 1rem;
+    color: #000000;
+    border: 1px solid #8e899eb3;
+    border-radius: 15px;
+    padding: 0px 10px 0px 10px;
+    margin: 4px;
+    text-align: center;
+}
+.pitchcard-tag-container{
+    display:flex;
+    flex-direction: column;
+}
+@media only screen and (min-width: 50px){
+    .pitchcard{
+        width: 75vw;
+        max-width: 75vw;
+        min-height: 23vw;
+    }
+}
+@media only screen and (min-width: 992px){
+    .pitchcard,.pitchcard-title{
+        width: 28vw;
+        max-width: 380px;
+    }
+    .pitchcard{
+        min-height: 330px;
+    }
+}
