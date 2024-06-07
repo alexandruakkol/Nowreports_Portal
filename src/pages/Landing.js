@@ -194,26 +194,24 @@ const Landing = () => {
             
             <div className="activity-pitch flex-column">
                 <div className="main-pitch heading heading-title text-center">What we do</div>
-                <div className="text-medium text-center">
-                {/* <Divider></Divider> */}
-                        We provide factual business insights through our highly specialized, fine-tuned AI models.
+                <div className="text-center pitch-subtitle">
+                    We provide factual business insights through our highly specialized, fine-tuned AI models.
                 </div>
                 <div className="pitchcard-container">
-                        <PitchcardList>
-                            <PitchCard title="Knowledge base">We centralize data from various SEC filings and earnings call transcripts, and use it to build our AI-oriented knowledge base.</PitchCard>
-                            <PitchCard title="Auto updates">We sustain a continous process of keeping the knowledge base up to date with the 500 largest U.S companies. You always get the latest information, all in one place.</PitchCard>
-                            <PitchCard title="AI models">We use proprietary AI models with a deep understanding of financial reporting, accounting, and business.</PitchCard>
-                            <PitchCard title="AI augmentation" tags={pitchcardTags_techniques}>We integrate unique techniques that help generate the most accurate and insightful answers.</PitchCard>
-                            <PitchCard title="Business scans" tags={pitchcardTags_scans}>Our AI scanner is able to generate a report highliting key business concerns.</PitchCard>
-                        </PitchcardList>
+                    <PitchcardList>
+                        <PitchCard title="Knowledge base">We centralize data from various SEC filings and earnings call transcripts, and use it to build our AI-oriented knowledge base.</PitchCard>
+                        <PitchCard title="Auto updates">We sustain a continous process of keeping the knowledge base up to date with the 500 largest U.S companies. You always get the latest information, all in one place.</PitchCard>
+                        <PitchCard title="AI models">We use proprietary AI models with a deep understanding of financial reporting, accounting, and business.</PitchCard>
+                        <PitchCard title="AI augmentation" tags={pitchcardTags_techniques}>We integrate unique techniques that help generate the most accurate and insightful answers.</PitchCard>
+                        <PitchCard title="Business scans" tags={pitchcardTags_scans}>Our AI scanner is able to generate a report highliting key business concerns.</PitchCard>
+                    </PitchcardList>
                 </div>
             </div>
 
             <div className="activity-pitch activity-pitch2 flex-column">
                 <div className="main-pitch heading heading-title text-center gain-title">What you gain</div>
-                <div className="text-medium text-center">
-                    {/* <Divider></Divider> */}
-                        The ability to ask quick questions to a virtual CEO of a company, and get instant answers.
+                <div className="pitch-subtitle text-center">
+                    The ability to ask quick questions to a virtual CEO of a company, and get instant answers.
                 </div>
             </div>
 

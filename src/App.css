@@ -675,7 +675,6 @@ form label{
 }
 .why-pitch-title{
     text-align: center;
-    font-size: 4.7rem !important;
 }
 .why-li-icon{
     font-size: 25px;
@@ -1162,7 +1161,7 @@ form label{
     font-size:1rem;
   }
   #ending-pitch-filler{
-    height: 10vh;
+    height: 7vh;
   }
   #about-container{
     display: flex;
@@ -1314,6 +1313,9 @@ form label{
 .why-pitch-container{
     display:flex;
 }
+.why-pitch-title{
+    font-size: 3rem !important;
+}
 .feature-card{
     min-height: 260px;
 }
@@ -1397,6 +1399,9 @@ form label{
     .why-pitch-container{
         flex-direction:column;
     }
+    .why-pitch-title{
+        font-size: 3.5rem !important;
+    }
     .nowrep-button{
         height: 55px;
         width: 47vw;
@@ -1455,6 +1460,9 @@ form label{
     }
     #nowrep-menu,#login-btn{
         font-size:0.85rem;
+    }
+    .pitch-subtitle{
+        font-size: 1.4rem;
     }
 }
 @media only screen and (min-width: 576px){
@@ -1533,6 +1541,9 @@ form label{
     #nowrep-menu,#login-btn{
         font-size:0.85rem;
     }
+    .pitch-subtitle{
+        font-size: 1.5rem;
+    }
 }
 @media only screen and (min-width: 768px){
     .feature-cardtext{
@@ -1552,6 +1563,9 @@ form label{
     }
     .why-pitch-container{
         flex-direction:row;
+    }
+    .why-pitch-title{
+        font-size: 3.8rem !important;
     }
     .nowrep-button{
         height: 65px;
@@ -1613,6 +1627,9 @@ form label{
     #nowrep-menu,#login-btn{
         font-size:1.1rem;
     }
+    .pitch-subtitle{
+        font-size: 1.6rem;
+    }
 }
 @media only screen and (min-width: 992px){
     .feature-cardtext{
@@ -1632,6 +1649,9 @@ form label{
     }
     .why-pitch-container{
         flex-direction:row;
+    }
+    .why-pitch-title{
+        font-size: 4.7rem !important;
     }
     .nowrep-button{
         height: 70px;
@@ -1689,6 +1709,9 @@ form label{
     }
     #nowrep-menu,#login-btn{
         font-size:1.1rem;
+    }
+    .pitch-subtitle{
+        font-size: 1.7rem;
     }
 }
 @media only screen and (max-height: 800px){
