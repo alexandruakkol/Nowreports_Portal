@@ -1,10 +1,10 @@
 import { useState, useRef, useEffect } from 'react'
 import Footer from '../components/Footer';
 import { FaRegCheckCircle } from "react-icons/fa";
-import { Card, Button, List } from 'flowbite-react';
+import { Card, Button } from 'flowbite-react';
 import axios from 'axios';
 import Thankyou from '../components/Thankyou';
-import { Input, Divider, Modal } from 'antd';
+import { Input, Modal } from 'antd';
 import {Navbar} from 'readyui';
 import { LuPlay } from "react-icons/lu";
 import { IoCheckmarkDone } from "react-icons/io5";

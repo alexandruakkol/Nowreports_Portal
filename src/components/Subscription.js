@@ -7,7 +7,6 @@ import {AuthContext} from '../App';
 const Subscription = () => {
 
     const [products, setProducts] = useState([]);
-    const [price, setPrice] = useState(7.99);
     const [message, setMessage] = useState();
     const {FB_USER} = useContext(AuthContext);
 

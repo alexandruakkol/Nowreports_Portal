@@ -1,6 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { AppstoreOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons';
-import { Menu, Avatar, Popover, Button } from 'antd';
+import { Avatar, Popover } from 'antd';
 import {AuthContext} from '../App';
 import {LogoutOutlined} from '@ant-design/icons';
 import { fb_signOut } from '../firebase';

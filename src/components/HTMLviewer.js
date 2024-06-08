@@ -1,6 +1,5 @@
-import {useEffect, useState, memo, useRef} from 'react'
+import {useEffect, useState, memo} from 'react'
 import { PlusOutlined, MinusOutlined, RedoOutlined } from '@ant-design/icons';
-import axios from 'axios';
 
 const HTMLviewer = (props) => {
     const {link, title} = props;

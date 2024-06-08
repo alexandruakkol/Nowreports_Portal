@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useContext} from 'react'
+import React, {useState, useContext} from 'react'
 import {
   createBrowserRouter,
   RouterProvider,
@@ -6,7 +6,7 @@ import {
 } from "react-router-dom";
 import Old_navbar from './Old_navbar';
 import Settings from '../pages/Settings';
-import { AutoComplete, Input, Dropdown } from 'antd';
+import { AutoComplete, Input } from 'antd';
 import axios from 'axios';
 import { AuthContext } from '../App';
 import { generateID } from '../etc';

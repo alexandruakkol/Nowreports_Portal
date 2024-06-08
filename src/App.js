@@ -9,7 +9,6 @@ import { onAuthStateChanged } from 'firebase/auth';
 import axios from 'axios';
 import Signup from './pages/Signup';
 import Landing from './pages/Landing';
-import { WithNavbar } from './etc';
 import { sendLog } from './utils';
 import {FB_err_handler} from './utils';
 import { newAccountSequence, FBError } from './account_operations';

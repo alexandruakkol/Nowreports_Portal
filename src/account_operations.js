@@ -1,14 +1,7 @@
-import {auth, googleSignup} from './firebase';
+import {auth} from './firebase';
 import { sendLog } from './utils';
 import axios from 'axios';
-import {signInWithEmailAndPassword, createUserWithEmailAndPassword} from 'firebase/auth';
-
-class AccSequence extends Error {
-    constructor(message) {
-      super(message); 
-      this.name = this.constructor.name;
-    }
-}
+import {createUserWithEmailAndPassword} from 'firebase/auth';
 
 class FBError extends Error {
     constructor(message) {
