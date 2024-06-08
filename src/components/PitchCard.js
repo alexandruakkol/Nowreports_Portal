@@ -7,7 +7,7 @@ return (
       <h3 className="pitchcard-title">{props.title}</h3>
       <p className="pitchcard-text">{props.children}</p>
       <div className="pitchcard-tag-container">
-        {props.tags && props.tags.map(tag => <div className="pitchcard-tag">{tag}</div>)}
+        {props.tags && props.tags.map((tag, ix) => <div key={ix} className="pitchcard-tag">{tag}</div>)}
       </div>
     </div>
   )

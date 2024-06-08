@@ -155,9 +155,8 @@ function DefPage(){
     <div id="main-flex">
       <div className='main-section' id="main-section-1"></div>
       <div className='main-section' id="main-section-2">
-        <img className="main-title-search" src="/CEOChat_text.png"></img>
+        <img className="main-title-search" src="/CEOChat_text.png" alt="CEOChat app name"></img>
         <AutoComplete  
-          size="large"
           options={options.map(x=>renderOption(x))}
           style={{width: '42vw'}}
           onSelect={onSelectCompany}

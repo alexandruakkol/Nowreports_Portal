@@ -144,8 +144,8 @@ const Landing = () => {
         {/* ----------------- PITCH MODE ----------------- */}
 
         <section id="pitch" mode="pitch" className={`landing-section ${mode == 'pitch' ? 'active' : ''}` } role="region" aria-label="Main section">
-            <Modal cancelButtonProps={{hidden:'true'}} width={'90vw'} id="demo-vid-container" open={isModalOpen} onOk={handleVidOK} onCancel={handleVidCancel}>
-                <ReactPlayer width={'100%'} height={'83vh'} url='https://ceochat.nowreports.com/api/demo_video.mp4' controls='true' playing='true'/>
+            <Modal cancelButtonProps={{hidden:true}} width={'90vw'} id="demo-vid-container" open={isModalOpen} onOk={handleVidOK} onCancel={handleVidCancel}>
+                <ReactPlayer width={'100%'} height={'83vh'} url='https://ceochat.nowreports.com/api/demo_video.mp4' controls={true} playing={true}/>
             </Modal>
             <div className="heading-element custom-purple-bkg">
                 <div className="heading-container">
@@ -185,11 +185,11 @@ const Landing = () => {
                 </div>
             </div>
 
-            <img src="skeletons/mobile_sk.svg" className="mobile-only main-sk"></img>
+            <img src="skeletons/mobile_sk.svg" className="mobile-only main-sk" alt="background pattern"></img>
             <div className="desktop-only main-sk" id="main-desktop-sk">
-                <img src="skeletons/side_sk.svg" className="main-sk"></img>
-                <img src="skeletons/main_sk.svg" className="main-sk"></img>
-                <img src="skeletons/side_sk.svg" className="main-sk"></img>
+                <img src="skeletons/side_sk.svg" className="main-sk" alt="background pattern"></img>
+                <img src="skeletons/main_sk.svg" className="main-sk" alt="background pattern"></img>
+                <img src="skeletons/side_sk.svg" className="main-sk" alt="background pattern"></img>
             </div>
             
             <div className="activity-pitch flex-column">
@@ -275,7 +275,7 @@ const Landing = () => {
                         </ul>
                     </div>
                     <div>
-                        <img src='/skeletons/secondary.svg'></img>
+                        <img src='/skeletons/secondary.svg' alt="background pattern"></img>
                     </div>
                 </div>
             </div>

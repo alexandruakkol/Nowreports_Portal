@@ -37,7 +37,7 @@ const PitchcardList = (props) => {
 
   return (
     <div className="pitchcardlist">
-        {rows.map(row => {return <div className="pitchcardrow"> 
+        {rows.map((row, ix) => {return <div key={ix} className="pitchcardrow"> 
             {row}
         </div>})}
     </div>

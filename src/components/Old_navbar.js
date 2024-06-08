@@ -12,7 +12,7 @@ const Old_navbar = () => {
 
   const {FB_USER} = useContext(AuthContext);
   const navigate = useNavigate();
-  console.log('1231231')
+
   const avatarContext = (
     <div id="avatar-context">
       <p className='avatar-context-option' onClick={()=>navigate('/settings')}>
@@ -43,7 +43,7 @@ const Old_navbar = () => {
   return (
     <nav className="Navbar">
       <div id="navbar-1" onClick={()=>navigate('/portal')}>
-        <img id="navbar-logo" src="CEOChat_combo_inline_black.png"></img>
+        <img id="navbar-logo" src="CEOChat_combo_inline_black.png" alt="CEOChat logo"></img>
       </div>
       {/* <Menu onClick={onClick} selectedKeys={[current]} mode="horizontal" items={items} /> */}
       <div id="navbar-2">
