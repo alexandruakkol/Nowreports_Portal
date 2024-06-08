@@ -6,7 +6,7 @@ const Navbar_out = (props) => {
     <nav id="signup-navbar" className="Navbar">
       <img id="signup-navbar-logo" src="CEOChat_combo.png" alt="CEOChat logo" onClick={()=>{window.location.href = window.location.origin}}></img>
      
-      {props?.page != 'login' && <span id="goto-portal" className="highlight-anim red-anim nowrep-button" 
+      {props?.page != 'login' && <span className="goto-portal highlight-anim red-anim nowrep-button" 
           onClick={()=>{window.location.href = window.location.origin+'/login'}} 
           type="disabled" goto="login">
           Go to Login

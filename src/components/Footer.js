@@ -16,15 +16,15 @@ const r_Footer = (props) => {
               alt="CEOChat logo"
             />
              <div>
-              <ul>Found a bug or have an idea?</ul>
-              <ul>Email us at support@nowreports.com</ul>
+              <p>Found a bug or have an idea?</p>
+              <p>Email us at support@nowreports.com</p>
             </div>
           </div>
           <div className="flex-row footer-categs">
             <div>
               <Footer.Title title="about" />
               <Footer.LinkGroup col>
-                <Footer.Link onClick={fn_goto_about} className="footer-link">CEOChat</Footer.Link>
+                <Footer.Link onClick={fn_goto_about} href="#" className="footer-link">CEOChat</Footer.Link>
               </Footer.LinkGroup>
             </div>
             {/* <div>

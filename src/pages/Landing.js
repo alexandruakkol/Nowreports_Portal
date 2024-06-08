@@ -109,8 +109,8 @@ const Landing = () => {
     ]
 
     const cta = <div className="flex-row" style={{gap:'15px'}}>   
-                    <button id="login-btn" className="highlight-anim red-anim-light" onClick={() => {window.location.pathname='/login'}}>Log in</button>
-                    <button id="nowrep-menu" className="nowrep-signup darken-button" type="disabled" 
+                    <button className="login-btn highlight-anim red-anim-light" onClick={() => {window.location.pathname='/login'}}>Log in</button>
+                    <button className="nowrep-menu nowrep-signup darken-button" type="disabled" 
                         onClick={() => {window.location.pathname='/signup'}}>
                         Sign up
                     </button>
@@ -128,16 +128,6 @@ const Landing = () => {
   return (
     <>
         <Navbar id="landing-navbar" large_logo={large_logo} small_logo={small_logo} items={items} cta_button={cta}></Navbar>
-
-        {/* <div id="navbar-mid-options">
-            <span className={`nav-button highlight-anim red-anim ${(selectedNavbar === 'about') && 'selected-button'}`} goto='about' ref={aboutRef} onClick={onNavbarSectionChange}>About Us</span>
-            <span className={`nav-button highlight-anim red-anim ${(selectedNavbar === 'pitch') && 'selected-button'}`} goto='pitch' ref={pitchRef} onClick={onNavbarSectionChange}>How we save you time</span>
-            <span className={`nav-button highlight-anim      ${(selectedNavbar === 'new-features') && 'selected-button'}`} goto='new-features' ref={featuresRef} onClick={onNavbarSectionChange}>New features</span>
-        </div>
-        
-        <a id="goto-portal" className="highlight-anim red-anim nowrep-button" type="disabled" href="/signup">
-            {mode == 'main' ? 'Go to Portal' : 'Try NowReports AI'}
-        </a> */}
 
         {/* ----------------- MAIN MODE ----------------- */}
 
@@ -168,7 +158,7 @@ const Landing = () => {
                 </div>
                 <div className="flex-row main-cta-container">
                     <div id="main-goto-portal">
-                            <a id="goto-portal" className="nowrep-button darken-button" type="disabled" href="/signup">
+                            <a className="goto-portal nowrep-button darken-button" type="disabled" href="/signup">
                                 Get Started for free
                             </a>
                         </div>
@@ -290,7 +280,7 @@ const Landing = () => {
                         <div style={{marginTop:'30px', marginBottom:'30px'}}>
                             <p className="text-smallm text-center text-white80">Get started for free, and upgrade later for $20 per month</p>
                         </div>
-                        <a id="goto-portal" className="nowrep-button darken-button" type="disabled" href="/signup">
+                        <a className="goto-portal nowrep-button darken-button" type="disabled" href="/signup">
                             Sign up now
                         </a>
                     </div>
@@ -298,9 +288,6 @@ const Landing = () => {
             </div>
 
             <div className="flex-row" style={{justifyContent:'center'}}>
-                {/* <div id="pitch-goto-portal" className="highlight-anim red-anim nowrep-button" goto="signup" onClick={onNavbarSectionChange}>
-                    Start NowReports AI
-                </div> */}
             </div>
             <div>
                 <Footer fn_goto_about={()=>setMode('about')}></Footer>
