@@ -635,10 +635,6 @@ form label{
 }
 #chat-body{
     overflow-y: auto;
-    height: 100%;
-    display: flex;
-    justify-content: flex-end;
-    flex-direction: column;
 }
 .loading-msg{
     animation: pulse 1s infinite;
