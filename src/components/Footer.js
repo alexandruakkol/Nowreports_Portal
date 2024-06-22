@@ -13,7 +13,8 @@ const r_Footer = (props) => {
           <div className="flex-column footer-logotext">
             <Footer.Brand
               src="CEOChat_combo_inline_black.png"
-              alt="CEOChat logo"
+              alt="CEO Chat logo"
+              style={{ height: '5rem'}}
             />
              <div>
               <p>Found a bug or have an idea?</p>

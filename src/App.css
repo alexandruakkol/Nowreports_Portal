@@ -54,7 +54,7 @@ body{
     font-size: 1.7rem;
 }
 .text-large{
-    font-size: 2.8rem;
+    font-size: 3rem !important;
 }
 .text-smallm{
     font-size: 1.3rem;
@@ -433,7 +433,7 @@ form label{
     cursor: pointer;
 }
 #navbar-logo{
-    height: 3.4rem;
+    height: 4.8rem;
 }
 #signup-navbar{
     width: 100%;
@@ -465,7 +465,7 @@ form label{
     width:100%;
 }
 #sidebar-upper{
-    margin-top:2.5vh;
+    margin-top:5vh;
 }
 .sidebar-hr{
 }
@@ -1367,7 +1367,13 @@ form label{
 .logo-text{
     font-size: 25px;
     font-weight: 500;
-    padding-left: 30px;
+    font-family: Kodchasan;
+}
+.main-logo{
+    padding-left:20px;
+}
+.convo-ceochat-logo{
+    font-size:28px;
 }
 @media only screen and (min-width: 50px){
     .feature-cardtext{

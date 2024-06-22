@@ -125,7 +125,7 @@ const Landing = () => {
     //     style={{width: '12rem'}}
     // alt="CEOChat Logo" src='./CEOChat_combo_inline_black.png'></img>; //TODO: onClick={onLogoClick}
 
-    const logo = <h2 className="logo-text">CEOChat</h2>;
+    const logo = <h2 className="logo-text main-logo">CEO Chat</h2>;
 
   return (
     <>

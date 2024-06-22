@@ -116,7 +116,7 @@ const Settings = () => {
           <div id="settings-list">
             {FB_USER.sub_exp ? 
               <div>
-                Access to CEOChat until <b>{FB_USER.sub_exp.split('T')[0]}</b>
+                Access to CEO Chat until <b>{FB_USER.sub_exp.split('T')[0]}</b>
                 <div><Button onClick={onCancelSubscription}>Cancel subscription</Button></div>
               </div>
               : <div>No subscription</div>

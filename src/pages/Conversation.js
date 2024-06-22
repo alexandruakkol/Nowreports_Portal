@@ -272,7 +272,7 @@ const Conversation = (props) => {
                 <div id="sidebar-upper" className="sidebar-section">
               
                     <div className="flex-row convo-logo-container darken-hover">
-                        <div id="logo" onClick={() => navigate('/portal')}><img src="/CEOChat_combo.png" alt="CEOChat logo"></img></div>
+                        <div id="logo" onClick={() => navigate('/portal')}> <h2 className="logo-text text-white convo-ceochat-logo">CEO Chat</h2></div>
                     </div>
                     <div className="convo-symboldata">
                         <div className="convo-symboldata-title">Symbol</div>

@@ -34,15 +34,16 @@ const Login = () => {
   const large_logo = <img  
       style={{width: '12rem'}}
       className="clickable"
-      alt="CEOChat Logo"
-      src='./CEOChat_combo_inline_black.png'
+      alt="CEO Chat Logo"
+      src='./ceochat_combo.png'
       onClick={()=>{window.location.pathname='/login'}}
     ></img>//TODO: centralize
 
 
   return (
     <div id="login-container">
-      <Navbar large_logo={large_logo} items={[]}></Navbar>
+      {/* <Navbar large_logo={large_logo} items={[]}></Navbar> */}
+      {large_logo}
       <div id="login-text1" className="text-center text-bold text-medium rethink">Sign in</div>
       <div id="login-signup-square">
         <Form
