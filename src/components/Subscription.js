@@ -56,7 +56,8 @@ const Subscription = () => {
                                 <p className="subscription-perks"><CheckOutlined className="subscribe-check-icon"/>Boost your productivity</p>
                                 <p className="subscription-perks"><CheckOutlined className="subscribe-check-icon"/>Gain valuable insights into your investments</p>
                                 <div className="subscription-details">
-                                    <p className="subscription-detail">2000 queries per month</p>
+                                    {/* //TODO: make this dynamic */}
+                                    <p className="subscription-detail">250 queries per month</p> 
                                 </div>
                             </div>
                         </div>)
