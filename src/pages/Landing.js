@@ -140,8 +140,8 @@ const Landing = () => {
             <div className="heading-element custom-purple-bkg">
                 <div className="heading-container">
                     <div className="heading heading-title text-center">
-                        <p>Stock research</p><p>done better</p><span className="blue-text-accent-commented">  </span></div>
-                        <p className="text-medium text-center heading-secondary text-white80">Chat with the virtual CEO of a public company, using AI</p>
+                        <p>Chat with the virtual CEO</p><p>of a company using AI</p><span className="blue-text-accent-commented">  </span></div>
+                        <p className="text-medium text-center heading-secondary text-white80">Get factual business insights through our highly specialized AI models.</p>
                     {/* <div className="heading heading-subtitle text-center">with state of the art AI.</div> */}
                     <div className="heading-subtitle text-center heading-third text-medium">
                         {/* <p className="text-smallm">
@@ -155,7 +155,7 @@ const Landing = () => {
                         </p> */}
                     </div>
              
-                </div>
+                </div> 
                 <div className="flex-row main-cta-container">
                     <div id="main-goto-portal">
                             <a className="goto-portal nowrep-button darken-button" type="disabled" href="/signup">
@@ -182,15 +182,15 @@ const Landing = () => {
                 <img src="skeletons/side_sk.svg" className="main-sk" alt="background pattern"></img>
             </div>
             
-            <div className="activity-pitch flex-column">
+            {/* <div className="activity-pitch flex-column">
                 <div className="main-pitch heading heading-title text-center">What we do</div>
                 <div className="text-center pitch-subtitle">
                     We provide factual business insights through our highly specialized, fine-tuned AI models.
                 </div>
 
-            </div>
+            </div> */}
             <div className="activity-pitch flex-column results-div">
-                <div className="main-pitch heading heading-title text-center">How we get better results than ChatGPT:</div>
+                <div className="main-pitch heading heading-title text-center">How we get better insights than ChatGPT:</div>
 
                 <div className="pitchcard-container">
                     <PitchcardList>
@@ -206,7 +206,7 @@ const Landing = () => {
             <div className="activity-pitch activity-pitch2 flex-column">
                 <div className="main-pitch heading heading-title text-center gain-title">What you gain</div>
                 <div className="pitch-subtitle text-center">
-                    The ability to ask quick questions to the virtual CEO of a company, and get instant answers.
+                    The ability to ask quick questions to the virtual CEO of a publicly traded company, and get instant answers.
                 </div>
             </div>
 
