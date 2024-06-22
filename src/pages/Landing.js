@@ -103,8 +103,8 @@ const Landing = () => {
     const pitchcardTags_scans = ['key contracts', 'lawsuits', 'new ventures'];
 
     const items = [
+        <span className={`nav-button highlight-anim red-anim-light ${(selectedNavbar === 'pitch') && 'selected-button'}`} goto='pitch' ref={pitchRef} onClick={onNavbarSectionChange}>Home</span>,
         <span className={`nav-button highlight-anim red-anim-light ${(selectedNavbar === 'about') && 'selected-button'}`} goto='about' ref={aboutRef} onClick={onNavbarSectionChange}>About Us</span>,
-        <span className={`nav-button highlight-anim red-anim-light ${(selectedNavbar === 'pitch') && 'selected-button'}`} goto='pitch' ref={pitchRef} onClick={onNavbarSectionChange}>How we save you time</span>,
         // <span className={`nav-button highlight-anim red-anim-light ${(selectedNavbar === 'new-features') && 'selected-button'}`} goto='new-features' ref={featuresRef} onClick={onNavbarSectionChange}>New features</span>,
     ]
 
@@ -141,7 +141,7 @@ const Landing = () => {
                 <div className="heading-container">
                     <div className="heading heading-title text-center">
                         <p>Stock research</p><p>done better</p><span className="blue-text-accent-commented">  </span></div>
-                        <p className="text-medium text-center heading-secondary text-white80">Chat with the virtual CEO of a public company.</p>
+                        <p className="text-medium text-center heading-secondary text-white80">Chat with the virtual CEO of a public company, using AI</p>
                     {/* <div className="heading heading-subtitle text-center">with state of the art AI.</div> */}
                     <div className="heading-subtitle text-center heading-third text-medium">
                         {/* <p className="text-smallm">
@@ -187,13 +187,18 @@ const Landing = () => {
                 <div className="text-center pitch-subtitle">
                     We provide factual business insights through our highly specialized, fine-tuned AI models.
                 </div>
+
+            </div>
+            <div className="activity-pitch flex-column results-div">
+                <div className="main-pitch heading heading-title text-center">How we get better results than ChatGPT:</div>
+
                 <div className="pitchcard-container">
                     <PitchcardList>
-                        <PitchCard title="Knowledge base">We centralize data from various SEC filings and earnings call transcripts, and use it to build our AI-oriented knowledge base.</PitchCard>
-                        <PitchCard title="Auto updates">We sustain a continous process of keeping the knowledge base up to date with the 500 largest U.S companies. You always get the latest information, all in one place.</PitchCard>
-                        <PitchCard title="AI models">We use proprietary AI models with a deep understanding of financial reporting, accounting, and business.</PitchCard>
-                        <PitchCard title="AI augmentation" tags={pitchcardTags_techniques}>We integrate unique techniques that help generate the most accurate and insightful answers.</PitchCard>
-                        <PitchCard title="Business scans" tags={pitchcardTags_scans}>Our AI scanner is able to generate a report highliting key business concerns.</PitchCard>
+                        <PitchCard title="Automatic updates">We sustain a continous process of keeping the knowledge base up to date with the 500 largest U.S companies. You always get the latest information, all in one place.</PitchCard>
+                        <PitchCard title="Business scans" tags={pitchcardTags_scans}>Our AI scanner is able to generate a report highliting key business concerns. The report model was co-created with finance experts.</PitchCard>
+                        <PitchCard title="AI models">Our specialized AI models are uniquely equipped with deep insights into financial reporting, accounting, and business.</PitchCard>
+                        <PitchCard title="AI augmentation" tags={pitchcardTags_techniques}>We integrate unique techniques that help generate the most accurate and insightful answers. Engineering alongside AI.</PitchCard>
+                        <PitchCard title="Specific knowledge base">We centralize data from various SEC filings and call transcripts, and use it to build our AI-oriented knowledge base.</PitchCard>
                     </PitchcardList>
                 </div>
             </div>
@@ -201,7 +206,7 @@ const Landing = () => {
             <div className="activity-pitch activity-pitch2 flex-column">
                 <div className="main-pitch heading heading-title text-center gain-title">What you gain</div>
                 <div className="pitch-subtitle text-center">
-                    The ability to ask quick questions to a virtual CEO of a company, and get instant answers.
+                    The ability to ask quick questions to the virtual CEO of a company, and get instant answers.
                 </div>
             </div>
 
@@ -257,10 +262,9 @@ const Landing = () => {
                 <div className="flex-row why-pitch-container" style={{'justifyContent': 'center'}}>
                     <div>
                         <ul>
-                            <li><div className="flex-row why-li text-smallm"><FaRegCheckCircle className="why-li-icon"/>It's faster and more accurate than searching on Google.</div></li>
-                            <li><div className="flex-row why-li text-smallm"><FaRegCheckCircle className="why-li-icon"/>It's much quicker than filtering through financial reports and public data.</div></li>
-                            <li><div className="flex-row why-li text-smallm"><FaRegCheckCircle className="why-li-icon"/>It's the closest thing to chatting with company management.</div></li>
-                            <li><div className="flex-row why-li text-smallm"><FaRegCheckCircle className="why-li-icon"/>Skip the corporate lingo. Good means good and bad means bad.</div></li>
+                            <li><div className="flex-row why-li text-smallm"><FaRegCheckCircle className="why-li-icon"/>It's faster and easier than digging through Google.</div></li>
+                            <li><div className="flex-row why-li text-smallm"><FaRegCheckCircle className="why-li-icon"/>It's the next best thing to chatting with company management.</div></li>
+                            <li><div className="flex-row why-li text-smallm"><FaRegCheckCircle className="why-li-icon"/>No more corporate lingo. We can identify the green flags and the red ones.</div></li>
                             <li><div className="flex-row why-li text-smallm"><FaRegCheckCircle className="why-li-icon"/>Get your information the exact way you want it. Phrase your concerns your way.</div></li>
                         </ul>
                     </div>
@@ -278,7 +282,8 @@ const Landing = () => {
                             <p className="text-white ctadiv-text1">business related questions</p>
                         </div>
                         <div style={{marginTop:'30px', marginBottom:'30px'}}>
-                            <p className="text-smallm text-center text-white80">Get started for free, and upgrade later for $20 per month</p>
+                            <p className="text-smallm text-center text-white80">Get started for free and subscribe for only $6.99 per month</p>
+                            {/* //todo: make this dynamic (price) */}
                         </div>
                         <a className="goto-portal nowrep-button darken-button" type="disabled" href="/signup">
                             Sign up now
