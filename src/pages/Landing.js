@@ -117,17 +117,19 @@ const Landing = () => {
                 </div>
               
 
-    const small_logo = <img 
-        style={{width: '3.3rem'}} 
-        alt="CEOChat Logo" src='./ceochat_logo.png'></img>; //TODO: onClick={onLogoClick}
+    // const small_logo = <img 
+    //     style={{width: '3.3rem'}} 
+    //     alt="CEOChat Logo" src='./ceochat_logo.png'></img>; //TODO: onClick={onLogoClick}
 
-    const large_logo = <img 
-        style={{width: '12rem'}}
-    alt="CEOChat Logo" src='./CEOChat_combo_inline_black.png'></img>; //TODO: onClick={onLogoClick}
+    // const large_logo = <img 
+    //     style={{width: '12rem'}}
+    // alt="CEOChat Logo" src='./CEOChat_combo_inline_black.png'></img>; //TODO: onClick={onLogoClick}
+
+    const logo = <h2 className="logo-text">CEOChat</h2>;
 
   return (
     <>
-        <Navbar id="landing-navbar" large_logo={large_logo} small_logo={small_logo} items={items} cta_button={cta}></Navbar>
+        <Navbar large_logo={logo} small_logo={logo} items={items} cta_button={cta}></Navbar>
 
         {/* ----------------- MAIN MODE ----------------- */}
 

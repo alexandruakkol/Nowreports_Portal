@@ -1033,7 +1033,7 @@ form label{
     gap: 20px;
 }
 .heading{
-    font-weight: 600;
+    font-weight: 650;
     cursor:default;
     user-select: none;
     letter-spacing: -3px;
@@ -1364,6 +1364,11 @@ form label{
     font-size: 14px;
     padding-left: 10px;
 }
+.logo-text{
+    font-size: 25px;
+    font-weight: 500;
+    padding-left: 30px;
+}
 @media only screen and (min-width: 50px){
     .feature-cardtext{
         font-size:90%;
@@ -1473,8 +1478,8 @@ form label{
         padding-top: 80px;
     }
     .heading{
-        font-size: 55px;
-        line-height: 75px;
+        font-size: 52px;
+        line-height: 58px;
     }
     .heading-secondary{
         font-size:16.6px;
@@ -1554,6 +1559,7 @@ form label{
     }
     .heading{
         font-size: 70px;
+        line-height: 80px;
     }
     .heading-secondary{
         font-size:22px;
@@ -1637,7 +1643,7 @@ form label{
     }
     .heading{
         font-size: 83px;
-        line-height: 75px;
+        line-height: 80px;
     }
     .heading-secondary{
         font-size:28px;
