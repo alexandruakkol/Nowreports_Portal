@@ -25,7 +25,7 @@ const r_Footer = (props) => {
             <div>
               <Footer.Title title="about" />
               <Footer.LinkGroup col>
-                <Footer.Link onClick={fn_goto_about} href="#" className="footer-link">CEOChat</Footer.Link>
+                <Footer.Link onClick={fn_goto_about} href="#" className="footer-link">CEO Chat</Footer.Link>
               </Footer.LinkGroup>
             </div>
             {/* <div>
@@ -46,7 +46,7 @@ const r_Footer = (props) => {
         </div>
         <Footer.Divider />
         <div className="w-full sm:flex sm:items-center sm:justify-between">
-          <Footer.Copyright href="#" by="CEOChat. All rights reserved." year={(new Date()).getFullYear()} />
+          <Footer.Copyright href="#" by="CEO Chat. All rights reserved." year={(new Date()).getFullYear()} />
           <div className="mt-4 flex space-x-6 sm:mt-0 sm:justify-center">
             {/* <Footer.Icon href="#" icon={BsFacebook} />
             <Footer.Icon href="#" icon={BsInstagram} />
