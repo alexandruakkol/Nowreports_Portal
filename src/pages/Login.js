@@ -32,12 +32,12 @@ const Login = () => {
   }
 
   const large_logo = <img  
-      style={{width: '12rem'}}
-      className="clickable"
-      alt="CEO Chat Logo"
-      src='./ceochat_combo.png'
-      onClick={()=>{window.location.pathname='/login'}}
-    ></img>//TODO: centralize
+    style={{width: '12rem'}}
+    className="clickable"
+    alt="CEO Chat Logo"
+    src='./ceochat_combo.png'
+    onClick={()=>{window.location.pathname='/login'}}
+  ></img>//TODO: centralize
 
 
   return (
