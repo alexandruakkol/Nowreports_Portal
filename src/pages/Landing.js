@@ -192,7 +192,7 @@ const Landing = () => {
 
             </div> */}
             <div className="activity-pitch flex-column results-div">
-                <div className="main-pitch heading heading-title text-center">How we get better insights than ChatGPT:</div>
+                <div className="main-pitch heading heading-title text-center">Why we're better at this than ChatGPT:</div>
 
                 <div className="pitchcard-container">
                     <PitchcardList>
