@@ -1,11 +1,11 @@
 import React, {useContext, useState} from 'react';
 import {Card, Input, Form, Button} from 'antd';
-import {AuthContext} from '../App';
-import { prettifyDate } from '../etc';
-import {auth} from '../firebase';
+import {AuthContext} from '../../../src/App';
+import { prettifyDate } from '../../../src/etc';
+import {auth} from '../../../src/firebase';
 import {updatePassword, reauthenticateWithCredential, EmailAuthProvider} from 'firebase/auth';
 import {CheckCircleOutlined} from '@ant-design/icons';
-import { sendLog } from '../utils';
+import { sendLog } from '../../../src/utils';
 import axios from 'axios';
 
 const Settings = () => {

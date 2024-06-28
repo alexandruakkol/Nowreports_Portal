@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Button, Checkbox, Form, Input, Divider } from "antd";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth, googleSignup } from "../firebase";
-import GoogleSignupButton from "../components/GoogleSignupButton";
+import { auth, googleSignup } from "../../../src/firebase";
+import GoogleSignupButton from "../../../src/components/GoogleSignupButton";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import {Navbar} from 'readyui';
 //import {Navbar} from '../components/Navbar';

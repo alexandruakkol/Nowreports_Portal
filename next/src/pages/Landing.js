@@ -1,18 +1,16 @@
 import { useState, useRef, useEffect } from 'react'
-import Footer from '../components/Footer';
+import Footer from '../../../src/components/Footer';
 import { FaRegCheckCircle } from "react-icons/fa";
 import { Card, Button } from 'flowbite-react';
 import axios from 'axios';
-import Thankyou from '../components/Thankyou';
+import Thankyou from '../../../src/components/Thankyou';
 import { Input, Modal } from 'antd';
 import {Navbar} from 'readyui';
 import { LuPlay } from "react-icons/lu";
 import { IoCheckmarkDone } from "react-icons/io5";
 import ReactPlayer from 'react-player/lazy'
-import PitchCard from '../components/PitchCard';
-import PitchcardList from '../components/PitchcardList';
-
-//import {Navbar} from '../components/Navbar';
+import PitchCard from '../../../src/components/PitchCard';
+import PitchcardList from '../../../src/components/PitchcardList';
 
 const Landing = () => {
 

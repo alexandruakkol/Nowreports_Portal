@@ -4,12 +4,12 @@ import { useNavigate} from 'react-router-dom';
 import {Input} from 'antd';
 import SplitPane, { Pane } from 'split-pane-react';
 import 'split-pane-react/esm/themes/default.css';
-import HTMLviewer from '../components/HTMLviewer';
+import HTMLviewer from '../../../src/components/HTMLviewer';
 import {SendOutlined} from '@ant-design/icons';
-import {AuthContext} from '../App';
-import { sendLog } from '../utils';
-import FeedbackModal from '../components/FeedbackModal';
-import ScanReport from '../components/ScanReport';
+import {AuthContext} from '../../../src/App';
+import { sendLog } from '../../../src/utils';
+import FeedbackModal from '../../../src/components/FeedbackModal';
+import ScanReport from '../../../src/components/ScanReport';
 const Conversation = (props) => {
 
     const {convoID} = props;

@@ -1,14 +1,12 @@
 import React, {useState} from 'react'
 import { Button, Divider, Form, Input } from 'antd';
-import {auth, googleSignup} from '../firebase';
-import { StepForwardFilled, CheckCircleOutlined } from '@ant-design/icons';
-import axios from 'axios';
+import {auth, googleSignup} from '../../../src/firebase';
+import { CheckCircleOutlined } from '@ant-design/icons';
 //import Navbar_out from '../components/Navbar_out';
-import { sendLog, FB_err_handler } from '../utils';
+import { sendLog, FB_err_handler } from '../../../src/utils';
 import GoogleSignupButton from '../components/GoogleSignupButton';
-import {newAccountSequence, FBError} from '../account_operations';
+import {newAccountSequence, FBError} from '../../../src/account_operations';
 import {Navbar} from 'readyui';
-//import Navbar from '../components/Navbar';
 
 const Signup = () => {
 
@@ -38,12 +36,10 @@ const Signup = () => {
         setFormErr('');
         setFormSuccess(true);
     }
-    
   };
 
   function BeforeSuccess(){
       return  <>
-      
         <div className="text-center text-bold text-medium rethink">Create your account</div>
         <div id="login-signup-square">
             <Form   
@@ -127,7 +123,7 @@ const Signup = () => {
                 <div className="error-msg">{formErr}</div>
             </Form> 
 
-            <Divider ><span className="text-small rethink">Or continue with</span></Divider>
+            <Divider><span className="text-small rethink">Or continue with</span></Divider>
 
             <a onClick={signupGoogleFend}> 
                 <GoogleSignupButton className='rethink'></GoogleSignupButton>
@@ -147,14 +143,14 @@ const Signup = () => {
   }
 
   const loginButton = <span className="nowrep-button darken-button" 
-        onClick={()=>{window.location.href = window.location.origin+'/login'}} 
+        onClick={ () => {window.location.href = window.location.origin+'/login'} } 
         type="disabled" goto="login">
         Go to Login
     </span>;
 
   return (
     <div id="login-container">
-         <Navbar large_logo={<h2 className="logo-text">CEO Chat</h2>} items={[]} cta_button={loginButton}></Navbar>
+        <Navbar large_logo={<h2 className="logo-text">CEO Chat</h2>} items={[]} cta_button={loginButton}></Navbar>
         {formSuccess ? <AfterSuccess/> : <BeforeSuccess/>}
     </div>
   )
