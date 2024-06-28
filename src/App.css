@@ -1371,6 +1371,7 @@ form label{
 }
 .main-logo{
     padding-left:20px;
+    text-wrap: nowrap;
 }
 .convo-ceochat-logo{
     font-size:28px;
@@ -1405,11 +1406,11 @@ form label{
         padding-top: 70px;
     }
     .heading{
-        font-size: 34px;
+        font-size: 9vw;
         line-height: 45px;
     }
     .heading-secondary{
-        font-size:10px;
+        font-size:2.8vw;
     }
     .pitch-flex1{
         padding-left: 0%;
