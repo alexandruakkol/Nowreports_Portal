@@ -223,6 +223,7 @@ body{
     flex-direction: column;
     gap: 7vh;
     align-items: center;
+    overflow-y: scroll;
 }
 .login-form {
     min-width: 270px;
