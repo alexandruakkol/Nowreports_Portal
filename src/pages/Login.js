@@ -35,7 +35,7 @@ const Login = () => {
     style={{width: '12rem'}}
     className="clickable"
     alt="CEO Chat Logo"
-    src='./ceochat_combo.png'
+    src='./CEOchat_combo.png'
     onClick={()=>{window.location.pathname='/login'}}
   ></img>//TODO: centralize
 
