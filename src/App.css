@@ -454,6 +454,7 @@ form label{
     flex-direction: column;
     padding-left: 7px;
     padding-right: 7px;  
+    padding-bottom: 7px;
 }
 #convo-splitpane{
     display:flex;
@@ -1715,16 +1716,6 @@ form label{
         font-size: 1.7rem;
     }
 }
-@media only screen and (max-height: 800px){
-    body{
-        overflow: hidden;
-    }
-}
-@media only screen and (min-height: 801px){
-    body{
-        overflow: hidden;
-    }
-}
 
 /* Convo mobile responsiveness */
 @media only screen and (max-width: 576px){
@@ -1739,7 +1730,7 @@ form label{
         width: 100% !important;
     }
     .Main-noNavbar{
-        height:1    00vh !important;
+        height:140vh !important;
     }
 }
 /* Convo mobile responsiveness */

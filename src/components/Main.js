@@ -158,7 +158,7 @@ function DefPage(){
       <h2 className="logo-text text-large">CEO Chat</h2>
         <AutoComplete  
           options={options.map(x=>renderOption(x))}
-          style={{width: '42vw'}}
+          style={{width: '42vw', minWidth:'300px'}}
           onSelect={onSelectCompany}
           onSearch={(text) => getSuggestions(text)}
           className="rethink"
