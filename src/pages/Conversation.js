@@ -63,7 +63,7 @@ const Conversation = (props) => {
                 function decodeAgent(agent){return {'cl':'user', 'ai':'assistant'}[agent]}
                 let last_4_msgs = convo.slice(-4).map(el => {return {role:decodeAgent(el.agent), content:el.msg?.slice(0,2000)}});
                 let messages = last_4_msgs;
-                const ai_payload = {messages:JSON.stringify(messages.filter(x => x.content)), filingID, convoID};
+                const ai_payload = {messages:JSON.stringify(messages.filter(x => x.content)), filingID, convoID, symbol};
 
                 function send_completion(){
                     fetch(`${window.appdata.API_ADDR}/completionproxy`, {   
