@@ -126,9 +126,6 @@ body{
     display:flex;
     flex-direction: column;
 }
-.Main-noNavbar{
-    height:100vh !important;
-}
 .main-section{
     margin-right: 1px;
     margin-left: 1px;
@@ -451,7 +448,6 @@ form label{
 }
 #convo-sidebar{
     flex:2;
-    max-width: 250px;
     background-color: var(--SIDEBAR-DARK);
     display:flex;
     font-weight: 300;
@@ -490,7 +486,7 @@ form label{
     border-left:5px solid rgb(221, 221, 221);
 }
 .convo-pane-right-container{
-    height: 100vh;
+    height: 100%;
 }
 .sidebar-subscribe-button{
     display: flex;
@@ -540,18 +536,37 @@ form label{
     z-index: 10; 
     background: transparent; /* Or any color with opacity if needed */
 }
-.convo-symboldata, .convo-subscription{
+.convo-symboldata,.convo-subscription{
     display: flex;
     flex-direction: row;
     gap: 10px;
     padding:0.55rem 0.6rem 0.55rem 0.6rem;
     justify-content: space-between;
+    margin: 3px;
     color: var(--OFFWHITE);    
-    margin: 4px;
     border-radius: 6px;
     font-size: 0.9rem;
     font-family: 'Inter';
     transition: all 0.25s ease;
+}
+.convo-symboldatacenter{    
+    margin-top:40px;
+    color: var(--OFFWHITE);   
+    width: 100%;
+    text-align: center; 
+    font-family: 'Inter';
+    font-size: 0.9rem;
+}
+.convo-symboldata.convo-docs{
+    border: 1px solid grey;
+    flex-direction: column;
+}
+.convo-docsdata{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
 }
 .ant-popover-inner{
     font-family: 'Inter';
@@ -1708,6 +1723,38 @@ form label{
 @media only screen and (min-height: 801px){
     body{
         overflow: hidden;
+    }
+}
+
+/* Convo mobile responsiveness */
+@media only screen and (max-width: 576px){
+    #convo-container{
+        flex-direction: column;
+    }
+    #convo-sidebar{
+        max-width:100%;
+    }
+    .react-split__pane:nth-child(2){
+        left:0px !important;
+        width: 100% !important;
+    }
+    .Main-noNavbar{
+        height:1    00vh !important;
+    }
+}
+/* Convo mobile responsiveness */
+@media only screen and (min-width: 576px){
+    #convo-container{
+        flex-direction: row;
+    }
+    #convo-sidebar{
+        max-width:230px;
+    }
+    .react-split__pane:nth-child(2){
+        left:auto;
+    }
+    .Main-noNavbar{
+        height:100vh !important;
     }
 }
 

@@ -10,6 +10,8 @@ import {AuthContext} from '../App';
 import { sendLog } from '../utils';
 import FeedbackModal from '../components/FeedbackModal';
 import ScanReport from '../components/ScanReport';
+import { FaCheckCircle } from "react-icons/fa";
+
 const Conversation = (props) => {
 
     const {convoID} = props;
@@ -284,19 +286,31 @@ const Conversation = (props) => {
                         <div>{reportData?.name || 'N/A'}</div>
                     </div>
                     <hr></hr>
-                    <div className="convo-symboldata">
-                        <div className="convo-symboldata-title">Report date</div>
-                        <div>{formatDate(reportData?.repdate) || 'N/A'}</div>
-                    </div>
-                    <hr></hr>
-                    <div className="convo-symboldata">
+                   
+                    {/* <div className="convo-symboldata">
                         <div className="convo-symboldata-title">Type</div>
                         <div>{reportData?.typ || 'N/A'}</div>
                     </div>
-                    <hr></hr>
+                    <hr></hr> */}
+
                     <div className="convo-symboldata darken-hover clickable" onClick={()=>navigate('/subscription')}>
                         <div className="convo-symboldata-title">Remaining queries</div>
                         <div>{CREDITS || '0'}</div>
+                    </div>
+                    
+                    <hr></hr>
+
+                    <div className="convo-symboldatacenter convo-symboldata-title">Documents</div>
+                    <div className="convo-symboldata convo-docs">
+                        <div className="convo-symboldata">
+                            <div className="convo-symboldata-title">SEC</div>
+                            <div className="convo-docsdata"><FaCheckCircle style={{color:'green'}}></FaCheckCircle><span>{formatDate(reportData?.repdate) || 'N/A'}</span></div>
+                        </div>
+                        <div className="convo-symboldata">
+                            <div className="convo-symboldata-title">Transcripts</div>
+                            <div className="convo-docsdata"><FaCheckCircle style={{color:'green'}}></FaCheckCircle><span>loaded</span></div>
+                        </div>
+
                     </div>
                 </div>
                 
