@@ -11,6 +11,7 @@ import { sendLog } from '../utils';
 import FeedbackModal from '../components/FeedbackModal';
 import ScanReport from '../components/ScanReport';
 import { FaCheckCircle } from "react-icons/fa";
+import { BsSuitDiamondFill } from "react-icons/bs";
 
 const Conversation = (props) => {
 
@@ -190,7 +191,7 @@ const Conversation = (props) => {
             if(!reportData?.filingid) throw new Error('Code 8 error');
             setIsAIReportLoading(true);
             let report_data = (await axios.get(`${window.appdata.API_ADDR}/report?filingID=${reportData?.filingid}`))?.data;
-            if(report_data.length) setCREDITS(CREDITS-2); //TODO: move this cost to come from the backend
+            if(report_data.length) setCREDITS(CREDITS - 3); //TODO: move this cost to come from the backend
             setIsAIReportLoading(false);
             setAIReportData(report_data);
             setMode('aireport');
@@ -209,7 +210,13 @@ const Conversation = (props) => {
         if(!convo.length) return (
             <div id="empty-convo" >
                 <div className="empty-convo-text">
-                    <span><button onClick={callReport} className="clickable genreport-btn">Generate a business scan report</button>, or ask a question below</span>
+                    <div>
+                        <button onClick={callReport} className="clickable genreport-btn">
+                            <span>Generate an AI Business Report</span> 
+                            <span className="flex-row flex-center">3 <BsSuitDiamondFill style={{fontSize:'1.3rem'}} /></span>
+                        </button> 
+                        <span className="flex-center">or ask a question below</span>
+                    </div>
                     <div className={`report-loading-anim-container flex-row ${isAIReportLoading || 'hidden'}`}>
                         <span>Your document is being generated</span>
                         <div id="">
@@ -297,7 +304,15 @@ const Conversation = (props) => {
                         <div className="convo-symboldata-title">Remaining queries</div>
                         <div>{CREDITS || '0'}</div>
                     </div>
-                    
+                
+                    <hr></hr>
+                    <div className="convo-symboldata darken-hover clickable convo-genreport darken-hover flex-center">
+                        <div className="convo-symboldata-title" onClick={callReport}>
+                            <span>Generate an AI Business Report</span>
+                            <span className="flex-row flex-center">3 <BsSuitDiamondFill style={{fontSize:'1.3rem'}} /></span>
+                        </div>
+                    </div>
+
                     <hr></hr>
 
                     <div className="convo-symboldatacenter convo-symboldata-title">Documents</div>
@@ -310,12 +325,13 @@ const Conversation = (props) => {
                             <div className="convo-symboldata-title">Transcripts</div>
                             <div className="convo-docsdata"><FaCheckCircle style={{color:'green'}}></FaCheckCircle><span>loaded</span></div>
                         </div>
-
                     </div>
+
+
                 </div>
                 
                 <div id="sidebar-section-lower" className="sidebar-section">
-                   {(CREDITS < 100) && <div className="convo-subscription convo-getsubscription darken-hover clickable" onClick={()=>navigate('/subscription')}>
+                   {(CREDITS < 100) && <div className="lightgrey-border convo-getsubscription darken-hover clickable" onClick={()=>navigate('/subscription')}>
                         {/* <div className="convo-symboldata-title">Subscribe</div> */}
                         <div className="sidebar-subscribe-button">
                             <div className="convo-symboldata-title">Subscribe</div>
@@ -323,7 +339,7 @@ const Conversation = (props) => {
                         </div>
                     </div>} 
                     <hr className="sidebar-hr"></hr>
-                    <div className="convo-symboldata convo-getsubscription darken-hover convo-blue clickable convo-subscription" onClick={()=>{setIsOpenSuggestionModal(!isOpenErrorModal)}}>
+                    <div className="convo-symboldata convo-getsubscription darken-hover convo-blue clickable lightgrey-border" onClick={()=>{setIsOpenSuggestionModal(!isOpenErrorModal)}}>
                         <div className="convo-symboldata-title max-width">Give us a suggestion</div>
                     </div>
                     <div className="convo-symboldata convo-getsubscription darken-hover convo-red clickable" onClick={()=>{setIsOpenErrorModal(!isOpenErrorModal)}}>
@@ -377,7 +393,9 @@ const Conversation = (props) => {
                                 </>}
                             
                             <div id="chat-bar">
-                                <SendOutlined onClick={onMsgSend} id="msg-send-icon"/>
+                                <div onClick={onMsgSend} className="clickable flex-center">
+                                    <SendOutlined id="msg-send-icon"/>
+                                </div>
                                 <Input.TextArea 
                                     value={msg}
                                     size="large" 

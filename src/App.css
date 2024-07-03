@@ -45,7 +45,7 @@ body{
 }
 .flex-center{
     display: flex;
-    justify-content: center;
+    justify-content: center !important;
 }
 .text-small{
     font-size: 0.9rem;
@@ -557,10 +557,19 @@ form label{
     text-align: center; 
     font-family: 'Inter';
     font-size: 0.9rem;
+    margin-bottom: 10px;
 }
 .convo-symboldata.convo-docs{
-    border: 1px solid grey;
+    border: 1px solid #2e3444;
     flex-direction: column;
+}
+.convo-docs .convo-symboldata{
+    margin: 0px;
+    padding: 0.5rem;
+}
+.convo-genreport{
+    border: 1px solid var(--OFFWHITE);
+    color:var(--OFFWHITE);  
 }
 .convo-docsdata{
     display: flex;
@@ -585,7 +594,7 @@ form label{
     justify-content: flex-end;
     margin-bottom: 0.5vh;
 }
-.convo-subscription{
+.lightgrey-border{
     border: 1px solid #2e3444 !important;
 }
 .convo-subscription:hover{
@@ -601,9 +610,17 @@ form label{
     background-color: var(--DARK-SELECT);
     transition-duration: 0.2s;
 }
+.lightdark-hover:hover{
+    border-radius: 13px;
+    background-color: #7979793d;
+    transition-duration: 0.2s;
+}
 .convo-symboldata-title{
     font-weight: bold;
     text-align: center;
+}
+.convo-genreport{
+    margin-top:7vh;
 }
 #messages-container{
     padding: 0.7rem;
