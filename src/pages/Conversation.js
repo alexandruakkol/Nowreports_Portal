@@ -331,7 +331,7 @@ const Conversation = (props) => {
                 </div>
                 
                 <div id="sidebar-section-lower" className="sidebar-section">
-                   {(CREDITS < 100) && <div className="lightgrey-border convo-getsubscription darken-hover clickable" onClick={()=>navigate('/subscription')}>
+                   {(CREDITS < 100) && <div className="lightgrey-border convo-getsubscription darken-hover clickable convo-symboldata" onClick={()=>navigate('/subscription')}>
                         {/* <div className="convo-symboldata-title">Subscribe</div> */}
                         <div className="sidebar-subscribe-button">
                             <div className="convo-symboldata-title">Subscribe</div>
