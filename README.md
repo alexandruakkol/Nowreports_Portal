@@ -60,7 +60,6 @@ The Portal contains the following notable features:
 ## Company search
 
 <img width="1915" alt="Screenshot 2024-03-26 at 8 51 49 PM" src="https://github.com/alexandruakkol/nowreports_portal/assets/96371551/adf6ba7e-15dd-4e22-bd16-871d5f9cc08b">
-
 ## AI App
 
 <img width="1920" alt="Screenshot 2024-03-26 at 8 52 36 PM" src="https://github.com/alexandruakkol/nowreports_portal/assets/96371551/221ebcf0-35cb-4513-b7b6-afe2a3513a1e">
