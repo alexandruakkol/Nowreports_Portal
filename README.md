@@ -11,7 +11,7 @@ Firebase is used for authentication and analytics only.
 
 Deployed on [Nowreports.com](https://www.nowreports.com)
 
-## Application Structure
+## Project Structure
 
 The frontend objects are divided into Pages and Components.
  
