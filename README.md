@@ -64,5 +64,3 @@ The Portal contains the following notable features:
 ## AI App
 
 <img width="1920" alt="Screenshot 2024-03-26 at 8 52 36 PM" src="https://github.com/alexandruakkol/nowreports_portal/assets/96371551/221ebcf0-35cb-4513-b7b6-afe2a3513a1e">
-
-
